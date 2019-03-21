@@ -1,5 +1,7 @@
+package Database;
+
 import java.sql.*;
-import java.util.ArrayList;
+
 
 public class RetailMain {
 
@@ -46,9 +48,21 @@ public class RetailMain {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        RetailMain rm = new RetailMain();
+
+        //Hard drive location of the database
+        String location = "./retailDb/retailDb";
+        String user = "cskid";
+        String password = "retaildomain";
+
+        //Create the database connections, basically makes the database
+        rm.createConnection(location, user, password);
+
+
 
     }
+
 
 
 
