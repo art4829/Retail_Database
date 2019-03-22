@@ -1,5 +1,7 @@
 package Database;
 
+import Database.Populate.CustomerTable;
+
 import java.sql.*;
 
 
@@ -58,7 +60,26 @@ public class RetailMain {
 
         //Create the database connections, basically makes the database
         rm.createConnection(location, user, password);
+//        try {
+//
+//            /**
+//             * Creates a sample Person table
+//             * and populates it from a csv file
+//             */
+//            CustomerTable.createCustomerTable(rm.getConnection());
+//            CustomerTable.populateCustomerTableFromCsv(
+//                    rm.getConnection(),
+//                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\customer.csv");
+//
+//            /**
+//             * Just displays the table
+//             */
+//            CustomerTable.printCustomerTable(rm.getConnection());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
+        CustomerTable.printCustomerTable(rm.getConnection());
 
 
     }

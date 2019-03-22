@@ -1,4 +1,4 @@
-package Database.Entity;
+package Database.Populate;
 
 public class Customer {
 

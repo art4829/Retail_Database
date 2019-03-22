@@ -1,9 +1,8 @@
-customer_id,first_name,last_name,num,street,city,state,zip,email
 1,Bryan,Passino,20,Long Memorial Drive,Rochester,NY,14623,bjpvcs@rit.edu
 2,Joy,Notjoy,30,Memorial Drive,Avon,MA,2322,pxj@rit.edu
 3,James,Oh,250,Hartford Avenue,Bellingham,MA,2019,jameskim@gmail.com
 4,Jack,Oh,700,Oak Street,Brockton,MA,2301,jackkim@gmail.com
-5,Sarah,Banana,66-4,Parkhurst Rd,Chelmsford,MA,1824,fruitmeup@gmail.com
+5,Sarah,Banana,66,Parkhurst Rd,Chelmsford,MA,1824,fruitmeup@gmail.com
 6,Bob,Marley,591,Memorial Dr,Chicopee,MA,1020,guitarsenpai@hotmail.com
 7,Ryan,Brother,137,Teaticket Hwy,East Falmouth,MA,2536,artesano7718@gmail.com
 8,Monica,Geller,42,Fairhaven Commons Way,Fairhaven,MA,2719,cleanfreak221@friends.edu
