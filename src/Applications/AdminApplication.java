@@ -2,6 +2,7 @@ package Applications;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminApplication {
@@ -53,25 +54,46 @@ public class AdminApplication {
         System.out.println("Enter sql command: ");
         Scanner scan = new Scanner(System.in);
         String query = scan.nextLine();
+        String[] query_array = query.split(" ");
+
+        /*for (int i=0; i<query_array.length; i++){
+            System.out.println(query_array[i]);
+        }*/
         try {
 
-
+            //check if it is select
             Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(query);
+            if (query_array[0].equals("select")){
+                ResultSet result = stmt.executeQuery(query);
+                ResultSetMetaData rsmd = result.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                // The column count starts from 1
 
-            /*
-            ResultSetMetaData rsmd = result.getMetaData();
-            String name = rsmd.getColumnLabel(1);*/
+                ArrayList<String> column_names=new ArrayList<String>();
+                for (int i = 1; i <= columnCount; i++ ) {
+                    String name = rsmd.getColumnName(i);
+                    column_names.add(name);
+                    System.out.print(name + " ");
+                    // Do stuff with name
+                }
+                System.out.println();
 
-            ResultSetMetaData rsmd = result.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-// The column count starts from 1
-            for (int i = 1; i <= columnCount; i++ ) {
-                String name = rsmd.getColumnName(i);
-                System.out.print(name + " ");
-                // Do stuff with name
+                while(result.next()) {
+                    for (int i=0; i<columnCount; i++){
+                        System.out.print(result.getString(i+1) + " ");
+                    }
+                    System.out.println();
+                }
+                // STEP 5: Clean-up environment
+                result.close();
             }
+            else{
+                stmt.executeQuery(query);
+            }
+
+
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
