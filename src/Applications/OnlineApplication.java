@@ -141,13 +141,15 @@ public class OnlineApplication {
 
                 ResultSet r= stmt.executeQuery(count_query);
                 r.next();
-                int count = r.getInt("count");
+                int count = r.getInt("count") + 1;
+
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
                 sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                         count, first_name, last_name, num, street, city, state, zip, email, password));
                 stmt.execute(sb.toString());
+                System.out.println("Welcome! " +first_name+" "+last_name);
             }catch (SQLException e){
                 System.out.println(e.getMessage());
             }
