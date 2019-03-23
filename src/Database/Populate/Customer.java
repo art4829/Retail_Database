@@ -11,6 +11,7 @@ public class Customer {
     private String state;
     private String zip;
     private String email;
+    private String password;
 
     public Customer(String[] data) {
         this.customer_id = Integer.parseInt(data[0]);
@@ -22,6 +23,7 @@ public class Customer {
         this.state = data[6];
         this.zip = data[7];
         this.email = data[8];
+        this.password = data[9];
     }
 
     public int getCustomer_id() {
@@ -59,4 +61,7 @@ public class Customer {
     public String getEmail() {
         return email;
     }
+
+    public String getPassword(){ return password;}
 }
+

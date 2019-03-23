@@ -22,7 +22,8 @@ public class CustomerTable {
                     "city varchar(255),\n" +
                     "state varchar(255),\n" +
                     "zip varchar(255),\n" +
-                    "email varchar(255));" ;
+                    "email varchar(255),\n"+
+                    "password varchar(255));" ;
 
             /**
              * Create a query and execute
@@ -76,7 +77,7 @@ public class CustomerTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email) VALUES");
+        sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -87,8 +88,8 @@ public class CustomerTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Customer c = customers.get(i);
-            sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    c.getCustomer_id(), c.getFirst_name(), c.getLast_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getEmail()));
+            sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                    c.getCustomer_id(), c.getFirst_name(), c.getLast_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getEmail(),c.getPassword()));
             if( i != customers.size()-1){
                 sb.append(",");
             }
@@ -115,7 +116,7 @@ public class CustomerTable {
                         result.getString(6),
                         result.getString(7),
                         result.getString(8),
-                        result.getString(3));
+                        result.getString(9));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -7,6 +7,7 @@ public class OnlineApplication {
 
     private Connection connection;
     private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
+    private final String INCORRECT_PW="Incorrect password, Please enter again";
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -48,9 +49,11 @@ public class OnlineApplication {
      * @return
      */
     public String login(Connection connection, String email){
-        String query="select first_name, last_name from customer where email = "+"\'"+email+"\'\n";
+        String query="select first_name, last_name, password from customer where email = "+"\'"+email+"\'\n";
         String first_name;
         String last_name;
+        String password;
+
         try {
             /**
              * Execute the query and return the result set
@@ -61,8 +64,21 @@ public class OnlineApplication {
 
             first_name=result.getString("first_name");
             last_name=result.getString("last_name");
+            password=result.getString("password");
 
+
+            Scanner pw= new Scanner(System.in);
+            System.out.print("Please Enter your Password: ");
+            String password_input =pw.nextLine();
+
+            while(!password_input.equals(password)){
+                System.out.println(INCORRECT_PW);
+                System.out.print("Please Enter your Password: ");
+                password_input = pw.nextLine();
+            }
             return "Welcome! " +first_name+" "+last_name;
+
+
         } catch (SQLException e) {
             return EMAIL_DOESNT_EXIST;
         }
