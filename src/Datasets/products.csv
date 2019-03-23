@@ -1,20 +1,20 @@
-UPC,name,size,price,vendor_id,brand_id
-413874160000,Chocolate Sandwich Cookies,10.47 oz,$6.99,1,1
-780000053100,All-Seasons Salt,8 oz,$4.25,1,2
-706508001200,Robust Golden Unsweetened Oolong Tea,16.9 oz,$2.45,1,3
-544000127700,Smart Ones Classic Favorites Mini Rigatoni With Vodka Cream Sauce,10 oz,$4.00,2,4
-366320290600,Green Chile Anytime Sauce,12 oz,$4.00,3,5
-253674707083,Pure Coconut Water With Orange,16.9 oz,$7.50,3,6
-415700561700,Cut Russet Potatoes Steam N' Mash,24 oz,$5.30,1,7
-842532696300,Light Strawberry Blueberry Yogurt,6 oz,$3.00,4,8
-714483001400,Sparkling Orange Juice & Prickly Pear Beverage,16 oz,$5.99,4,9
-763012401480,Peach Mango Juice,14 oz,$5.99,4,10
-253176680000,Chocolate Fudge Layer Cake,15 oz,$12.50,2,11
-721406337760,Coca Cola,20 oz,$5.80,3,12
-130087259200,Coca Cola,12 oz,$3.40,1,12
-613008720850,Crystal Light Natural Lemonade Drink Mix,3.2 oz,$2.59,2,13
-278150020500,Mint Chocolate Flavored Syrup,15.5 oz,$4.00,3,14
-466000338400,Rendered Duck Fat,11 oz,$8.00,4,15
-170000095000,Pizza for One Suprema  Frozen Pizza,6 oz,$7.99,4,16
-734101350600,Gluten Free Quinoa Three Cheese & Mushroom Blend,64 oz,$4.45,3,17
-766066914300,Pomegranate Cranberry & Aloe Vera Enrich Drink,15 oz,$3.99,3,18
+UPC,name,size,price,vendor_id,brand_id,amount
+4.13874E+11,Chocolate Sandwich Cookies,10.47,$6.99 ,1,1,437
+7.8E+11,All-Seasons Salt,8,$4.25 ,1,2,809
+7.06508E+11,Robust Golden Unsweetened Oolong Tea,16.9,$2.45 ,1,3,608
+5.44E+11,Smart Ones Classic Favorites Mini Rigatoni With Vodka Cream Sauce,10,$4.00 ,2,4,603
+3.6632E+11,Green Chile Anytime Sauce,12,$4.00 ,3,5,455
+2.53675E+11,Pure Coconut Water With Orange,16.9,$7.50 ,3,6,866
+4.15701E+11,Cut Russet Potatoes Steam N' Mash,24,$5.30 ,1,7,92
+8.42533E+11,Light Strawberry Blueberry Yogurt,6,$3.00 ,4,8,154
+7.14483E+11,Sparkling Orange Juice & Prickly Pear Beverage,16,$5.99 ,4,9,784
+7.63012E+11,Peach Mango Juice,14,$5.99 ,4,10,960
+2.53177E+11,Chocolate Fudge Layer Cake,15,$12.50 ,2,11,232
+7.21406E+11,Coca Cola,20,$5.80 ,3,12,718
+1.30087E+11,Coca Cola,12,$3.40 ,1,12,482
+6.13009E+11,Crystal Light Natural Lemonade Drink Mix,3.2,$2.59 ,2,13,268
+2.7815E+11,Mint Chocolate Flavored Syrup,15.5,$4.00 ,3,14,464
+4.66E+11,Rendered Duck Fat,11,$8.00 ,4,15,175
+1.7E+11,Pizza for One Suprema  Frozen Pizza,6,$7.99 ,4,16,116
+7.34101E+11,Gluten Free Quinoa Three Cheese & Mushroom Blend,64,$4.45 ,3,17,863
+7.66067E+11,Pomegranate Cranberry & Aloe Vera Enrich Drink,15,$3.99 ,3,18,570
