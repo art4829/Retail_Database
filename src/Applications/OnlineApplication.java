@@ -93,6 +93,14 @@ public class OnlineApplication {
         String first_name;
         String last_name;
         String email;
+        int num;
+        String street;
+        String city;
+        String state;
+        String zip;
+        String password;
+        String passwordCheck;
+
         // you have to create more variables and prompt the user .
         String address; // Remember address is divied into - num, street, city, state, zip
         Scanner scanner= new Scanner(System.in);
@@ -106,16 +114,43 @@ public class OnlineApplication {
         if (check.startsWith("Welcome")){
             System.out.println("Email already exists, please enter a new one");
         }else{
-            System.out.println("Welcome! "+ first_name+" "+ last_name);
+            System.out.print("Please enter a password for your account: ");
+            password = scanner.nextLine();
+            System.out.print("Please Re-enter Password: ");
+            passwordCheck = scanner.nextLine();
+            while(!passwordCheck.equals(password)){
+                System.out.println("Passwords Don't Match, Re-enter");
+                passwordCheck = scanner.nextLine();
+            }
+            System.out.print("Please enter your Street Number: ");
+            num=Integer.parseInt(scanner.nextLine());
+            System.out.print("Please enter your Street Name: ");
+            street=scanner.nextLine();
+            System.out.print("Please enter your City: ");
+            city=scanner.nextLine();
+            System.out.print("Please enter your State: ");
+            state=scanner.nextLine();
+            System.out.print("Please enter your ZipCode: ");
+            zip=scanner.nextLine();
 
             // add to database
-//            try{
-//                String insert="insert into customer";
-//                Statement stmt = connection.createStatement();
-//                stmt.execute(insert);
-//            }catch (SQLException e){
-//                System.out.println(e.getMessage());
-//            }
+            try{
+
+                String count_query= "select count(customer_id) as count from customer";
+                Statement stmt = connection.createStatement();
+
+                ResultSet r= stmt.executeQuery(count_query);
+                r.next();
+                int count = r.getInt("count");
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
+                sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                        count, first_name, last_name, num, street, city, state, zip, email, password));
+                stmt.execute(sb.toString());
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
