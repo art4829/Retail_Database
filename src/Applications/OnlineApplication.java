@@ -1,7 +1,9 @@
 package Applications;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class OnlineApplication {
 
@@ -71,6 +73,7 @@ public class OnlineApplication {
             System.out.print("Please Enter your Password: ");
             String password_input =pw.nextLine();
 
+            // if incorrect password
             while(!password_input.equals(password)){
                 System.out.println(INCORRECT_PW);
                 System.out.print("Please Enter your Password: ");
@@ -101,7 +104,7 @@ public class OnlineApplication {
         String password;
         String passwordCheck;
 
-        // you have to create more variables and prompt the user .
+
         String address; // Remember address is divied into - num, street, city, state, zip
         Scanner scanner= new Scanner(System.in);
         System.out.print("Please enter your first name: ");
@@ -143,11 +146,13 @@ public class OnlineApplication {
                 r.next();
                 int count = r.getInt("count") + 1;
 
+                // Building sql query to insert
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
                 sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                         count, first_name, last_name, num, street, city, state, zip, email, password));
+                // executing the sql command to insert
                 stmt.execute(sb.toString());
                 System.out.println("Welcome! " +first_name+" "+last_name);
             }catch (SQLException e){
@@ -180,17 +185,21 @@ public class OnlineApplication {
             System.out.println("Please Enter your Email: ");
             Scanner scan2=new Scanner(System.in);
             String email = scan2.nextLine();
-
+            // Check login and display
             String display = app.login(app.getConnection(), email);
             System.out.println(display);
         }else if(check==2){
+            // If sign up, Register user
             System.out.println("Registering you");
             app.register(app);
-
+        }
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-
-
+        System.out.println("Welcome To Our Online Store: ");
 
 
 
