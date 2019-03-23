@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class OnlineApplication {
 
     private Connection connection;
+    private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -39,6 +40,7 @@ public class OnlineApplication {
         }
     }
 
+
     /**
      * Checks if email is valid, if valid, returns welcome message
      * @param connection
@@ -62,12 +64,50 @@ public class OnlineApplication {
 
             return "Welcome! " +first_name+" "+last_name;
         } catch (SQLException e) {
-            return "Email Address Doesn't exist\nPlease Sign-up!";
+            return EMAIL_DOESNT_EXIST;
         }
-
     }
-    public static void main(String[] args) {
 
+
+    /**
+     * Register the user
+     * @param app this class object
+     */
+    public void register(OnlineApplication app){
+        String first_name;
+        String last_name;
+        String email;
+        // you have to create more variables and prompt the user .
+        String address; // Remember address is divied into - num, street, city, state, zip
+        Scanner scanner= new Scanner(System.in);
+        System.out.print("Please enter your first name: ");
+        first_name = scanner.nextLine();
+        System.out.print("Please enter your last name:");
+        last_name= scanner.nextLine();
+        System.out.print("Please enter your Email: ");
+        email= scanner.nextLine();
+        String check = app.login(app.getConnection(),email);
+        if (check.startsWith("Welcome")){
+            System.out.println("Email already exists, please enter a new one");
+        }else{
+            System.out.println("Welcome! "+ first_name+" "+ last_name);
+
+            // add to database
+//            try{
+//                String insert="insert into customer";
+//                Statement stmt = connection.createStatement();
+//                stmt.execute(insert);
+//            }catch (SQLException e){
+//                System.out.println(e.getMessage());
+//            }
+        }
+    }
+
+    /**
+     * Run the application
+     * @param args
+     */
+    public static void main(String[] args) {
         OnlineApplication app = new OnlineApplication();
         // Hard drive location of database
         String location = "./retailDb/retailDb";
@@ -92,6 +132,8 @@ public class OnlineApplication {
             System.out.println(display);
         }else if(check==2){
             System.out.println("Registering you");
+            app.register(app);
+
         }
 
 
