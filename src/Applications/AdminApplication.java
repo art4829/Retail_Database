@@ -68,7 +68,9 @@ public class AdminApplication {
             // STEP 5: Clean-up environment
             result.close();
         } else {
-            stmt.executeUpdate(query);
+            System.out.println("before");
+            //stmt.executeUpdate(query);
+            System.out.println("after");
         }
     }
 
