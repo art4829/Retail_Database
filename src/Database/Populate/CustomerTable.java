@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class CustomerTable {
 
-    public static void createCustomerTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table customer(\n" +
-                    "customer_id int primary key,\n" +
+                    "customer_id varchar(255) primary key,\n" +
                     "first_name varchar(255),\n" +
                     "last_name varchar(255),\n" +
                     "num varchar(255),\n" +
@@ -35,7 +35,7 @@ public class CustomerTable {
         }
     }
 
-    public static void populateCustomerTableFromCsv(Connection conn,
+    public static void populateTable(Connection conn,
                                                   String fileName)
             throws SQLException {
         /**
@@ -57,7 +57,7 @@ public class CustomerTable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sql = createCustomerInsertSQL(people);
+        String sql = createInsertSQL(people);
 
         /**
          * Create and execute an SQL statement
@@ -68,7 +68,7 @@ public class CustomerTable {
         stmt.execute(sql);
     }
 
-    public static String createCustomerInsertSQL(ArrayList<Customer> customers){
+    public static String createInsertSQL(ArrayList<Customer> customers){
         StringBuilder sb = new StringBuilder();
 
         /**
@@ -88,7 +88,7 @@ public class CustomerTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Customer c = customers.get(i);
-            sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                     c.getCustomer_id(), c.getFirst_name(), c.getLast_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getEmail(),c.getPassword()));
             if( i != customers.size()-1){
                 sb.append(",");

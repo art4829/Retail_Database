@@ -2,7 +2,7 @@ package Database.Populate;
 
 public class Customer {
 
-    private int customer_id;
+    private String customer_id;
     private String first_name;
     private String last_name;
     private String num;
@@ -14,7 +14,7 @@ public class Customer {
     private String password;
 
     public Customer(String[] data) {
-        this.customer_id = Integer.parseInt(data[0]);
+        this.customer_id = data[0];
         this.first_name = data[1];
         this.last_name = data[2];
         this.num = data[3];
@@ -26,7 +26,7 @@ public class Customer {
         this.password = data[9];
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 

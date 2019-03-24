@@ -1,16 +1,22 @@
 package Database.Populate;
 
 public class Reorder {
+    private String reorder_id;
     private String vendor_id;
     private String UPC;
     private String amount;
     private String store_id;
 
-    public Reorder(String vendor_id, String UPC, String amount, String store_id) {
-        this.vendor_id = vendor_id;
-        this.UPC = UPC;
-        this.amount = amount;
-        this.store_id = store_id;
+    public Reorder(String[] data) {
+        this.reorder_id=data[0];
+        this.vendor_id = data[1];
+        this.UPC = data[2];
+        this.amount = data[3];
+        this.store_id = data[4];
+    }
+
+    public String getReorder_id() {
+        return reorder_id;
     }
 
     public String getVendor_id() {
