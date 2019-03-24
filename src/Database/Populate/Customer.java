@@ -5,7 +5,7 @@ public class Customer {
     private int customer_id;
     private String first_name;
     private String last_name;
-    private int num;
+    private String num;
     private String street;
     private String city;
     private String state;
@@ -17,7 +17,7 @@ public class Customer {
         this.customer_id = Integer.parseInt(data[0]);
         this.first_name = data[1];
         this.last_name = data[2];
-        this.num = Integer.parseInt(data[3]);
+        this.num = data[3];
         this.street = data[4];
         this.city = data[5];
         this.state = data[6];
@@ -38,7 +38,7 @@ public class Customer {
         return last_name;
     }
 
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
