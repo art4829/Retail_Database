@@ -1,4 +1,4 @@
-1,Walmart,1200,Marketplace Dr,Rochester,NY,14623,3928472819
-2,Costco,517,E 117th St,New York,NY,10035,2847563627
-3,Wegmans,3585,California St,San Francisco,CA,94118,2736352637
-4,Target,250,Fortune Blvd,Milford,MA,1757,6872648571
+1,Walmart,1200,Marketplace Dr,Rochester,NY,14623,3928472819,abc123
+2,Costco,517,E 117th St,New York,NY,10035,2847563627,password1
+3,Wegmans,3585,California St,San Francisco,CA,94118,2736352637,passpass
+4,Target,250,Fortune Blvd,Milford,MA,1757,6872648571,456password
