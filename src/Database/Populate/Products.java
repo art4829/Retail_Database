@@ -5,8 +5,8 @@ import java.util.function.DoubleBinaryOperator;
 public class Products {
     private String UPC;
     private String name;
-    private float size;
-    private float price;
+    private String size;
+    private String price;
     private String vendor_id;
     private String brand_id;
 
@@ -18,11 +18,11 @@ public class Products {
         return name;
     }
 
-    public double getSize() {
+    public String getSize() {
         return size;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -38,8 +38,8 @@ public class Products {
     public Products(String[] data) {
         this.UPC =  data[0];
         this.name = data[1];
-        this.size = Float.parseFloat(data[2]);
-        this.price =  Float.parseFloat(data[3]);
+        this.size = data[2];
+        this.price =  data[3];
         this.vendor_id =  data[4];
         this.brand_id =  data[5];
 

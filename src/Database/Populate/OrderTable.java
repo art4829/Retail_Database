@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class OrderTable {
-    public static void createOrderTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table orders(\n" +
                     "order_id varchar(255) primary key,\n" +
@@ -18,6 +18,7 @@ public class OrderTable {
                     "city varchar(255),\n" +
                     "state varchar(255),\n" +
                     "zip varchar(255),\n" +
+                    "customer_email varchar(255),\n" +
                     "customer_id varchar(255));" ;
 
             /**
@@ -31,7 +32,7 @@ public class OrderTable {
         }
     }
 
-    public static void populateOrderTable(Connection conn,
+    public static void populateTable(Connection conn,
                                            String fileName)
             throws SQLException {
         /**
@@ -54,7 +55,7 @@ public class OrderTable {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        String sql = createOrderInsertSQL(people);
+        String sql = createInsertSQL(people);
 
         /**
          * Create and execute an SQL statement
@@ -65,7 +66,7 @@ public class OrderTable {
         stmt.execute(sql);
     }
 
-    public static String createOrderInsertSQL(ArrayList<Order> customers){
+    public static String createInsertSQL(ArrayList<Order> customers){
         StringBuilder sb = new StringBuilder();
 
         /**
@@ -74,7 +75,7 @@ public class OrderTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO orders (order_id, num, street, city, state, zip, customer_id) VALUES");
+        sb.append("INSERT INTO orders (order_id, num, street, city, state, zip, customer_email, customer_id) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -85,8 +86,8 @@ public class OrderTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Order c = customers.get(i);
-            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    c.getOrder_id(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getCustomer_id()));
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                    c.getOrder_id(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getCustomer_email(), c.getCustomer_id()));
             if( i != customers.size()-1){
                 sb.append(",");
             }

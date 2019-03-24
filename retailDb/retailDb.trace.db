@@ -340,3 +340,190 @@ qiut [42000-199]
 2019-03-24 11:07:03 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE REORDER VALUES[*](REORDER_ID VARCHAR(255)PRIMARY KEY, VENDOR_ID VARCHAR(255), UPC VARCHAR(255), STORE_ID VARCHAR(255)); "; SQL statement:
 create table reorder values(reorder_id varchar(255)primary key, vendor_id varchar(255), UPC varchar(255), store_id varchar(255)); [42000-199]
+2019-03-24 15:18:46 database: wrong user or password; user: "CSKID"
+org.h2.message.DbException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.openSession(Engine.java:126)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:299)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:782)
+	at org.h2.server.web.WebApp.login(WebApp.java:1004)
+	at org.h2.server.web.WebApp.process(WebApp.java:219)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:169)
+	at org.h2.server.web.WebThread.process(WebThread.java:139)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:459)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 20 more
+2019-03-24 15:21:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH L(SELECT[*] UPC FROM DAIRY) "; expected "identifier"; SQL statement:
+with l(select upc from dairy) [42001-199]
+2019-03-24 15:24:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT NAME
+  FROM [[*]PRODUCT] JOIN DAIRY
+    ON [PRODUCT].UPC = DAIRY.UPC "; expected "identifier"; SQL statement:
+SELECT name
+  FROM [Product] JOIN Dairy
+    ON [Product].UPC = Dairy.UPC [42001-199]
+2019-03-24 15:27:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Ambiguous column name "UPC"; SQL statement:
+SELECT name, UPC
+  FROM Product JOIN Beverage
+    ON Product.UPC = Beverage.UPC [90059-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:142)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:116)
+	at org.h2.command.dml.Select.mapColumns(Select.java:1629)
+	at org.h2.command.dml.Select.init(Select.java:1164)
+	at org.h2.command.Parser.parseSelect(Parser.java:2447)
+	at org.h2.command.Parser.parsePrepared(Parser.java:814)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+2019-03-24 15:28:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT NAME PRODUCT.[*]UPC
+  FROM PRODUCT JOIN BEVERAGE
+    ON PRODUCT.UPC = BEVERAGE.UPC "; SQL statement:
+SELECT name Product.UPC
+  FROM Product JOIN Beverage
+    ON Product.UPC = Beverage.UPC [42000-199]
+2019-03-24 15:33:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODCUT" not found; SQL statement:
+drop table prodcut [42102-199]
+2019-03-24 15:33:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODCUT" not found; SQL statement:
+drop table prodcut [42102-199]
+2019-03-24 15:33:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS" not found; SQL statement:
+select * from products [42102-199]
+2019-03-24 15:36:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" already exists; SQL statement:
+Create table product(
+UPC varchar(255) primary key,
+name varchar(255),
+size varchar(255),
+price varchar(255),
+vendor_id varchar(255),
+brand_id varchar(255)); [42101-199]
+2019-03-24 15:36:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO product (UPC, name, size, price, vendor_id, brand_id) VALUES('413874160000','Chocolate Sandwich Cookies','10.47','6.99','1','1'),('780000053100','All-Seasons Salt','8','4.25','1','2'),('706508001200','Robust Golden Unsweetened Oolong Tea','16.9','2.45','1','3'),('544000127700','Smart Ones Classic Favorites Mini Rigatoni With Vodka Cream Sauce','10','4','2','4'),('366320290600','Green Chile Anytime Sauce','12','4','3','5'),('253674707083','Pure Coconut Water With Orange','16.9','7.5','3','6'),('415700561700','Cut Russet Potatoes Steam N Mash','24','5.3','1','7'),('842532696300','Light Strawberry Blueberry Yogurt','6','3','4','8'),('714483001400','Sparkling Orange Juice & Prickly Pear Beverage','16','5.99','4','9'),('763012401480','Peach Mango Juice','14','5.99','4','10'),('253176680000','Chocolate Fudge Layer Cake','15','12.5','2','11'),('721406337760','Coca Cola','20','5.8','3','12'),('130087259200','Coca Cola','12','3.4','1','12'),('613008720850','Crystal Light Natural Lemonade Drink Mix','3.2','2.59','2','13'),('278150020500','Mint Chocolate Flavored Syrup','15.5','4','3','14'),('466000338400','Rendered Duck Fat','11','8','4','15'),('170000095000','Pizza for One Suprema  Frozen Pizza','6','7.99','4','16'),('734101350600','Gluten Free Quinoa Three Cheese & Mushroom Blend','64','4.45','3','17'),('766066914300','Pomegranate Cranberry & Aloe Vera Enrich Drink','15','3.99','3','18'),('074904100005','Organic Bananas','32','1.39','2','19'),('000651003214','Hearts of Romaine Lettuce','22','3.8','4','20'),('036515110187','Navel Oranges','4','4.99','2','21'),('881334006476','Dunkin' Donuts Original Blend Medium Roast Coffee','5.93','11.89','2','22'),('050000322909','Coffee Mate Hazelnut Coffee Creamer','64','7.99','1','23'),('012000809965','Mountain Dew Citrus Soda','144','4.89','2','24'),('049000074154','Gold Peak Sweetened Black Iced Tea Drink','59','1.35','3','25'),('762111065407','Tazo Classic latte Flavored Tea K-Cup Pods','9.9','11.99','2','26'),('044700019887','Oscar Mayer Hardwood Smoked Bacon','16','6.99','1','27'),('085239114261','USDA Choice Angus Beef Sirloin Steak','16','14','2','28'),('023700043849','Tyson Gluten Free Breaded Chicken Strips','16','7.8','3','29'),('075900002454','Bob Evans Sausage Patties','12','3.49','2','30'),('085239073407','Cooked Shrimp with Cocktail Sauce',' Tail-On',' Peeled & Deveined','16','9.99'),('214800000003','Perdue Chicken Breast Tenderloins Antibiotic Free','0.5','4.99','2','32'),('689076762779','Upton's Naturals Chorizo Seitan Crumbles','8','3.99','4','33'),('080000495242','StarKist Chunk Light Tuna in Water Pouch','2.6','1.29','3','34'),('085239220900','Tomato Paste','6','1.29','4','35'),('076808280081','Spaghetti Pasta','16','1.39','1','36'),('054800020010','Uncle Ben's Flavored Grains Long Grain & Wild','6','2.09','3','37'),('085239658758','White Rice','16','1.59','4','38'),('036200430736','Ragu Cheesy Classic Alfredo Pasta Sauce ','21.5','2.39','4','39'),('024463061095','Huy Fong Sriracha Chili Sauce Hot ','17','2.99','2','40'),('021000012534','Kraft Original Flavor Macaroni & Cheese Dinner ','2.05','3.99','3','41'),('029700001414','Idahoan Buttery Homestyle Mashed Potatoes','4','0.99','1','42'),('077958690492','Panera Bread Soups Mac & Cheese','16','3.99','3','43'),('085239033272','Mini Caramel Crunch Custard Filled Donuts','7.34','2.99','4','44'),('072945601369','Sara Lee Honey Wheat Bread','20','2.79','1','45'),('085239111314','Hamburger Buns','11','1.39','2','46'),('024300041303','Little Debbie Swiss Rolls','13','1.99','3','47'),('888109112523','Hostess Bakery Petites White Fudge Vanilla Cake Delights','7.9','3.69','4','48'),('073731004197','Mission Large Burrito Flour Tortillas','20','2.79','1','48'),('039000008006','Ortega Yellow Corn Taco Shells','5.8','1.49','2','49'),('085239125809','Chocolate & Vanilla Mini Cupcake','10.5','3.29','3','50[*]');"; SQL statement:
+INSERT INTO product (UPC, name, size, price, vendor_id, brand_id) VALUES('413874160000','Chocolate Sandwich Cookies','10.47','6.99','1','1'),('780000053100','All-Seasons Salt','8','4.25','1','2'),('706508001200','Robust Golden Unsweetened Oolong Tea','16.9','2.45','1','3'),('544000127700','Smart Ones Classic Favorites Mini Rigatoni With Vodka Cream Sauce','10','4','2','4'),('366320290600','Green Chile Anytime Sauce','12','4','3','5'),('253674707083','Pure Coconut Water With Orange','16.9','7.5','3','6'),('415700561700','Cut Russet Potatoes Steam N Mash','24','5.3','1','7'),('842532696300','Light Strawberry Blueberry Yogurt','6','3','4','8'),('714483001400','Sparkling Orange Juice & Prickly Pear Beverage','16','5.99','4','9'),('763012401480','Peach Mango Juice','14','5.99','4','10'),('253176680000','Chocolate Fudge Layer Cake','15','12.5','2','11'),('721406337760','Coca Cola','20','5.8','3','12'),('130087259200','Coca Cola','12','3.4','1','12'),('613008720850','Crystal Light Natural Lemonade Drink Mix','3.2','2.59','2','13'),('278150020500','Mint Chocolate Flavored Syrup','15.5','4','3','14'),('466000338400','Rendered Duck Fat','11','8','4','15'),('170000095000','Pizza for One Suprema  Frozen Pizza','6','7.99','4','16'),('734101350600','Gluten Free Quinoa Three Cheese & Mushroom Blend','64','4.45','3','17'),('766066914300','Pomegranate Cranberry & Aloe Vera Enrich Drink','15','3.99','3','18'),('074904100005','Organic Bananas','32','1.39','2','19'),('000651003214','Hearts of Romaine Lettuce','22','3.8','4','20'),('036515110187','Navel Oranges','4','4.99','2','21'),('881334006476','Dunkin' Donuts Original Blend Medium Roast Coffee','5.93','11.89','2','22'),('050000322909','Coffee Mate Hazelnut Coffee Creamer','64','7.99','1','23'),('012000809965','Mountain Dew Citrus Soda','144','4.89','2','24'),('049000074154','Gold Peak Sweetened Black Iced Tea Drink','59','1.35','3','25'),('762111065407','Tazo Classic latte Flavored Tea K-Cup Pods','9.9','11.99','2','26'),('044700019887','Oscar Mayer Hardwood Smoked Bacon','16','6.99','1','27'),('085239114261','USDA Choice Angus Beef Sirloin Steak','16','14','2','28'),('023700043849','Tyson Gluten Free Breaded Chicken Strips','16','7.8','3','29'),('075900002454','Bob Evans Sausage Patties','12','3.49','2','30'),('085239073407','Cooked Shrimp with Cocktail Sauce',' Tail-On',' Peeled & Deveined','16','9.99'),('214800000003','Perdue Chicken Breast Tenderloins Antibiotic Free','0.5','4.99','2','32'),('689076762779','Upton's Naturals Chorizo Seitan Crumbles','8','3.99','4','33'),('080000495242','StarKist Chunk Light Tuna in Water Pouch','2.6','1.29','3','34'),('085239220900','Tomato Paste','6','1.29','4','35'),('076808280081','Spaghetti Pasta','16','1.39','1','36'),('054800020010','Uncle Ben's Flavored Grains Long Grain & Wild','6','2.09','3','37'),('085239658758','White Rice','16','1.59','4','38'),('036200430736','Ragu Cheesy Classic Alfredo Pasta Sauce ','21.5','2.39','4','39'),('024463061095','Huy Fong Sriracha Chili Sauce Hot ','17','2.99','2','40'),('021000012534','Kraft Original Flavor Macaroni & Cheese Dinner ','2.05','3.99','3','41'),('029700001414','Idahoan Buttery Homestyle Mashed Potatoes','4','0.99','1','42'),('077958690492','Panera Bread Soups Mac & Cheese','16','3.99','3','43'),('085239033272','Mini Caramel Crunch Custard Filled Donuts','7.34','2.99','4','44'),('072945601369','Sara Lee Honey Wheat Bread','20','2.79','1','45'),('085239111314','Hamburger Buns','11','1.39','2','46'),('024300041303','Little Debbie Swiss Rolls','13','1.99','3','47'),('888109112523','Hostess Bakery Petites White Fudge Vanilla Cake Delights','7.9','3.69','4','48'),('073731004197','Mission Large Burrito Flour Tortillas','20','2.79','1','48'),('039000008006','Ortega Yellow Corn Taco Shells','5.8','1.49','2','49'),('085239125809','Chocolate & Vanilla Mini Cupcake','10.5','3.29','3','50'); [42000-199]
+2019-03-24 15:51:25 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at Applications.OnlineApplication.createConnection(OnlineApplication.java:29)
+	at Applications.OnlineApplication.main(OnlineApplication.java:197)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 26 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:172)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 20 more
+2019-03-24 15:52:53 database: wrong user or password; user: "CSKID"
+org.h2.message.DbException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.openSession(Engine.java:126)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:299)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:782)
+	at org.h2.server.web.WebApp.login(WebApp.java:1004)
+	at org.h2.server.web.WebApp.process(WebApp.java:219)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:169)
+	at org.h2.server.web.WebThread.process(WebThread.java:139)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:459)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 20 more
+2019-03-24 15:53:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Ambiguous column name "UPC"; SQL statement:
+SELECT name, upc
+  FROM bakery JOIN Product
+    ON Product.UPC = bakery.UPC [90059-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.mapColumn(ExpressionColumn.java:142)
+	at org.h2.expression.ExpressionColumn.mapColumns(ExpressionColumn.java:116)
+	at org.h2.command.dml.Select.mapColumns(Select.java:1629)
+	at org.h2.command.dml.Select.init(Select.java:1164)
+	at org.h2.command.Parser.parseSelect(Parser.java:2447)
+	at org.h2.command.Parser.parsePrepared(Parser.java:814)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)

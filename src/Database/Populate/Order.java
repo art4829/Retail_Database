@@ -8,6 +8,7 @@ public class Order {
     private String city;
     private String state;
     private String zip;
+    private String customer_email;
     private String customer_id;
 
     public Order(String[] data) {
@@ -17,7 +18,8 @@ public class Order {
         this.city = data[3];
         this.state = data[4];
         this.zip = data[5];
-        this.customer_id = data[6];
+        this.customer_email = data[6];
+        this.customer_id=data[7];
     }
 
     public String getOrder_id() {
@@ -42,6 +44,10 @@ public class Order {
 
     public String getZip() {
         return zip;
+    }
+
+    public String getCustomer_email() {
+        return customer_email;
     }
 
     public String getCustomer_id() {

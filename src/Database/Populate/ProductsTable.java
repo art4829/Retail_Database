@@ -9,13 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ProductsTable {
-    public static void createProductsTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table product(\n" +
                     "UPC varchar(255) primary key,\n" +
                     "name varchar(255),\n" +
-                    "size real,\n" +
-                    "price real,\n" +
+                    "size varchar(255),\n" +
+                    "price varchar(255),\n" +
                     "vendor_id varchar(255),\n" +
                     "brand_id varchar(255));" ;
 
@@ -30,7 +30,7 @@ public class ProductsTable {
         }
     }
 
-    public static void populateProductsTable(Connection conn,
+    public static void populateTable(Connection conn,
                                                     String fileName)
             throws SQLException {
         /**
@@ -53,7 +53,7 @@ public class ProductsTable {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        String sql = createProductsInsertSQL(people);
+        String sql = createInsertSQL(people);
 
         /**
          * Create and execute an SQL statement
@@ -64,7 +64,7 @@ public class ProductsTable {
         stmt.execute(sql);
     }
 
-    public static String createProductsInsertSQL(ArrayList<Products> customers){
+    public static String createInsertSQL(ArrayList<Products> customers){
         StringBuilder sb = new StringBuilder();
 
         /**
@@ -84,7 +84,7 @@ public class ProductsTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Products c = customers.get(i);
-            sb.append(String.format("(\'%s\',\'%s\',%.2f,%.2f,\'%s\',\'%s\')",
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                     c.getUPC(), c.getName(), c.getSize(), c.getPrice(), c.getVendor_id(), c.getBrand_id()));
             if( i != customers.size()-1){
                 sb.append(",");
