@@ -297,3 +297,24 @@ SELECT * FROM CONTAINS "; SQL statement:
 select * from orders
 select * from cust_phone
 select * from contains [42000-199]
+2019-03-24 09:56:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO BAKERY (UPC, SERVING, EXPIRATION_DATE) VALUES [*]"; expected "ROW, (, DEFAULT, NOT, EXISTS, INTERSECTS"; SQL statement:
+INSERT INTO bakery (UPC, serving, expiration_date) VALUES [42001-199]
+2019-03-24 09:57:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
+2019-03-24 09:58:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
+2019-03-24 10:00:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
