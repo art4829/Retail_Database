@@ -10,6 +10,7 @@ public class OnlineApplication {
     private Connection connection;
     private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
     private final String INCORRECT_PW="Incorrect password, Please enter again";
+
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -199,7 +200,7 @@ public class OnlineApplication {
             e.printStackTrace();
         }
 
-        System.out.println("Welcome To Our Online Store: ");
+        System.out.println("Welcome To Our Online Store! ");
 
 
 

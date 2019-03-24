@@ -4,26 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CustomerTable {
-
-    public static void createCustomerTable(Connection conn){
+public class VendorTable {
+    public static void createVendorTable(Connection conn){
         try {
-            String query = "Create table customer(\n" +
-                    "customer_id int primary key,\n" +
-                    "first_name varchar(255),\n" +
-                    "last_name varchar(255),\n" +
+            String query = "Create table vendor(\n" +
+                    "vendor_id varchar(255) primary key,\n" +
+                    "vendor_name varchar(255),\n"+
                     "num varchar(255),\n" +
                     "street varchar(255),\n" +
                     "city varchar(255),\n" +
                     "state varchar(255),\n" +
                     "zip varchar(255),\n" +
-                    "email varchar(255),\n"+
-                    "password varchar(255));" ;
+                    "account_number varchar(255));" ;
 
             /**
              * Create a query and execute
@@ -31,12 +27,13 @@ public class CustomerTable {
             Statement stmt = conn.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public static void populateCustomerTableFromCsv(Connection conn,
-                                                  String fileName)
+    public static void populateVendorTable(Connection conn,
+                                          String fileName)
             throws SQLException {
         /**
          * Structure to store the data as you read it in
@@ -45,19 +42,20 @@ public class CustomerTable {
          * You can do the reading and adding to the table in one
          * step, I just broke it up for example reasons
          */
-        ArrayList<Customer> people = new ArrayList<Customer>();
+        ArrayList<Vendor> people = new ArrayList<Vendor>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(",");
-                people.add(new Customer(split));
+                people.add(new Vendor(split));
             }
             br.close();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        String sql = createCustomerInsertSQL(people);
+        String sql = createVendorInsertSQL(people);
 
         /**
          * Create and execute an SQL statement
@@ -68,7 +66,7 @@ public class CustomerTable {
         stmt.execute(sql);
     }
 
-    public static String createCustomerInsertSQL(ArrayList<Customer> customers){
+    public static String createVendorInsertSQL(ArrayList<Vendor> customers){
         StringBuilder sb = new StringBuilder();
 
         /**
@@ -77,7 +75,7 @@ public class CustomerTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
+        sb.append("INSERT INTO vendor (vendor_id, vendor_name, num, street, city, state, zip, account_number) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -87,9 +85,9 @@ public class CustomerTable {
          * If it is the last person add a semi-colon to end the statement
          */
         for(int i = 0; i < customers.size(); i++){
-            Customer c = customers.get(i);
-            sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    c.getCustomer_id(), c.getFirst_name(), c.getLast_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getEmail(),c.getPassword()));
+            Vendor c = customers.get(i);
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                    c.getVendor_id(), c.getVendor_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getAccount_number()));
             if( i != customers.size()-1){
                 sb.append(",");
             }
@@ -97,29 +95,7 @@ public class CustomerTable {
                 sb.append(";");
             }
         }
+        System.out.println(sb.toString());
         return sb.toString();
-    }
-
-    public static void printCustomerTable(Connection connection) {
-        String query = "SELECT * FROM customer;";
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet result = stmt.executeQuery(query);
-
-            while(result.next()){
-                System.out.printf("Customer %d: %s %s %s %s %s %s %s %s\n",
-                        result.getInt(1),
-                        result.getString(2),
-                        result.getString(3),
-                        result.getInt(4),
-                        result.getString(5),
-                        result.getString(6),
-                        result.getString(7),
-                        result.getString(8),
-                        result.getString(9));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

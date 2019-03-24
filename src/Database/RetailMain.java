@@ -1,7 +1,6 @@
 package Database;
 
-import Database.Populate.CustomerTable;
-import Database.Populate.ProductsTable;
+import Database.Populate.*;
 
 import java.sql.*;
 
@@ -67,10 +66,10 @@ public class RetailMain {
              * Creates a sample Person table
              * and populates it from a csv file
              */
-            ProductsTable.createProductsTable(rm.getConnection());
-            ProductsTable.populateProductsTable(
+//            VendorTable.createVendorTable(rm.getConnection());
+            VendorTable.populateVendorTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\products.csv");
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\vendor.csv");
 
             /**
              * Just displays the table
