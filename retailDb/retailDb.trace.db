@@ -337,3 +337,6 @@ INSERT INTO produce (UPC, type, container) VALUES('492111700014','Vegetable','Pl
 2019-03-24 10:58:06 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "QIUT[*] "; SQL statement:
 qiut [42000-199]
+2019-03-24 11:07:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE REORDER VALUES[*](REORDER_ID VARCHAR(255)PRIMARY KEY, VENDOR_ID VARCHAR(255), UPC VARCHAR(255), STORE_ID VARCHAR(255)); "; SQL statement:
+create table reorder values(reorder_id varchar(255)primary key, vendor_id varchar(255), UPC varchar(255), store_id varchar(255)); [42000-199]
