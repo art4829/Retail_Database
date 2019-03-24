@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class VenderApplication {
+public class VendorApplication {
     private Connection connection;
     private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
     private final String INCORRECT_PW="Incorrect password, Please enter again";
