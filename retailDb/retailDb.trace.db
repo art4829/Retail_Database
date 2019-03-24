@@ -7,3 +7,41 @@ Create table produce(
 UPC varchar(255) primary key,
 type varchar(255),
 container varchar(255)); [42101-199]
+2019-03-24 18:54:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "STORE_ID" must not be nullable; SQL statement:
+alter table contains add primary key(store_id, UPC) [90023-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.mvstore.db.MVTable.addIndex(MVTable.java:349)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:151)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.AdminApplication.executeQuery(AdminApplication.java:46)
+	at Applications.AdminApplication.main(AdminApplication.java:98)
+2019-03-24 19:17:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE INCLUDES(
+ORDER_ID VARCHAR(255) NOT NULL,
+UPC VARCHAR(255)PRIMARY KEY([*]ORDER_ID, UPC)); "; expected "HASH, AUTO_INCREMENT, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+Create table includes(
+order_id varchar(255) NOT NULL,
+UPC varchar(255)PRIMARY KEY(order_id, UPC)); [42001-199]
+2019-03-24 19:17:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INCLUDES" not found; SQL statement:
+INSERT INTO includes (order_id, UPC) VALUES('order_id','UPC'),('2539329','413874160000'),('2539329','721406337760'),('2539329','842532696300'),('2398795','780000053100'),('2093029','706508001200'),('2254736','544000127700'),('1426667','842532696300'),('1426667','366320290600'),('3367565','253674707083'),('5501352','415700561700'),('3108588','842532696300'),('2295261','714483001400'),('2550362','763012401480'),('1187899','253176680000'),('2168274','721406337760'),('1501582','130087259200'),('1901567','613008720850'),('7382813','278150020500'),('1673511','466000338400'),('1199898','170000095000'),('3194192','734101350600'),('7883384','766066914300'),('1718559','734101350600'),('9833743','278150020500'),('2833233','466000338400'); [42102-199]
+2019-03-24 19:19:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE CUST_PHONE(
+CUSTOMER_ID VARCHAR(255) NOT NULL,
+PHONE VARCHAR(255),
+PRIMARY KEY(CUSTOMER_ID, PHONE);[*] "; expected "INDEX, ,, )"; SQL statement:
+Create table cust_phone(
+customer_id varchar(255) NOT NULL,
+phone varchar(255),
+PRIMARY KEY(customer_id, phone); [42001-199]
+2019-03-24 19:19:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUST_PHONE" not found; SQL statement:
+INSERT INTO cust_phone (customer_id, phone) VALUES('1','202-555-0112'),('1','202-555-0183'),('2','202-555-0153'),('3','202-555-0163'),('4','202-555-0163'),('5','202-555-0176'),('6','202-555-0179'),('7','615-555-0151'),('8','615-555-0104'),('9','843-555-0183'),('10','517-555-0185'),('11','505-555-0155'),('12','410-555-0119'),('13','503-555-0196'),('14','573-555-0130'),('15','202-555-0157'),('16','601-555-0178'),('17','614-555-0192'),('18','601-555-0173'),('19','404-555-0187'),('20','404-555-0187'),('20','404-555-0103'); [42102-199]

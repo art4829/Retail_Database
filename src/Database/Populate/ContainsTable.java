@@ -12,9 +12,10 @@ public class ContainsTable {
     public static void createTable(Connection conn){
         try {
             String query = "Create table contains(\n" +
-                    "store_id varchar(255),\n" +
+                    "store_id varchar(255) NOT NULL,\n" +
                     "UPC varchar(255),\n"+
-                    "amount varchar(255));" ;
+                    "amount varchar(255),\n" +
+                    "PRIMARY KEY(store_id, UPC));" ;
 
             /**
              * Create a query and execute

@@ -12,8 +12,9 @@ public class Cust_PhoneTable {
     public static void createTable(Connection conn){
         try {
             String query = "Create table cust_phone(\n" +
-                    "customer_id varchar(255),\n" +
-                    "phone varchar(255));" ;
+                    "customer_id varchar(255) NOT NULL,\n" +
+                    "phone varchar(255),\n" +
+                    "PRIMARY KEY(customer_id, phone));" ;
 
             /**
              * Create a query and execute
