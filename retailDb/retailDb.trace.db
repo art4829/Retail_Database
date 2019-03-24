@@ -167,3 +167,77 @@ INSERT INTO vendor (vendor_id, vendor_name, num, street, city, state, zip, accou
 2019-03-24 00:10:08 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO VENDOR (VENDOR_ID, VENDOR_NAME, NUM, STREET, CITY, STATE, ZIP, ACCOUNT_NUMBER) VALUES [*]"; expected "ROW, (, DEFAULT, NOT, EXISTS, INTERSECTS"; SQL statement:
 INSERT INTO vendor (vendor_id, vendor_name, num, street, city, state, zip, account_number) VALUES [42001-199]
+2019-03-24 01:10:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CUSTOMER
+SELECT[*] * FROM BRAND "; SQL statement:
+select * from customer
+select * from brand [42000-199]
+2019-03-24 01:12:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*](
+ORDER_ID VARCHAR(255) PRIMARY KEY,
+NUM VARCHAR(255),
+STREET VARCHAR(255),
+CITY VARCHAR(255),
+STATE VARCHAR(255),
+ZIP VARCHAR(255),
+CUSTOMER_ID VARCHAR(255)); "; expected "identifier"; SQL statement:
+Create table order(
+order_id varchar(255) primary key,
+num varchar(255),
+street varchar(255),
+city varchar(255),
+state varchar(255),
+zip varchar(255),
+customer_id varchar(255)); [42001-199]
+2019-03-24 01:12:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO ORDER[*] (ORDER_ID, NUM, STREET, CITY, STATE, ZIP, CUSTOMER_ID) VALUES('2539329','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('2398795','30','Memorial Drive','Avon','MA','2322','pxj@rit.edu'),('2093029','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2254736','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'),('1426667','66-4','Parkhurst Rd','Chelmsford','MA','1824','fruitmeup@gmail.com'),('3367565','591','Memorial Dr','Chicopee','MA','1020','guitarsenpai@hotmail.com'),('5501352','137','Teaticket Hwy','East Falmouth','MA','2536','artesano7718@gmail.com'),('3108588','42','Fairhaven Commons Way','Fairhaven','MA','2719','cleanfreak221@friends.edu'),('2295261','374','William S Canning Blvd','Fall River','MA','2721','abhaya.tmkr@gmail.com'),('2550362','121','Worcester Rd','Framingham','MA','1701','daysofourlives3@friends.com'),('1187899','677','Timpany Blvd','Gardner','MA','1440','dinasourisbae@friends.com'),('2168274','337','Russell St','Hadley','MA','1035','fashinismypassion@friends.com'),('1501582','295','Plymouth Street','Halifax','MA','2338','weirdismyjam@friends.com'),('1901567','1775','Washington St','Hanover','MA','2339','tigersuite@rit.edu'),('7382813','280','Washington Street','Hudson','MA','1749','funnyismything@friends.com'),('1673511','20','Long Memorial Drive','Rochester','NY','14623','fruitmeup@gmail.com'),('1199898','11','Jungle Road','Leominster','MA','1453','coffeeeisgoodcoffee@gmail.com'),('3194192','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('7883384','780','Lynnway','Lynn','MA','1905','endingsoon@hotmail.com'),('1718559','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('9833743','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2833233','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'); "; expected "identifier"; SQL statement:
+INSERT INTO order (order_id, num, street, city, state, zip, customer_id) VALUES('2539329','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('2398795','30','Memorial Drive','Avon','MA','2322','pxj@rit.edu'),('2093029','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2254736','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'),('1426667','66-4','Parkhurst Rd','Chelmsford','MA','1824','fruitmeup@gmail.com'),('3367565','591','Memorial Dr','Chicopee','MA','1020','guitarsenpai@hotmail.com'),('5501352','137','Teaticket Hwy','East Falmouth','MA','2536','artesano7718@gmail.com'),('3108588','42','Fairhaven Commons Way','Fairhaven','MA','2719','cleanfreak221@friends.edu'),('2295261','374','William S Canning Blvd','Fall River','MA','2721','abhaya.tmkr@gmail.com'),('2550362','121','Worcester Rd','Framingham','MA','1701','daysofourlives3@friends.com'),('1187899','677','Timpany Blvd','Gardner','MA','1440','dinasourisbae@friends.com'),('2168274','337','Russell St','Hadley','MA','1035','fashinismypassion@friends.com'),('1501582','295','Plymouth Street','Halifax','MA','2338','weirdismyjam@friends.com'),('1901567','1775','Washington St','Hanover','MA','2339','tigersuite@rit.edu'),('7382813','280','Washington Street','Hudson','MA','1749','funnyismything@friends.com'),('1673511','20','Long Memorial Drive','Rochester','NY','14623','fruitmeup@gmail.com'),('1199898','11','Jungle Road','Leominster','MA','1453','coffeeeisgoodcoffee@gmail.com'),('3194192','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('7883384','780','Lynnway','Lynn','MA','1905','endingsoon@hotmail.com'),('1718559','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('9833743','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2833233','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'); [42001-199]
+2019-03-24 01:14:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*](
+ORDER_ID VARCHAR(255) PRIMARY KEY,
+NUM VARCHAR(255),
+STREET VARCHAR(255),
+CITY VARCHAR(255),
+STATE VARCHAR(255),
+ZIP VARCHAR(255),
+CUSTOMER_ID VARCHAR(255)); "; expected "identifier"; SQL statement:
+Create table order(
+order_id varchar(255) primary key,
+num varchar(255),
+street varchar(255),
+city varchar(255),
+state varchar(255),
+zip varchar(255),
+customer_id varchar(255)); [42001-199]
+2019-03-24 01:14:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO ORDER[*] (ORDER_ID, NUM, STREET, CITY, STATE, ZIP, CUSTOMER_ID) VALUES('2539329','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('2398795','30','Memorial Drive','Avon','MA','2322','pxj@rit.edu'),('2093029','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2254736','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'),('1426667','66-4','Parkhurst Rd','Chelmsford','MA','1824','fruitmeup@gmail.com'),('3367565','591','Memorial Dr','Chicopee','MA','1020','guitarsenpai@hotmail.com'),('5501352','137','Teaticket Hwy','East Falmouth','MA','2536','artesano7718@gmail.com'),('3108588','42','Fairhaven Commons Way','Fairhaven','MA','2719','cleanfreak221@friends.edu'),('2295261','374','William S Canning Blvd','Fall River','MA','2721','abhaya.tmkr@gmail.com'),('2550362','121','Worcester Rd','Framingham','MA','1701','daysofourlives3@friends.com'),('1187899','677','Timpany Blvd','Gardner','MA','1440','dinasourisbae@friends.com'),('2168274','337','Russell St','Hadley','MA','1035','fashinismypassion@friends.com'),('1501582','295','Plymouth Street','Halifax','MA','2338','weirdismyjam@friends.com'),('1901567','1775','Washington St','Hanover','MA','2339','tigersuite@rit.edu'),('7382813','280','Washington Street','Hudson','MA','1749','funnyismything@friends.com'),('1673511','20','Long Memorial Drive','Rochester','NY','14623','fruitmeup@gmail.com'),('1199898','11','Jungle Road','Leominster','MA','1453','coffeeeisgoodcoffee@gmail.com'),('3194192','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('7883384','780','Lynnway','Lynn','MA','1905','endingsoon@hotmail.com'),('1718559','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('9833743','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2833233','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'); "; expected "identifier"; SQL statement:
+INSERT INTO order (order_id, num, street, city, state, zip, customer_id) VALUES('2539329','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('2398795','30','Memorial Drive','Avon','MA','2322','pxj@rit.edu'),('2093029','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2254736','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'),('1426667','66-4','Parkhurst Rd','Chelmsford','MA','1824','fruitmeup@gmail.com'),('3367565','591','Memorial Dr','Chicopee','MA','1020','guitarsenpai@hotmail.com'),('5501352','137','Teaticket Hwy','East Falmouth','MA','2536','artesano7718@gmail.com'),('3108588','42','Fairhaven Commons Way','Fairhaven','MA','2719','cleanfreak221@friends.edu'),('2295261','374','William S Canning Blvd','Fall River','MA','2721','abhaya.tmkr@gmail.com'),('2550362','121','Worcester Rd','Framingham','MA','1701','daysofourlives3@friends.com'),('1187899','677','Timpany Blvd','Gardner','MA','1440','dinasourisbae@friends.com'),('2168274','337','Russell St','Hadley','MA','1035','fashinismypassion@friends.com'),('1501582','295','Plymouth Street','Halifax','MA','2338','weirdismyjam@friends.com'),('1901567','1775','Washington St','Hanover','MA','2339','tigersuite@rit.edu'),('7382813','280','Washington Street','Hudson','MA','1749','funnyismything@friends.com'),('1673511','20','Long Memorial Drive','Rochester','NY','14623','fruitmeup@gmail.com'),('1199898','11','Jungle Road','Leominster','MA','1453','coffeeeisgoodcoffee@gmail.com'),('3194192','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('7883384','780','Lynnway','Lynn','MA','1905','endingsoon@hotmail.com'),('1718559','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu'),('9833743','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com'),('2833233','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com'); [42001-199]
+2019-03-24 01:15:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*](
+ORDER_ID VARCHAR(255) PRIMARY KEY,
+NUM VARCHAR(255),
+STREET VARCHAR(255),
+CITY VARCHAR(255),
+STATE VARCHAR(255),
+ZIP VARCHAR(255),
+CUSTOMER_ID VARCHAR(255)) "; expected "identifier"; SQL statement:
+Create table order(
+order_id varchar(255) primary key,
+num varchar(255),
+street varchar(255),
+city varchar(255),
+state varchar(255),
+zip varchar(255),
+customer_id varchar(255)) [42001-199]
+2019-03-24 01:15:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*](
+ORDER_ID VARCHAR(255) PRIMARY KEY
+) "; expected "identifier"; SQL statement:
+Create table order(
+order_id varchar(255) primary key
+) [42001-199]
+2019-03-24 01:15:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*](
+ORDER_ID VARCHAR(255)) "; expected "identifier"; SQL statement:
+Create table order(
+order_id varchar(255)) [42001-199]
