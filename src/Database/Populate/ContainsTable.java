@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ContainsTable {
-    public static void createContainsTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table contains(\n" +
                     "store_id varchar(255),\n" +
@@ -27,7 +27,7 @@ public class ContainsTable {
         }
     }
 
-    public static void populateContainsTable(Connection conn,
+    public static void populateTable(Connection conn,
                                            String fileName)
             throws SQLException {
         /**

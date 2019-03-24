@@ -1,14 +1,12 @@
 package Database;
 
 import Database.Populate.*;
-import Database.Populate.Bakery.BakeryTable;
-import Database.Populate.Bakery.BreadTable;
-import Database.Populate.Bakery.Pastry;
-import Database.Populate.Bakery.PastryTable;
+import Database.Populate.Bakery.*;
 import Database.Populate.Beverage.BeverageTable;
 import Database.Populate.Grocery.*;
 import Database.Populate.Pantry.PantryTable;
 
+import java.io.DataInput;
 import java.sql.*;
 
 
@@ -73,15 +71,15 @@ public class RetailMain {
              * Creates a sample Person table
              * and populates it from a csv file
              */
-            OrderTable.createTable(rm.getConnection());
-            OrderTable.populateTable(
+            PantryTable.createTable(rm.getConnection());
+            PantryTable.populateTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\orders.csv");
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\Pantry\\pantry.csv");
 
             /**
              * Just displays the table
              */
-            CustomerTable.printCustomerTable(rm.getConnection());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

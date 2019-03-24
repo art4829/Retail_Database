@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BrandTable {
-    public static void createBrandTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table brand(\n" +
                     "brand_id varchar(255) primary key,\n" +
@@ -26,7 +26,7 @@ public class BrandTable {
         }
     }
 
-    public static void populateBrandTable(Connection conn,
+    public static void populateTable(Connection conn,
                                              String fileName)
             throws SQLException {
         /**
