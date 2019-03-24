@@ -69,7 +69,7 @@ public class RetailMain {
 //            VendorTable.createVendorTable(rm.getConnection());
             VendorTable.populateVendorTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\vendor.csv");
+                    "/home/joy/School/Projects/Retail_Database/src/Datasets/vendor.csv");
 
             /**
              * Just displays the table
@@ -80,7 +80,6 @@ public class RetailMain {
         }
 
         CustomerTable.printCustomerTable(rm.getConnection());
-
 
     }
 
