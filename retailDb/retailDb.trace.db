@@ -297,3 +297,43 @@ SELECT * FROM CONTAINS "; SQL statement:
 select * from orders
 select * from cust_phone
 select * from contains [42000-199]
+2019-03-24 09:56:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO BAKERY (UPC, SERVING, EXPIRATION_DATE) VALUES [*]"; expected "ROW, (, DEFAULT, NOT, EXISTS, INTERSECTS"; SQL statement:
+INSERT INTO bakery (UPC, serving, expiration_date) VALUES [42001-199]
+2019-03-24 09:57:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
+2019-03-24 09:58:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
+2019-03-24 10:00:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BAKERY" already exists; SQL statement:
+Create table bakery(
+UPC varchar(255) primary key,
+serving varchar(255),
+expiration_date varchar(255)); [42101-199]
+2019-03-24 10:29:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BEVERAGE" already exists; SQL statement:
+Create table beverage(
+UPC varchar(255) primary key,
+flavor varchar(255),
+serving varchar(255),
+storage varchar(255)); [42101-199]
+2019-03-24 10:53:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BEVERAGE" already exists; SQL statement:
+Create table beverage(
+UPC varchar(255) primary key,
+type varchar(255),
+container varchar(255)); [42101-199]
+2019-03-24 10:53:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCE" not found; SQL statement:
+INSERT INTO produce (UPC, type, container) VALUES('492111700014','Vegetable','Plastic Bag'),('074904100005','Fruit','No container'),('000651003214','Vegetable','Plastic Bag'),('036515110187','Fruit','Multi-pack multi-serving'); [42102-199]
+2019-03-24 10:58:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "QIUT[*] "; SQL statement:
+qiut [42000-199]
