@@ -5,6 +5,9 @@ import Database.Populate.Bakery.BakeryTable;
 import Database.Populate.Bakery.BreadTable;
 import Database.Populate.Bakery.Pastry;
 import Database.Populate.Bakery.PastryTable;
+import Database.Populate.Beverage.BeverageTable;
+import Database.Populate.Grocery.*;
+import Database.Populate.Pantry.PantryTable;
 
 import java.sql.*;
 
@@ -70,10 +73,10 @@ public class RetailMain {
              * Creates a sample Person table
              * and populates it from a csv file
              */
-            PastryTable.createTable(rm.getConnection());
-            PastryTable.populateTable(
+            PantryTable.createTable(rm.getConnection());
+            PantryTable.populateTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\Bakery\\pastry.csv");
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\Pantry\\pantry.csv");
 
             /**
              * Just displays the table
@@ -83,7 +86,7 @@ public class RetailMain {
             e.printStackTrace();
         }
 
-        CustomerTable.printCustomerTable(rm.getConnection());
+
 
     }
 
