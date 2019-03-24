@@ -1,0 +1,9 @@
+2019-03-24 18:34:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUSTOMER" not found; SQL statement:
+SELECT * FROM customer; [42102-199]
+2019-03-24 18:45:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCE" already exists; SQL statement:
+Create table produce(
+UPC varchar(255) primary key,
+type varchar(255),
+container varchar(255)); [42101-199]
