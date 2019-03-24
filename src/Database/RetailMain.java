@@ -66,10 +66,10 @@ public class RetailMain {
              * Creates a sample Person table
              * and populates it from a csv file
              */
-            OrderTable.createOrderTable(rm.getConnection());
-            OrderTable.populateOrderTable(
+            ContainsTable.createContainsTable(rm.getConnection());
+            ContainsTable.populateContainsTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\orders.csv");
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\contains.csv");
 
             /**
              * Just displays the table
