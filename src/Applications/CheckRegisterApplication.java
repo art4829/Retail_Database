@@ -39,33 +39,8 @@ public class CheckRegisterApplication {
         }
     }
 
-    public void executeQuery(Statement stmt, String query) throws SQLException {
-        //check if it is select
-        boolean ret = stmt.execute(query);
-        if (ret) {
-            ResultSet result = stmt.executeQuery(query);
-            ResultSetMetaData rsmd = result.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-            // The column count starts from 1
+    public void editData( int UPC ) {
 
-            ArrayList<String> column_names = new ArrayList<String>();
-            for (int i = 1; i <= columnCount; i++) {
-                String name = rsmd.getColumnName(i);
-                column_names.add(name);
-                System.out.print(name + " ");
-                // Do stuff with name
-            }
-            System.out.println();
-
-            while (result.next()) {
-                for (int i = 0; i < columnCount; i++) {
-                    System.out.print(result.getString(i + 1) + " ");
-                }
-                System.out.println();
-            }
-            // STEP 5: Clean-up environment
-            result.close();
-        }
     }
 
     public static void main( String[] args ) {
@@ -85,9 +60,6 @@ public class CheckRegisterApplication {
             try {
 
                 Statement stmt = conn.createStatement();
-
-                //check if returns
-                app.executeQuery(stmt,query);
 
             } catch (SQLException e) {
                 e.printStackTrace();
