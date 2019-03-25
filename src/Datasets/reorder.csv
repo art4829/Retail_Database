@@ -1,1 +1,1 @@
-reorder_id	vendor_id	UPC	amount	store_id
+reorder_id,vendor_id,UPC,amount,shipment,delivery_date,store_id
