@@ -45,3 +45,29 @@ PRIMARY KEY(customer_id, phone); [42001-199]
 2019-03-24 19:19:33 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUST_PHONE" not found; SQL statement:
 INSERT INTO cust_phone (customer_id, phone) VALUES('1','202-555-0112'),('1','202-555-0183'),('2','202-555-0153'),('3','202-555-0163'),('4','202-555-0163'),('5','202-555-0176'),('6','202-555-0179'),('7','615-555-0151'),('8','615-555-0104'),('9','843-555-0183'),('10','517-555-0185'),('11','505-555-0155'),('12','410-555-0119'),('13','503-555-0196'),('14','573-555-0130'),('15','202-555-0157'),('16','601-555-0178'),('17','614-555-0192'),('18','601-555-0173'),('19','404-555-0187'),('20','404-555-0187'),('20','404-555-0103'); [42102-199]
+2019-03-24 19:22:46 database: wrong user or password; user: "CSKID"
+org.h2.message.DbException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.openSession(Engine.java:126)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:299)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:782)
+	at org.h2.server.web.WebApp.login(WebApp.java:1004)
+	at org.h2.server.web.WebApp.process(WebApp.java:219)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:169)
+	at org.h2.server.web.WebThread.process(WebThread.java:139)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:459)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 20 more
