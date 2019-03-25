@@ -4,6 +4,7 @@ import Database.Populate.*;
 import Database.Populate.Bakery.*;
 import Database.Populate.Beverage.BeverageTable;
 import Database.Populate.Grocery.*;
+import Database.Populate.Pantry.Pantry;
 import Database.Populate.Pantry.PantryTable;
 
 import java.io.DataInput;
@@ -71,10 +72,10 @@ public class RetailMain {
              * Creates a sample Person table
              * and populates it from a csv file
              */
-            ContainsTable.createTable(rm.getConnection());
-            ContainsTable.populateTable(
+            PantryTable.createTable(rm.getConnection());
+            PantryTable.populateTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\contains.csv");
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\Pantry\\pantry.csv");
 
             /**
              * Just displays the table
