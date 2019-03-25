@@ -9,11 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class IncludesTable {
-    public static void createIncludesTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table includes(\n" +
-                    "order_id varchar(255),\n" +
-                    "UPC varchar(255));" ;
+                    "order_id varchar(255) NOT NULL,\n" +
+                    "UPC varchar(255),\n" +
+                    "PRIMARY KEY(order_id, UPC));" ;
 
             /**
              * Create a query and execute
@@ -26,7 +27,7 @@ public class IncludesTable {
         }
     }
 
-    public static void populateIncludesTable(Connection conn,
+    public static void populateTable(Connection conn,
                                               String fileName)
             throws SQLException {
         /**

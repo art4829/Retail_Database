@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class StoreTable {
-    public static void createStoreTable(Connection conn){
+    public static void createTable(Connection conn){
         try {
             String query = "Create table store(\n" +
                     "store_id varchar(255) primary key,\n" +
@@ -32,7 +32,7 @@ public class StoreTable {
         }
     }
 
-    public static void populateStoreTable(Connection conn,
+    public static void populateTable(Connection conn,
                                              String fileName)
             throws SQLException {
         /**
