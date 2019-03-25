@@ -68,14 +68,17 @@ public class AdminApplication {
             // STEP 5: Clean-up environment
             result.close();
         }
-//        else {
-//            System.out.println("before");
-//            //stmt.executeUpdate(query);
-//            System.out.println("after");
-//        }
     }
 
     public static void main(String[] args) {
+        //login
+        String pw;
+        do {
+            System.out.println("Please enter password");
+            Scanner scan2 = new Scanner(System.in);
+            pw = scan2.nextLine();
+        } while (!pw.equals("retaildomain"));
+
         AdminApplication app = new AdminApplication();
         // Hard drive location of database
         String location = "./retailDb/retailDb";
