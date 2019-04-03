@@ -75,7 +75,7 @@ public class RetailMain {
             PantryTable.createTable(rm.getConnection());
             PantryTable.populateTable(
                     rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\Pantry\\pantry.csv");
+                    "/home/joy/School/Projects/Retail_Database/src/Database/pantry.csv");
 
             /**
              * Just displays the table
