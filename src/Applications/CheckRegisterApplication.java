@@ -1,5 +1,6 @@
 package Applications;
 
+import javax.naming.OperationNotSupportedException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -50,8 +51,13 @@ public class CheckRegisterApplication {
         String password = "retaildomain";
         //Create database connection
         app.createConnection(location, user, password);
-
         Connection conn = app.getConnection();
+
+        //login
+        OnlineApplication onlineApplication = new OnlineApplication();
+        System.out.println("-------------CHECKOUT ITEMS-----------");
+        System.out.println("Please enter 1 to LOGIN");
+        System.out.println("Please enter 2 to SIGNUP");
 
         System.out.println("Enter sql command ('quit' to stop) : ");
         Scanner scan = new Scanner(System.in);
