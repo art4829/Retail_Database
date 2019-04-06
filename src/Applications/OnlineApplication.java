@@ -112,7 +112,6 @@ public class OnlineApplication {
         String passwordCheck;
 
 
-        String address; // Remember address is divied into - num, street, city, state, zip
         Scanner scanner= new Scanner(System.in);
         System.out.print("Please enter your first name: ");
         first_name = scanner.nextLine();
@@ -267,6 +266,7 @@ public class OnlineApplication {
             // Check login and display
             String display = app.login(app.getConnection(), email);
             System.out.println(display);
+            app.register(app);
         } else if (check == 2) {
             // If sign up, Register user
             System.out.println("Registering you");
