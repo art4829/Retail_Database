@@ -5,3 +5,7 @@ create table reorder values(reorder_id varchar(255), vendor_id varchar(255), UPC
 org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
 2019-04-06 16:04:10 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-06 16:28:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-06 16:28:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
