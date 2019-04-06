@@ -3,7 +3,6 @@ package Applications;
 import java.sql.*;
 import java.util.Scanner;
 import java.lang.String;
-import java.sql.*;
 
 public class VendorApplication {
     private Connection connection;
