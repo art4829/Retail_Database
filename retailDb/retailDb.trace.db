@@ -1,0 +1,7 @@
+2019-04-06 15:58:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE REORDER VALUES[*](REORDER_ID VARCHAR(255), VENDOR_ID VARCHAR(255), UPC VARCHAR(255), AMOUNT VARCHAR(255), SHIPMENT VARCHAR(255), DELIVERY_DATE VARCHAR(255), STORE_ID VARCHAR(255)) "; SQL statement:
+create table reorder values(reorder_id varchar(255), vendor_id varchar(255), UPC varchar(255), amount varchar(255), shipment varchar(255), delivery_date varchar(255), store_id varchar(255)) [42000-199]
+2019-04-06 16:00:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-06 16:04:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
