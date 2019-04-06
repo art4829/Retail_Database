@@ -28,9 +28,9 @@ public class OnlineApplication extends MethodCalls{
         app.createConnection(location, user, password);
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("-------------WELCOME TO RETAIL-----------");
-        System.out.println("Please enter 1 to LOGIN");
-        System.out.println("Please enter 2 to SIGNUP");
+        System.out.println("-------------WELCOME TO RETAIL-------------");
+        System.out.println("----------Please enter 1 to LOGIN----------");
+        System.out.println("----------Please enter 2 to SIGNUP---------");
         int check = scan.nextInt();
 
         if (check == 1) {
@@ -41,7 +41,9 @@ public class OnlineApplication extends MethodCalls{
             // Check login and display
             String display = app.login(app.getConnection(), email);
             System.out.println(display);
-            app.register(app);
+            if(display.equals(EMAIL_DOESNT_EXIST)){
+                app.register(app);
+            }
         } else if (check == 2) {
             // If sign up, Register user
             System.out.println("Registering you");
@@ -54,6 +56,7 @@ public class OnlineApplication extends MethodCalls{
         }
 
         System.out.println("Welcome To Our Online Store! \n\n");
+        System.out.println("TO SignOut please press 9 at anytime");
         while(true) {
             System.out.println("What Product will you like to Buy today?\n");
             System.out.println("Press 1 for Bakery");
@@ -62,6 +65,10 @@ public class OnlineApplication extends MethodCalls{
             System.out.println("Press 4 for Pantry\n\n");
 
             int product_choice = scan.nextInt();
+
+            if(product_choice==9){
+                app.signout();
+            }
             int count;
             ArrayList<String> itms;
             int answer = 0;
@@ -72,7 +79,11 @@ public class OnlineApplication extends MethodCalls{
                     System.out.println("Press 1 for Bakery");
                     System.out.println("Press 2 for Bread");
                     System.out.println("Press 3 for Pastry\n\n");
+
                     int bakery_choice = scan.nextInt();
+                    if(bakery_choice==9){
+                        app.signout();
+                    }
 
                     switch (bakery_choice) {
                         case 1:
@@ -127,6 +138,9 @@ public class OnlineApplication extends MethodCalls{
                     System.out.println("Press 3 for Meat");
                     System.out.println("Press 4 for Produce\n\n");
                     int grocery_choice = scan.nextInt();
+                    if(grocery_choice==9){
+                        app.signout();
+                    }
 
                     switch (grocery_choice) {
                         case 1:
@@ -185,8 +199,12 @@ public class OnlineApplication extends MethodCalls{
                         count += 1;
                     }
                     answer = scan.nextInt();
+
                     break;
 
+            }
+            if(answer==9){
+                app.signout();
             }
             System.out.println("\n You have chosen: " + menu.get(answer));
             String UPC = app.getUPC(menu.get(answer), app.getConnection());
