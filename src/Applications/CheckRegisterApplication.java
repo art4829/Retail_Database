@@ -4,75 +4,65 @@ import javax.naming.OperationNotSupportedException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
-public class CheckRegisterApplication {
-    private Connection connection;
-
-    public void createConnection(String location,
-                                 String user,
-                                 String password){
-        try {
-            //This needs to be on the front of your location
-            String url = "jdbc:h2:" + location;
-
-            //This tells it to use the h2 driver
-            Class.forName("org.h2.Driver");
-
-            //creates the connection
-            connection = DriverManager.getConnection(url,
-                    user,
-                    password);
-        } catch (SQLException | ClassNotFoundException e) {
-            //You should handle this better
-            e.printStackTrace();
-        }
-    }
-
-    public Connection getConnection(){
-        return connection;
-    }
-
-    public void closeConnection(){
-        try{
-            connection.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void editData( int UPC ) {
-
-    }
+public class CheckRegisterApplication extends MethodCalls {
 
     public static void main( String[] args ) {
-        CheckRegisterApplication app = new CheckRegisterApplication();
+        MethodCalls app = new CheckRegisterApplication();
+
+        // Hard drive location of database
         String location = "./retailDb/retailDb";
         String user = "cskid";
         String password = "retaildomain";
         //Create database connection
         app.createConnection(location, user, password);
-        Connection conn = app.getConnection();
+        Scanner scan = new Scanner(System.in);
 
-        //login
-        OnlineApplication onlineApplication = new OnlineApplication();
         System.out.println("-------------CHECKOUT ITEMS-----------");
         System.out.println("Please enter 1 to LOGIN");
         System.out.println("Please enter 2 to SIGNUP");
+        int check = scan.nextInt();
 
-        System.out.println("Enter sql command ('quit' to stop) : ");
-        Scanner scan = new Scanner(System.in);
-        String query = scan.nextLine();
-        while (!query.equals("quit")) {
-            try {
+        if (check == 1) {
+            // Get email to check
+            System.out.println("Please Enter your Email: ");
+            Scanner scan2 = new Scanner(System.in);
+            String email = scan2.nextLine();
+            // Check login and display
+            String display = app.login(app.getConnection(), email);
+            System.out.println(display);
+            app.register(app);
+        } else if (check == 2) {
+            // If sign up, Register user
+            System.out.println("Registering you");
+            app.register(app);
+        }
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-                Statement stmt = conn.createStatement();
+        while(true) {
+            int answer = 0;
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+            System.out.println("Press 1 to checkout");
+            System.out.println("Press 2 to cancel checkout \n\n");
+            answer = scan.nextInt();
+
+            if( answer == 1 ) {
+                System.out.println("Input the product UPC: ");
+                String UPC = "";
+                UPC = scan.next();
+
+                //reduce the number of item in the database
+                app.buyProduct(UPC);
+                System.out.println("Checkout Successful!");
+            } else if( answer == 2 ) {
+                break;
             }
-            System.out.println("Enter sql command ('quit' to stop) : ");
-            scan = new Scanner(System.in);
-            query = scan.nextLine();
+
         }
     }
 }
