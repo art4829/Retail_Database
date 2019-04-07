@@ -9,6 +9,7 @@ public class Vendor {
     private String state;
     private String zip;
     private String account_number;
+    private String password;
 
     public Vendor(String[] data) {
         this.vendor_id = data[0];
@@ -19,6 +20,7 @@ public class Vendor {
         this.state = data[5];
         this.zip = data[6];
         this.account_number = data[7];
+        this.password = data[8];
     }
 
     public String getVendor_id() {
@@ -51,5 +53,9 @@ public class Vendor {
 
     public String getAccount_number() {
         return account_number;
+    }
+
+    public String getPassword(){
+        return password;
     }
 }
