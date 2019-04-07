@@ -19,7 +19,8 @@ public class VendorTable {
                     "city varchar(255),\n" +
                     "state varchar(255),\n" +
                     "zip varchar(255),\n" +
-                    "account_number varchar(255));" ;
+                    "account_number varchar(255)" +
+                    "password varchar(255))";
 
             /**
              * Create a query and execute
@@ -75,7 +76,7 @@ public class VendorTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO vendor (vendor_id, vendor_name, num, street, city, state, zip, account_number) VALUES");
+        sb.append("INSERT INTO vendor (vendor_id, vendor_name, num, street, city, state, zip, account_number, password) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -86,8 +87,8 @@ public class VendorTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Vendor c = customers.get(i);
-            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    c.getVendor_id(), c.getVendor_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getAccount_number()));
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                    c.getVendor_id(), c.getVendor_name(), c.getNum(), c.getStreet(), c.getCity(), c.getState(), c.getZip(), c.getAccount_number(), c.getPassword()));
             if( i != customers.size()-1){
                 sb.append(",");
             }
