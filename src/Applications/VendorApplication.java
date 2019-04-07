@@ -31,7 +31,7 @@ public class VendorApplication {
     }
 
     public String loginVendor(Connection connection, String vendor_id){
-        String query="select vendor_name, password from Vendor where email = "+"\'"+vendor_id+"\'\n";
+        String query="select vendor_name, password from vendor where vendor_id = "+"\'"+vendor_id+"\'\n";
         String vendor_name;
         String password;
 
