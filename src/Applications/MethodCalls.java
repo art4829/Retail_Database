@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public abstract class MethodCalls {
     private Connection connection;
-    private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
-    private final String INCORRECT_PW="Incorrect password, Please enter again";
+    static final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
+    static final String INCORRECT_PW="Incorrect password, Please enter again";
 
     public void createConnection(String location,
                                  String user,
@@ -217,6 +217,12 @@ public abstract class MethodCalls {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void signout(){
+        System.out.println("You have successfully signedOut!!!!!");
+        closeConnection();
+        System.exit(0);
     }
 
     public Connection getConnection() {
