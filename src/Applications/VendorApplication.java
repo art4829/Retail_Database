@@ -130,9 +130,21 @@ public class VendorApplication {
             query = "select * from v";
             app.executeQuery(stmt,query);
 
-
             query = "drop view v;";
             app.executeQuery(stmt,query);
+
+            //take input for the shipment
+            System.out.println("Please Enter Shipment: ");
+            String shipment = scan.nextLine();
+
+            //take input for delivery date
+            System.out.println("Please Enter Delivery date: ");
+            String Delivery_date = scan.nextLine();
+
+            //update the table
+            query = "update reorder set shipment="+shipment+",Delivery_date="+Delivery_date+"where reorder_id='1'";
+            app.executeQuery(stmt,query);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
