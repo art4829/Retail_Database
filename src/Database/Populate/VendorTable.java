@@ -19,7 +19,7 @@ public class VendorTable {
                     "city varchar(255),\n" +
                     "state varchar(255),\n" +
                     "zip varchar(255),\n" +
-                    "account_number varchar(255)" +
+                    "account_number varchar(255),\n" +
                     "password varchar(255))";
 
             /**
