@@ -6,7 +6,7 @@ import java.lang.String;
 
 public class VendorApplication {
     private Connection connection;
-    private final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
+    private final String Vendor_DOESNT_EXIST="VendorId Doesn't exist\nPlease Sign-up!";
     private final String INCORRECT_PW="Incorrect password, Please enter again";
 
     public void createConnection(String location,
@@ -31,7 +31,7 @@ public class VendorApplication {
     }
 
     public String loginVendor(Connection connection, String vendor_id){
-        String query="select vendor_name, password from vendor_id where email = "+"\'"+vendor_id+"\'\n";
+        String query="select vendor_name, password from vendor where vendor_id = "+"\'"+vendor_id+"\'\n";
         String vendor_name;
         String password;
 
@@ -61,7 +61,7 @@ public class VendorApplication {
 
 
         } catch (SQLException e) {
-            return EMAIL_DOESNT_EXIST;
+            return Vendor_DOESNT_EXIST;
         }
 
     }
@@ -101,12 +101,21 @@ public class VendorApplication {
 
     public static void main(String[] args) {
         VendorApplication app = new VendorApplication();
+
         // Hard drive location of database
         String location = "./retailDb/retailDb";
         String user = "cskid";
         String password = "retaildomain";
         //Create database connection
         app.createConnection(location, user, password);
+
+        //log in
+        System.out.println("Please Enter VendorId: ");
+        Scanner scan = new Scanner(System.in);
+        String vendorID = scan.nextLine();
+        String display = app.loginVendor(app.getConnection(), vendorID);
+        System.out.println(display);
+
 
         Connection conn = app.getConnection();
 
@@ -118,7 +127,22 @@ public class VendorApplication {
             stmt.execute(query);
 
             //test: print the view
-            query = "select * from view";
+            query = "select * from v";
+            app.executeQuery(stmt,query);
+
+            query = "drop view v;";
+            app.executeQuery(stmt,query);
+
+            //take input for the shipment
+            System.out.println("Please Enter Shipment: ");
+            String shipment = scan.nextLine();
+
+            //take input for delivery date
+            System.out.println("Please Enter Delivery date: ");
+            String Delivery_date = scan.nextLine();
+
+            //update the table
+            query = "update reorder set shipment="+shipment+",Delivery_date="+Delivery_date+"where reorder_id='1'";
             app.executeQuery(stmt,query);
 
         } catch (SQLException e) {
