@@ -91,6 +91,9 @@ public abstract class MethodCalls {
         String zip;
         String password;
         String passwordCheck;
+        String phone;
+        String phonecheck="";
+        String secondaryNum="";
 
 
         Scanner scanner= new Scanner(System.in);
@@ -125,6 +128,14 @@ public abstract class MethodCalls {
             state=scanner.nextLine();
             System.out.print("| Please enter your ZipCode: ");
             zip=scanner.nextLine();
+            System.out.print("Please enter you phone number: ");
+            phone=scanner.nextLine();
+            System.out.println("Do you a secondary number?(Y/N)");
+            phonecheck=scanner.nextLine().toLowerCase();
+            if(phonecheck.equals("y")){
+                System.out.print("Please enter your seconday phone number: ");
+                secondaryNum=scanner.nextLine();
+            }
             System.out.println("|--------------------------------------------------|");
 
             // add to database
@@ -139,12 +150,20 @@ public abstract class MethodCalls {
                 // Building sql query to insert
                 StringBuilder sb = new StringBuilder();
 
-                sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
-                sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                        count, first_name, last_name, num, street, city, state, zip, email, password));
+                sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password, credit) VALUES");
+                sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                        count, first_name, last_name, num, street, city, state, zip, email, password, '0'));
                 // executing the sql command to insert
                 stmt.execute(sb.toString());
                 System.out.println("Welcome! " +first_name+" "+last_name);
+                String phone_query="";
+                if(secondaryNum.equals("")) {
+                    phone_query = "Insert into cust_phone values('"+count+"', '"+phone+"');";
+                }else{
+                    phone_query= "Insert into cust_phone values('"+count+"', '"+phone+"'), ('"+count+"', '"+secondaryNum+"');";
+                }
+                Statement phoneStm= connection.createStatement();
+                phoneStm.execute(phone_query);
             }catch (SQLException e){
                 System.out.println(e.getMessage());
             }
