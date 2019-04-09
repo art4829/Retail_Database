@@ -326,4 +326,21 @@ public abstract class MethodCalls {
         }
     }
 
+    public void viewOrders(String id, Connection connection){
+//        try {
+//            String query = "";
+//
+//
+//            Statement stmt = connection.createStatement();
+//
+//            ResultSet r = stmt.executeQuery(query);
+//            while(r.next()){
+//                System.out.println(r.getString(1));
+//            }
+//        }catch(SQLException e){
+//            System.out.println("order error");
+//            System.out.println(e.getMessage());
+//        }
+
+    }
 }

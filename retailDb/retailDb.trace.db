@@ -186,3 +186,245 @@ Select * from customer where cust_id='9' [42122-199]
 	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
 	at Applications.MethodCalls.putOrder(MethodCalls.java:288)
 	at Applications.OnlineApplication.main(OnlineApplication.java:235)
+2019-04-08 23:48:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains JOIN Product ON Product.UPC = contains.UPC), select order_id from try1 JOIN orders ON contains.order_id = orders.order_id [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.table.TableView.createQueryColumnTemplateList(TableView.java:789)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6428)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at Applications.MethodCalls.viewOrders(MethodCalls.java:337)
+	at Applications.OnlineApplication.main(OnlineApplication.java:75)
+2019-04-08 23:49:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains,products), select order_id from try1 JOIN orders ON contains.order_id = orders.order_id [42102-199]
+2019-04-08 23:50:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains,product), select order_id from try1 JOIN orders ON contains.order_id = orders.order_id [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.table.TableView.createQueryColumnTemplateList(TableView.java:789)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6428)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at Applications.MethodCalls.viewOrders(MethodCalls.java:337)
+	at Applications.OnlineApplication.main(OnlineApplication.java:75)
+2019-04-08 23:50:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains,product), 
+                    select order_id from try1 JOIN orders ON contains.order_id = orders.order_id [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.table.TableView.createQueryColumnTemplateList(TableView.java:789)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6428)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+2019-04-08 23:50:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains,product), 
+                    select order_id from try1 [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.table.TableView.createQueryColumnTemplateList(TableView.java:789)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6428)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+2019-04-08 23:51:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM contains,product) [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.table.TableView.createQueryColumnTemplateList(TableView.java:789)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6428)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+2019-04-08 23:51:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ORDER_ID" not found; SQL statement:
+WITH try1 as (SELECT order_id FROM order_id,product) [42102-199]
+2019-04-08 23:51:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH statement supports only SELECT, TABLE, VALUES, CREATE TABLE, INSERT, UPDATE, MERGE or DELETE statements"; SQL statement:
+WITH try1 as (SELECT order_id FROM orders,product) [42000-199]
+2019-04-08 23:51:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH TRY1 AS (SELECT ORDER_ID FROM ORDERS,PRODUCT), SELECT[*] * FROM TRY1 "; expected "identifier"; SQL statement:
+WITH try1 as (SELECT order_id FROM orders,product), select * from try1 [42001-199]
+2019-04-08 23:52:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH statement supports only SELECT, TABLE, VALUES, CREATE TABLE, INSERT, UPDATE, MERGE or DELETE statements"; SQL statement:
+WITH try1 as (SELECT order_id FROM orders,product) [42000-199]
+2019-04-08 23:52:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRY1" not found; SQL statement:
+select * from try1 [42102-199]
+2019-04-08 23:52:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH statement supports only SELECT, TABLE, VALUES, CREATE TABLE, INSERT, UPDATE, MERGE or DELETE statements"; SQL statement:
+WITH try1 as (SELECT order_id FROM orders) [42000-199]
+2019-04-08 23:52:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRY1" not found; SQL statement:
+select * from try1 [42102-199]
+2019-04-08 23:53:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH A1(ID)AS
+    (SELECT ORDER_ID
+    FROM ORDERS),
+    SELECT[*] ID
+    FROM A1 "; expected "identifier"; SQL statement:
+WITH a1(id)as
+    (SELECT order_id
+    FROM orders),
+    SELECT id
+    FROM a1 [42001-199]
+2019-04-08 23:53:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH A1(ID)AS
+    (SELECT ORDER_ID
+    FROM ORDERS),
+    SELECT[*] ID
+    FROM A1 "; expected "identifier"; SQL statement:
+WITH a1(id)as
+    (SELECT order_id
+    FROM orders),
+    SELECT id
+    FROM a1 [42001-199]
+2019-04-08 23:53:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "ORDERS" not found; SQL statement:
+WITH a1(id) as
+    (SELECT order_id
+    FROM orders(order_id),
+    SELECT id
+    FROM a1 [90022-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3288)
+	at org.h2.command.Parser.readFunction(Parser.java:3495)
+	at org.h2.command.Parser.readTableFunction(Parser.java:1937)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1892)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:2641)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2788)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:2636)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2469)
+	at org.h2.command.Parser.parseSelect(Parser.java:2440)
+	at org.h2.command.Parser.parseSingleCommonTableExpression(Parser.java:6423)
+	at org.h2.command.Parser.parseWith1(Parser.java:6299)
+	at org.h2.command.Parser.parseWith(Parser.java:6284)
+	at org.h2.command.Parser.parseWithStatementOrQuery(Parser.java:2453)
+	at org.h2.command.Parser.parsePrepared(Parser.java:818)
+	at org.h2.command.Parser.parse(Parser.java:788)
+	at org.h2.command.Parser.parse(Parser.java:760)
+	at org.h2.command.Parser.prepareCommand(Parser.java:683)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1113)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1436)
+	at org.h2.server.web.WebApp.query(WebApp.java:1111)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1073)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1060)
+	at org.h2.server.web.WebThread.process(WebThread.java:173)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+2019-04-08 23:55:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "WITH TEMPORARYTABLE (AVERAGEVALUE) AS
+    (SELECT ORDER_ID
+    FROM ORDERS),
+    SELECT[*] ORDER_ID
+    FROM TEMPORARYTABLE "; expected "identifier"; SQL statement:
+WITH temporaryTable (averageValue) as
+    (SELECT order_id
+    FROM orders),
+    SELECT order_id
+    FROM temporaryTable [42001-199]
