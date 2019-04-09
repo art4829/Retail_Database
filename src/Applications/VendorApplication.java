@@ -119,10 +119,15 @@ public class VendorApplication {
 
         Connection conn = app.getConnection();
 
-        //create view
+
         try {
             Statement stmt = conn.createStatement();
 
+            //check if they are delivered
+            String checkDate = "delete from vendor where delivery_date = curdate();";
+            stmt.execute(checkDate);
+
+            //create view
             String query = "create view v as select * from Reorder where vendor_id="
                     +Integer.parseInt(vendorID)+";";
             stmt.execute(query);
@@ -159,6 +164,10 @@ public class VendorApplication {
                 app.executeQuery(stmt, query);
 
                 System.out.println("updated table:\n");
+
+                //Check if it is delivered
+                stmt.execute(checkDate);
+                
                 //updated table
                 query = "select * from v";
                 app.executeQuery(stmt, query);
