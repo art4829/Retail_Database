@@ -297,7 +297,6 @@ public abstract class MethodCalls {
             String email= set.getString(9);
             String query = "Insert into orders \n" +
                     "values('" + order_id + "', '" + num+"', '"+street+"', '"+city+"', '"+state+"', '"+zipcode+"', '"+email+"', '"+cust_id+"');";
-            System.out.println(query);
             Statement stmt = connection.createStatement();
             stmt.execute(query);
         }catch (SQLException e){
