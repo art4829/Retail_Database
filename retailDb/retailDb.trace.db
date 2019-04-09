@@ -768,3 +768,21 @@ org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
 org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
 2019-04-09 18:15:28 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-09 18:23:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DELIVERY_DATE" not found; SQL statement:
+delete from vendor where delivery_date = curdate(); [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:205)
+	at org.h2.command.dml.Delete.prepare(Delete.java:160)
+	at org.h2.command.Parser.prepareCommand(Parser.java:689)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.VendorApplication.main(VendorApplication.java:128)

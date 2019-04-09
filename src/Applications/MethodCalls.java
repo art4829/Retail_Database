@@ -385,6 +385,11 @@ public abstract class MethodCalls {
                     e.printStackTrace();
                 }
             }
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("\n\n");
         }catch(SQLException e){
             System.out.println("order error");
@@ -428,6 +433,11 @@ public abstract class MethodCalls {
             r.next();
             System.out.println(">>>>>>>----- Credit = $"+r.getString(1));
             System.out.println("\n\n");
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }catch(SQLException e){
             System.out.println("order error");
             System.out.println(e.getMessage());
