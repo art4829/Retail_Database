@@ -130,9 +130,6 @@ public class VendorApplication {
             query = "select * from v";
             app.executeQuery(stmt,query);
 
-            query = "drop view v;";
-            app.executeQuery(stmt,query);
-
             //take input for the shipment
             System.out.println("Please Enter Shipment: ");
             String shipment = scan.nextLine();
@@ -145,6 +142,13 @@ public class VendorApplication {
             query = "update reorder set shipment="+shipment+",Delivery_date="+Delivery_date+"where reorder_id='1'";
             app.executeQuery(stmt,query);
 
+            System.out.println("updated table:\n");
+            //updated table
+            query = "select * from v";
+            app.executeQuery(stmt,query);
+
+            query = "drop view v;";
+            app.executeQuery(stmt,query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
