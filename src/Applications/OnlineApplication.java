@@ -65,6 +65,7 @@ public class OnlineApplication extends MethodCalls {
             System.out.println("|------------------------------------------|");
             System.out.println("|     1. Buy Food!                         |");
             System.out.println("|     2. View Orders!                      |");
+            System.out.println("|     3. View Credit!                      |");
             System.out.println("|     0. Sign Out!                         |");
             System.out.println("|--Please enter the number of your choice--|");
             System.out.println("|------------------------------------------|");
@@ -73,6 +74,8 @@ public class OnlineApplication extends MethodCalls {
                 app.signout();
             } else if (start == 2) {
                 app.viewOrders(app.getCustomer_id(email),app.getConnection());
+            } else if (start == 3) {
+                app.viewCredit(app.getCustomer_id(email),app.getConnection());
             } else if (start == 1) {
                 System.out.println("|------------------------------------------|");
                 System.out.println("| What Product will you like to Buy today? |");
@@ -249,7 +252,8 @@ public class OnlineApplication extends MethodCalls {
                     String order_id=app.genOrder(app.getConnection());
                     app.putOrder(order_id, customer_id, app.getConnection());
                     app.updateIncludes(UPC,order_id,app.getConnection());
-                    System.out.println(">>>>>>>----- Congratulations, you have succesfully bought " + menu.get(answer));
+                    app.updateCredit(app.getPrice(UPC),customer_id);
+                    System.out.println(">>>>>>>----- Congratulations, you have successfully bought " + menu.get(answer));
                     System.out.println(">>>>>>>----- Your order number is: "+ order_id);
                     System.out.println(">>>>>>>----- Your item will be shipped to you soon!");
                 }

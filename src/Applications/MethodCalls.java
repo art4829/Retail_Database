@@ -347,7 +347,7 @@ public abstract class MethodCalls {
 
     public void viewOrders(String id, Connection connection){
         try {
-            String query = "SELECT o.order_id, i.upc, p.name\n" +
+            String query = "SELECT o.order_id, p.price, p.name\n" +
                     "FROM Orders o \n" +
                     "join includes i on o.order_id = i.order_id\n" +
                     "join product p on p.upc=i.upc \n" +
@@ -358,7 +358,7 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
 
             while(r.next()){
-                System.out.println("| Order Number: "+r.getString(1)+ " | , | Product name: "+r.getString(3)+" |, | product code:  "+ r.getString(2)+"!!! |");
+                System.out.println("|Order Number: "+r.getString(1)+ ",     Product name: "+r.getString(3)+",    price:  $"+ r.getString(2)+"|");
                 System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
                 try {
                     TimeUnit.SECONDS.sleep(1);
@@ -366,6 +366,48 @@ public abstract class MethodCalls {
                     e.printStackTrace();
                 }
             }
+            System.out.println("\n\n");
+        }catch(SQLException e){
+            System.out.println("order error");
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public void updateCredit(String price, String id){
+        String credit = "";
+        Double updateAmt = 0.0;
+        try {
+            String query = "Select credit from customer \n" +
+                    "where customer_id = '" + id + "';";
+            Statement stmt = connection.createStatement();
+            ResultSet r = stmt.executeQuery(query);
+            r.next();
+            credit = r.getString(1);
+            System.out.println(credit);
+            updateAmt = Double.parseDouble(credit) + Double.parseDouble(price);
+            System.out.println(updateAmt);
+            System.out.println(id);
+            String updatequery = "Update customer\n" +
+                    "set credit='" + updateAmt + "' where customer_id='" + id + "';";
+
+            Statement stm2 = connection.createStatement();
+            stm2.execute(updatequery);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void viewCredit(String id, Connection connection){
+        try {
+            String query = "SELECT credit from customer where customer_id='"+id+"';";
+
+            Statement stmt = connection.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+
+            r.next();
+            System.out.println(">>>>>>>----- Credit = $"+r.getString(1));
             System.out.println("\n\n");
         }catch(SQLException e){
             System.out.println("order error");
