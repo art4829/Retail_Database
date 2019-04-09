@@ -123,32 +123,51 @@ public class VendorApplication {
         try {
             Statement stmt = conn.createStatement();
 
-            String query = "create view v as select * from Reorder;";
+            String query = "create view v as select * from Reorder where vendor_id="
+                    +Integer.parseInt(vendorID)+";";
             stmt.execute(query);
 
             //test: print the view
             query = "select * from v";
             app.executeQuery(stmt,query);
 
-            //take input for the shipment
-            System.out.println("Please Enter Shipment: ");
-            String shipment = scan.nextLine();
+            //query = "select count(*) as t from v;";
+            //ResultSet c = stmt.executeQuery(query);
+            //int count = c.getInt("t");
+            //int count=0;
+            //while(c.next()){
+              //  count = c.getInt("count");
+            //}
 
-            //take input for delivery date
-            System.out.println("Please Enter Delivery date: ");
-            String Delivery_date = scan.nextLine();
+            ResultSet result = stmt.executeQuery("select * from v;");
+            int count = result.getRow();
+            System.out.println("getrow: "+count);
+            if (count == 0){
+                System.out.println("No reorder\n");
+            }
+            else {
+                //take input for the shipment
+                System.out.println("Please Enter Shipment: ");
+                String shipment = scan.nextLine();
 
-            //update the table
-            query = "update reorder set shipment="+shipment+",Delivery_date="+Delivery_date+"where reorder_id='1'";
-            app.executeQuery(stmt,query);
+                //take input for delivery date
+                System.out.println("Please Enter Delivery date: ");
+                String Delivery_date = scan.nextLine();
 
-            System.out.println("updated table:\n");
-            //updated table
-            query = "select * from v";
-            app.executeQuery(stmt,query);
+                //update the table
+                query = "update reorder set shipment=" + shipment + ",Delivery_date=" + Delivery_date + "where reorder_id='1'";
+                app.executeQuery(stmt, query);
 
+                System.out.println("updated table:\n");
+                //updated table
+                query = "select * from v";
+                app.executeQuery(stmt, query);
+            }
+
+            //query = "drop table t;";
+            //app.executeQuery(stmt,query);
             query = "drop view v;";
-            app.executeQuery(stmt,query);
+            app.executeQuery(stmt, query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
