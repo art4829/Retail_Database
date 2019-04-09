@@ -246,8 +246,11 @@ public class OnlineApplication extends MethodCalls {
 
                 if (option.equals("y")) {
                     app.buyProduct(UPC);
-                    app.putOrder(app.genOrder(app.getConnection()), customer_id, app.getConnection());
+                    String order_id=app.genOrder(app.getConnection());
+                    app.putOrder(order_id, customer_id, app.getConnection());
+                    app.updateIncludes(UPC,order_id,app.getConnection());
                     System.out.println(">>>>>>>----- Congratulations, you have succesfully bought " + menu.get(answer));
+                    System.out.println(">>>>>>>----- Your order number is: "+ order_id);
                     System.out.println(">>>>>>>----- Your item will be shipped to you soon!");
                 }
 

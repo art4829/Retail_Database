@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public abstract class MethodCalls {
     private Connection connection;
@@ -227,12 +228,17 @@ public abstract class MethodCalls {
 
     public String genrand() {
         Random rr = new Random();
-        int low = 100000;
-        int high = 999999;
+        int low = 1000000;
+        int high = 9999999;
         int result = rr.nextInt(high - low) + low;
         return String.valueOf(result);
     }
 
+    /**
+     * generate unique order_id
+     * @param conn
+     * @return
+     */
     public String genOrder(Connection conn){
         String retString="";
         try {
@@ -325,21 +331,46 @@ public abstract class MethodCalls {
         }
     }
 
+    public void updateIncludes(String UPC, String order_id, Connection connection){
+        try {
+            String query = "Insert into includes values('"+order_id+"', '"+UPC+"');";
+
+            Statement stmt = connection.createStatement();
+
+            stmt.execute(query);
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public void viewOrders(String id, Connection connection){
-//        try {
-//            String query = "";
-//
-//
-//            Statement stmt = connection.createStatement();
-//
-//            ResultSet r = stmt.executeQuery(query);
-//            while(r.next()){
-//                System.out.println(r.getString(1));
-//            }
-//        }catch(SQLException e){
-//            System.out.println("order error");
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            String query = "SELECT o.order_id, i.upc, p.name\n" +
+                    "FROM Orders o \n" +
+                    "join includes i on o.order_id = i.order_id\n" +
+                    "join product p on p.upc=i.upc \n" +
+                    " where o.customer_id ='"+id+"';";
+
+            Statement stmt = connection.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+
+            while(r.next()){
+                System.out.println("| Order Number: "+r.getString(1)+ " | , | Product name: "+r.getString(3)+" |, | product code:  "+ r.getString(2)+"!!! |");
+                System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("\n\n");
+        }catch(SQLException e){
+            System.out.println("order error");
+            System.out.println(e.getMessage());
+        }
 
     }
 }
