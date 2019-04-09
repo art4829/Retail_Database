@@ -113,10 +113,10 @@ public class RetailMain {
 //            BrandTable.populateTable(
 //                    rm.getConnection(),
 //                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\brand.csv");
-//            ContainsTable.createTable(rm.getConnection());
-//            ContainsTable.populateTable(
-//                    rm.getConnection(),
-//                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\contains.csv");
+            ContainsTable.createTable(rm.getConnection());
+            ContainsTable.populateTable(
+                    rm.getConnection(),
+                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\contains.csv");
 //            Cust_PhoneTable.createTable(rm.getConnection());
 //            Cust_PhoneTable.populateTable(
 //                    rm.getConnection(),
@@ -141,10 +141,10 @@ public class RetailMain {
 //            StoreTable.populateTable(
 //                    rm.getConnection(),
 //                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\store.csv");
-            VendorTable.createTable(rm.getConnection());
-            VendorTable.populateTable(
-                    rm.getConnection(),
-                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\vendor.csv");
+//            VendorTable.createTable(rm.getConnection());
+//            VendorTable.populateTable(
+//                    rm.getConnection(),
+//                    "C:\\Users\\abhay\\IdeaProjects\\Retail_Database\\src\\Datasets\\vendor.csv");
 
 
 

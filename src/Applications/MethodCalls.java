@@ -2,6 +2,7 @@ package Applications;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public abstract class MethodCalls {
@@ -78,11 +79,11 @@ public abstract class MethodCalls {
      * Register the user
      * @param app this class object
      */
-    public void register(MethodCalls app){
+    public String register(MethodCalls app){
         String first_name;
         String last_name;
         String email;
-        int num;
+        String num;
         String street;
         String city;
         String state;
@@ -92,34 +93,38 @@ public abstract class MethodCalls {
 
 
         Scanner scanner= new Scanner(System.in);
-        System.out.print("Please enter your first name: ");
+        System.out.println("\n");
+        System.out.println(">>>>>>>----- Signing you up!!!");
+        System.out.println("|--------------------------------------------------|");
+        System.out.print("| Please enter your first name: ");
         first_name = scanner.nextLine();
-        System.out.print("Please enter your last name:");
+        System.out.print("| Please enter your last name:");
         last_name= scanner.nextLine();
-        System.out.print("Please enter your Email: ");
+        System.out.print("| Please enter your Email: ");
         email= scanner.nextLine();
         String check = app.login(app.getConnection(),email);
         if (check.startsWith("Welcome")){
-            System.out.println("Email already exists, please enter a new one");
+            System.out.println(">>>>>>>----- Email already exists, please enter a new one");
         }else{
-            System.out.print("Please enter a password for your account: ");
+            System.out.print("| Please enter a password for your account: ");
             password = scanner.nextLine();
-            System.out.print("Please Re-enter Password: ");
+            System.out.print("| Please Re-enter Password: ");
             passwordCheck = scanner.nextLine();
             while(!passwordCheck.equals(password)){
-                System.out.println("Passwords Don't Match, Re-enter");
+                System.out.println(">>>>>>>----- Passwords Don't Match, Re-enter");
                 passwordCheck = scanner.nextLine();
             }
-            System.out.print("Please enter your Street Number: ");
-            num=Integer.parseInt(scanner.nextLine());
-            System.out.print("Please enter your Street Name: ");
+            System.out.print("| Please enter your Street Number: ");
+            num=scanner.nextLine();
+            System.out.print("| Please enter your Street Name: ");
             street=scanner.nextLine();
-            System.out.print("Please enter your City: ");
+            System.out.print("| Please enter your City: ");
             city=scanner.nextLine();
-            System.out.print("Please enter your State: ");
+            System.out.print("| Please enter your State: ");
             state=scanner.nextLine();
-            System.out.print("Please enter your ZipCode: ");
+            System.out.print("| Please enter your ZipCode: ");
             zip=scanner.nextLine();
+            System.out.println("|--------------------------------------------------|");
 
             // add to database
             try{
@@ -134,7 +139,7 @@ public abstract class MethodCalls {
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password) VALUES");
-                sb.append(String.format("(%d,\'%s\',\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                         count, first_name, last_name, num, street, city, state, zip, email, password));
                 // executing the sql command to insert
                 stmt.execute(sb.toString());
@@ -143,6 +148,7 @@ public abstract class MethodCalls {
                 System.out.println(e.getMessage());
             }
         }
+        return email;
     }
 
     public ArrayList<String> viewItem(Connection connection, String item){
@@ -203,7 +209,6 @@ public abstract class MethodCalls {
         try {
             String query = "Select amount from contains \n" +
                     "where UPC = '" + UPC + "' and store_id = '5';";
-
             Statement stmt = connection.createStatement();
 
             ResultSet r = stmt.executeQuery(query);
@@ -212,6 +217,7 @@ public abstract class MethodCalls {
             updateAmt = Integer.parseInt(amount) - 1;
             String updatequery = "Update contains\n" +
                     "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='5';";
+
             Statement stm2 = connection.createStatement();
             stm2.execute(updatequery);
         } catch (SQLException e) {
@@ -219,11 +225,94 @@ public abstract class MethodCalls {
         }
     }
 
+    public String genrand() {
+        Random rr = new Random();
+        int low = 100000;
+        int high = 999999;
+        int result = rr.nextInt(high - low) + low;
+        return String.valueOf(result);
+    }
+
+    public String genOrder(Connection conn){
+        String retString="";
+        try {
+            String query = "SELECT order_id FROM  orders";
+
+            Statement stmt = connection.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+            boolean found= false;
+            String num="";
+
+            while(true) {
+                num = genrand();
+                while (r.next()) {
+                    String checkvalue = r.getString(1);
+                    if (checkvalue.equals(num)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    break;
+                }
+            }
+            retString=num;
+        }catch(SQLException e){
+            System.out.println("1");
+            System.out.println(e.getMessage());
+        }
+        return retString;
+    }
+
+    public String getCustomer_id(String email){
+        String id="";
+        try {
+            String query = "Select customer_id from customer \n" +
+                    "where email = '"+email+"';";
+
+            Statement stmt = connection.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+            r.next();
+            id =r.getString(1);
+        }catch(SQLException e){
+            System.out.println("2");
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
+
+    public void putOrder(String order_id, String cust_id, Connection connection){
+        try {
+            String getdata = "Select * from customer where customer_id='"+cust_id+"'";
+            Statement st = connection.createStatement();
+            ResultSet set= st.executeQuery(getdata);
+            set.next();
+            String num = set.getString(4);
+            String street= set.getString(5);
+            String city= set.getString(6);
+            String state = set.getString(7);
+            String zipcode = set.getString(8);
+            String email= set.getString(9);
+            String query = "Insert into orders \n" +
+                    "values('" + order_id + "', '" + num+"', '"+street+"', '"+city+"', '"+state+"', '"+zipcode+"', '"+email+"', '"+cust_id+"');";
+            System.out.println(query);
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        }catch (SQLException e){
+            System.out.println("3");
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void signout(){
-        System.out.println("You have successfully signedOut!!!!!");
+        System.out.println(">>>>>----You have successfully signedOut!!!!!-----<<<<<<");
         closeConnection();
         System.exit(0);
     }
+
+
 
     public Connection getConnection() {
         return connection;
