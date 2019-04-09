@@ -54,14 +54,16 @@ public class AdminApplication {
             for (int i = 1; i <= columnCount; i++) {
                 String name = rsmd.getColumnName(i);
                 column_names.add(name);
-                System.out.print(name + " ");
+                //System.out.print(name + " ");
+                System.out.format("%30s",name);
                 // Do stuff with name
             }
             System.out.println();
 
             while (result.next()) {
                 for (int i = 0; i < columnCount; i++) {
-                    System.out.print(result.getString(i + 1) + " ");
+                    //System.out.print(result.getString(i + 1) + " ");
+                    System.out.format("%30s",result.getString(i+1));
                 }
                 System.out.println();
             }
@@ -74,7 +76,7 @@ public class AdminApplication {
         //login
         String pw;
         do {
-            System.out.println("Please enter password");
+            System.out.println("Please enter password:");
             Scanner scan2 = new Scanner(System.in);
             pw = scan2.nextLine();
         } while (!pw.equals("retaildomain"));
