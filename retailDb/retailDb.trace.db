@@ -571,3 +571,34 @@ FROM Orders join includes where customer_id ='9' [90059-199]
 	at org.h2.server.web.WebThread.process(WebThread.java:173)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Unknown Source)
+2019-04-09 17:29:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUSTOMER" not found; SQL statement:
+drop table customer [42102-199]
+2019-04-09 17:29:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE CUSTOMER(
+CUSTOMER_ID VARCHAR(255) PRIMARY KEY,
+FIRST_NAME VARCHAR(255),
+LAST_NAME VARCHAR(255),
+NUM VARCHAR(255),
+STREET VARCHAR(255),
+CITY VARCHAR(255),
+STATE VARCHAR(255),
+ZIP VARCHAR(255),
+EMAIL VARCHAR(255),
+PASSWORD VARCHAR(255)
+CREDIT[*] VARCHAR(255)); "; expected "FOR, UNSIGNED, INVISIBLE, VISIBLE, NOT, NULL, AS, DEFAULT, GENERATED, ON, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+Create table customer(
+customer_id varchar(255) primary key,
+first_name varchar(255),
+last_name varchar(255),
+num varchar(255),
+street varchar(255),
+city varchar(255),
+state varchar(255),
+zip varchar(255),
+email varchar(255),
+password varchar(255)
+credit varchar(255)); [42001-199]
+2019-04-09 17:29:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUSTOMER" not found; SQL statement:
+INSERT INTO customer (customer_id, first_name, last_name, num, street, city, state, zip, email, password, credit) VALUES('1','Bryan','Passino','20','Long Memorial Drive','Rochester','NY','14623','bjpvcs@rit.edu','bp','0'),('2','Joy','Notjoy','30','Memorial Drive','Avon','MA','2322','pxj@rit.edu','jn','0'),('3','James','Oh','250','Hartford Avenue','Bellingham','MA','2019','jameskim@gmail.com','jo','0'),('4','Jack','Oh','700','Oak Street','Brockton','MA','2301','jackkim@gmail.com','jo2','0'),('5','Sarah','Banana','66','Parkhurst Rd','Chelmsford','MA','1824','fruitmeup@gmail.com','sb','0'),('6','Bob','Marley','591','Memorial Dr','Chicopee','MA','1020','guitarsenpai@hotmail.com','bm','0'),('7','Ryan','Brother','137','Teaticket Hwy','East Falmouth','MA','2536','artesano7718@gmail.com','rb','0'),('8','Monica','Geller','42','Fairhaven Commons Way','Fairhaven','MA','2719','cleanfreak221@friends.edu','mg','0'),('9','Abhaya','Tamrakar','374','William S Canning Blvd','Fall River','MA','2721','abhaya.tmkr@gmail.com','at','0'),('10','Joey','Tribianni','121','Worcester Rd','Framingham','MA','1701','daysofourlives3@friends.com','jt','0'),('11','Ross','Geller','677','Timpany Blvd','Gardner','MA','1440','dinasourisbae@friends.com','rg','0'),('12','Rachel','Green','337','Russell St','Hadley','MA','1035','fashinismypassion@friends.com','rg2','0'),('13','Phoebe','Buffay','295','Plymouth Street','Halifax','MA','2338','weirdismyjam@friends.com','pb','0'),('14','Carol','Reed','1775','Washington St','Hanover','MA','2339','tigersuite@rit.edu','cr','0'),('15','Chandler','Bing','280','Washington Street','Hudson','MA','1749','funnyismything@friends.com','cb','0'),('16','RIchard','Bruke','20','Soojian Dr','Leicester','MA','1524','imanotold@friends.com','rb','0'),('17','Gunter','Watson','11','Jungle Road','Leominster','MA','1453','coffeeeisgoodcoffee@gmail.com','gw','0'),('18','Trevor ','Noah','301','Massachusetts Ave','Lunenburg','MA','1462','icametorit@rit.edu','tn','0'),('19','Donald','Trump','780','Lynnway','Lynn','MA','1905','endingsoon@hotmail.com','dt','0'),('20','Hugh','Jackman','55','Brooksby Village Way','Danvers','MA','1923','wolverine99@marvel.com','hj','0'); [42102-199]

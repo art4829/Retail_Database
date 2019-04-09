@@ -12,6 +12,7 @@ public class Customer {
     private String zip;
     private String email;
     private String password;
+    private String credit;
 
     public Customer(String[] data) {
         this.customer_id = data[0];
@@ -24,6 +25,7 @@ public class Customer {
         this.zip = data[7];
         this.email = data[8];
         this.password = data[9];
+        this.credit=data[10];
     }
 
     public String getCustomer_id() {
@@ -63,5 +65,9 @@ public class Customer {
     }
 
     public String getPassword(){ return password;}
+
+    public String getCredit() {
+        return credit;
+    }
 }
 
