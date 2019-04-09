@@ -58,7 +58,6 @@ public class CheckRegisterApplication extends MethodCalls {
 
                 //reduce the number of item in the database
                 app.buyProduct(UPC);
-                System.out.println("Checkout Successful!");
             } else if( answer == 2 ) {
                 break;
             }
