@@ -124,7 +124,7 @@ public class VendorApplication {
             Statement stmt = conn.createStatement();
 
             //check if they are delivered
-            String checkDate = "delete from vendor where delivery_date = curdate();";
+            String checkDate = "delete from reorder where Delivery_date < curdate();";
             stmt.execute(checkDate);
 
             //create view
@@ -144,8 +144,11 @@ public class VendorApplication {
               //  count = c.getInt("count");
             //}
 
-            ResultSet result = stmt.executeQuery("select * from v;");
-            int count = result.getRow();
+            //ResultSet result = stmt.executeQuery("select * from v;");
+            //int count = result.getRow();
+            ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = " + vendorID);
+            result.next();
+            int count = result.getInt(1);
             System.out.println("getrow: "+count);
             if (count == 0){
                 System.out.println("No reorder\n");
