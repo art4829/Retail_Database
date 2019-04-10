@@ -147,36 +147,59 @@ public class VendorApplication {
 
             //ResultSet result = stmt.executeQuery("select * from v;");
             //int count = result.getRow();
-            ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = " + vendorID);
+            ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" + vendorID + "'");
             result.next();
             int count = result.getInt(1);
-            System.out.println("getrow: "+count);
-            if (count == 0){
-                System.out.println("No reorder\n");
-            }
-            else {
-                //take input for the shipment
-                System.out.println("Please Enter Shipment: ");
-                String shipment = scan.nextLine();
-
-                //take input for delivery date
-                System.out.println("Please Enter Delivery date: ");
-                String Delivery_date = scan.nextLine();
-
-                //update the table
-                query = "update reorder set shipment='" + shipment + "',Delivery_date='" + Delivery_date + "' where reorder_id='1'";
-                app.executeQuery(stmt, query);
-
-                System.out.println("updated table:\n");
-
-                //Check if it is delivered
-                stmt.execute(checkDate);
-                
-                //updated table
+            System.out.println("You have "+count + "reorder requests.\n");
+            while (true) {
+                System.out.println("|------------------------------------------|");
+                System.out.println("|     What would you like to do today?     |");
+                System.out.println("|------------------------------------------|");
+                System.out.println("|     1. Handle reorder requests!          |");
+                System.out.println("|     2. Quit                              |");
+                System.out.println("|--Please enter the number of your choice--|");
+                System.out.println("|------------------------------------------|\n");
+                int choice = scan.nextInt();
+                if (choice ==2) {
+                    System.out.println("Good bye!");
+                    break;
+                }
+                else if (choice != 1){
+                    System.out.println("Please enter 1 or 2.");
+                    continue;
+                }
+                //handling the reorder
                 query = "select * from v";
-                app.executeQuery(stmt, query);
-            }
+                if (count == 0) {
+                    System.out.println("No reorder\n");
+                } else {
+                    //take input for the shipment
+                    System.out.println("Which reorder would you like to handle? Enter reorder_id: ");
+                    int reorder_id = scan.nextInt();
+                    scan.nextLine(); //throw away the \n not consumed by nextInt()
 
+                    System.out.println("Please Enter Shipment: ");
+                    String shipment = scan.nextLine();
+
+                    //take input for delivery date
+                    System.out.println("Please Enter Delivery date: ");
+                    String Delivery_date = scan.nextLine();
+
+                    //update the table
+                    query = "update reorder set shipment='" + shipment + "',Delivery_date='" + Delivery_date + "' where" +
+                            " reorder_id='" +reorder_id+ "'";
+                    app.executeQuery(stmt, query);
+
+                    System.out.println("updated table:\n");
+
+                    //Check if it is delivered
+                    stmt.execute(checkDate);
+
+                    //updated table
+                    query = "select * from v";
+                    app.executeQuery(stmt, query);
+                }
+            }
             //query = "drop table t;";
             //app.executeQuery(stmt,query);
             query = "drop view v;";
