@@ -120,6 +120,7 @@ public class VendorApplication {
         Connection conn = app.getConnection();
 
 
+        String query;
         try {
             Statement stmt = conn.createStatement();
 
@@ -128,7 +129,7 @@ public class VendorApplication {
             stmt.execute(checkDate);
 
             //create view
-            String query = "create view v as select * from Reorder where vendor_id="
+            query = "create view v as select * from Reorder where vendor_id="
                     +Integer.parseInt(vendorID)+";";
             stmt.execute(query);
 
@@ -163,7 +164,7 @@ public class VendorApplication {
                 String Delivery_date = scan.nextLine();
 
                 //update the table
-                query = "update reorder set shipment=" + shipment + ",Delivery_date=" + Delivery_date + "where reorder_id='1'";
+                query = "update reorder set shipment='" + shipment + "',Delivery_date='" + Delivery_date + "' where reorder_id='1'";
                 app.executeQuery(stmt, query);
 
                 System.out.println("updated table:\n");
@@ -182,6 +183,9 @@ public class VendorApplication {
             app.executeQuery(stmt, query);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally{
+
         }
+
     }
 }
