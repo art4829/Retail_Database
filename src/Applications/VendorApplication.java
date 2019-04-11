@@ -48,7 +48,7 @@ public class VendorApplication {
 
 
             Scanner pw= new Scanner(System.in);
-            System.out.print("Please Enter your Password: ");
+            System.out.println("Please Enter your Password: ");
             String password_input =pw.nextLine();
 
             // if incorrect password

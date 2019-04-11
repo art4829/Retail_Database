@@ -48,22 +48,28 @@ public class AdminApplication {
             ResultSet result = stmt.executeQuery(query);
             ResultSetMetaData rsmd = result.getMetaData();
             int columnCount = rsmd.getColumnCount();
-            // The column count starts from 1
+            // The column count starts from 1quit
 
             ArrayList<String> column_names = new ArrayList<String>();
             for (int i = 1; i <= columnCount; i++) {
                 String name = rsmd.getColumnName(i);
                 column_names.add(name);
                 //System.out.print(name + " ");
-                System.out.format("%30s",name);
+                System.out.format("|%-30s ",name);
                 // Do stuff with name
+            }
+            System.out.println();
+
+            for (int i = 1; i <= columnCount; i++) {
+                for (int j=0; j<30; j++)
+                    System.out.print("_");
             }
             System.out.println();
 
             while (result.next()) {
                 for (int i = 0; i < columnCount; i++) {
                     //System.out.print(result.getString(i + 1) + " ");
-                    System.out.format("%30s",result.getString(i+1));
+                    System.out.format("|%-30s ",result.getString(i+1));
                 }
                 System.out.println();
             }
