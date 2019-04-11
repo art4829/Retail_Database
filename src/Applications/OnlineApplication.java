@@ -25,6 +25,33 @@ public class OnlineApplication extends MethodCalls {
         String password = "retaildomain";
         //Create database connection
         app.createConnection(location, user, password);
+
+        //Check if reorder is delivered TODO IMPORTANT
+        /*
+        try {
+            Statement stmt = app.getConnection().createStatement();
+            String sql = "create table temp as (select reorder.UPC, store_id, amount from reorder where " +
+                        "Delivery_date < curdate()) inner join product ;";
+            stmt.executeUpdate(sql);
+            while (true) {
+                int count = stmt.executeQuery("select count(*) from temp;").getInt(1);
+                if (count == 0)
+                    break;
+                ResultSet temp = stmt.executeQuery("select * from temp");
+                int add = temp.getInt(3);
+                String store_id = temp.getString(2);
+                String UPC = temp.getString(1);
+                String checkDate = "update contains set amount = amount + " + add + " where store_id = " + store_id
+                        + " and UPC" + UPC;
+                stmt.executeQuery("delete top (1) from temp;");
+                stmt.executeQuery("delete from reorder where UPC = " + UPC + " and store_id = " + store_id +
+                        " and amount = " + add + ";");
+            }
+            stmt.executeQuery("drop table temp;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        */
         Scanner scan = new Scanner(System.in);
         System.out.println("|------------------------------------------|");
         System.out.println("|-------------WELCOME TO RETAIL------------|");
@@ -40,6 +67,7 @@ public class OnlineApplication extends MethodCalls {
             email = scan2.nextLine();
             // Check login and display
             String display = app.login(app.getConnection(), email);
+
             System.out.println(display);
             if (display.equals(EMAIL_DOESNT_EXIST)) {
                 email=app.register(app);
