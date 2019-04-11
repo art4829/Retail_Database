@@ -19,9 +19,11 @@ public class CheckRegisterApplication extends MethodCalls {
         app.createConnection(location, user, password);
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("-------------CHECKOUT ITEMS-----------");
-        System.out.println("Please enter 1 to LOGIN");
-        System.out.println("Please enter 2 to SIGNUP");
+        System.out.println("|------------------------------------------|");
+        System.out.println("|-------------WELCOME TO RETAIL------------|");
+        System.out.println("|----------Please enter 1 to LOGIN---------|");
+        System.out.println("|----------Please enter 2 to SIGNUP--------|");
+        System.out.println("|------------------------------------------|");
         int check = scan.nextInt();
 
         if (check == 1) {
@@ -44,21 +46,27 @@ public class CheckRegisterApplication extends MethodCalls {
             e.printStackTrace();
         }
 
+        System.out.println("|--------------------------------------|");
+        System.out.println("|     Welcome To Our Online Store!     |");
+        System.out.println("| To SignOut please press 0 at anytime |");
+        System.out.println("|--------------------------------------|\n\n");
+
         while(true) {
             int answer = 0;
 
-            System.out.println("Press 1 to checkout");
-            System.out.println("Press 2 to cancel checkout \n\n");
+            System.out.println("|---------------------|");
+            System.out.println("| Press 1 to Checkout |");
+            System.out.println("|---------------------|\n\n");
             answer = scan.nextInt();
 
             if( answer == 1 ) {
-                System.out.println("Input the product UPC: ");
+                System.out.println("Please enter the product UPC: ");
                 String UPC = "";
                 UPC = scan.next();
 
                 //reduce the number of item in the database
                 app.buyProduct(UPC);
-            } else if( answer == 2 ) {
+            } else if( answer == 0 ) {
                 break;
             }
 
