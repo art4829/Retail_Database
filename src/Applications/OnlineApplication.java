@@ -27,13 +27,23 @@ public class OnlineApplication extends MethodCalls {
         app.createConnection(location, user, password);
 
         //Check if reorder is delivered TODO IMPORTANT
-        /*
+
         try {
             Statement stmt = app.getConnection().createStatement();
-            String sql = "create table temp as (select reorder.UPC, store_id, amount from reorder where " +
-                        "Delivery_date < curdate()) inner join product ;";
-            stmt.executeUpdate(sql);
-            while (true) {
+            //String sql = "(select reorder_id,UPC, store_id, amount as t from reorder where " +
+            //            "Delivery_date < curdate()) inner join product on t.UPC=product.UPC.;";
+            //stmt.executeQuery(sql);
+
+            //String sql = "create table temp as select reorder_id,UPC, store_id as t from reorder where " +
+            //        "Delivery_date<curdate()";
+            //stmt.execute(sql);
+
+            String sql = "update contains set amount = contains.amount + temp.amount " +
+                    "from temp where select reorder_id,UPC, store_id as t from reorder where " +
+                    "Delivery_date<curdate()" +
+                    "(temp.UPC = contains.UPC and temp.store_id = contains.store_id);";
+            stmt.execute(sql);
+            /*
                 int count = stmt.executeQuery("select count(*) from temp;").getInt(1);
                 if (count == 0)
                     break;
@@ -46,12 +56,12 @@ public class OnlineApplication extends MethodCalls {
                 stmt.executeQuery("delete top (1) from temp;");
                 stmt.executeQuery("delete from reorder where UPC = " + UPC + " and store_id = " + store_id +
                         " and amount = " + add + ";");
-            }
+            */
             stmt.executeQuery("drop table temp;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        */
+
         Scanner scan = new Scanner(System.in);
         System.out.println("|------------------------------------------|");
         System.out.println("|-------------WELCOME TO RETAIL------------|");
