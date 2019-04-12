@@ -46,7 +46,8 @@ public class OnlineApplication extends MethodCalls {
                 int count = reorders.getInt(1);
                 if (count == 0)
                     break;
-                ResultSet temp = stmt.executeQuery("select * from reorder where deliver_date<curdate();");
+                ResultSet temp = stmt.executeQuery("select * from reorder where delivery_date<curdate();");
+                temp.next();
                 int add = temp.getInt(4);
                 String store_id = temp.getString(7);
                 String UPC = temp.getString(3);
@@ -55,7 +56,7 @@ public class OnlineApplication extends MethodCalls {
                         + " and UPC = " + UPC;
                 stmt.execute(checkDate);
                 //stmt.executeQuery("delete top (1) from temp;");
-                stmt.executeQuery("delete from reorder where reorder_id = " + reorder_id+";");
+                stmt.execute("delete from reorder where reorder_id = " + reorder_id+";");
             }
             //TODO from here, Jack's code
 //            String sql = "create table temp as select reorder_id,UPC, store_id as t from reorder where " +
