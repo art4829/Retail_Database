@@ -786,3 +786,115 @@ delete from vendor where delivery_date = curdate(); [42122-199]
 	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
 	at Applications.VendorApplication.main(VendorApplication.java:128)
+2019-04-11 10:36:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TRIGGER ONLINET AFTER UPDATE OF[*] CONTAINS
+ON AMOUNT
+REFERENCING NEW ROW AS NROW
+FOR EACH ROW
+WHEN(NROW.AMOUNT<10)
+BEGIN ATOMIC
+INSERT INTO REORDER VALUES('1','1','232323232323','50','ups','2019-04-12','1') "; expected ",, ON"; SQL statement:
+create trigger onlineT after update of contains
+on amount
+referencing new row as nrow
+for each row
+when(nrow.amount<10)
+begin atomic
+insert into reorder values('1','1','232323232323','50','ups','2019-04-12','1') [42001-199]
+2019-04-11 10:36:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "END[*] "; expected "EXPLAIN, EXECUTE"; SQL statement:
+end [42001-199]
+2019-04-11 10:36:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TRIGGER ONLINET AFTER UPDATE OF[*] CONTAINS
+REFERENCING NEW ROW AS NROW
+FOR EACH ROW
+WHEN(NROW.AMOUNT<10)
+BEGIN ATOMIC
+INSERT INTO REORDER VALUES('1','1','232323232323','50','ups','2019-04-12','1') "; expected ",, ON"; SQL statement:
+create trigger onlineT after update of contains
+referencing new row as nrow
+for each row
+when(nrow.amount<10)
+begin atomic
+insert into reorder values('1','1','232323232323','50','ups','2019-04-12','1') [42001-199]
+2019-04-11 10:36:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "END[*] "; expected "EXPLAIN, EXECUTE"; SQL statement:
+end [42001-199]
+2019-04-12 09:44:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO CONTAINS('5'[*],'912000809965','11') "; expected "identifier"; SQL statement:
+Insert into contains('5','912000809965','11') [42001-199]
+2019-04-12 09:44:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Trigger "UPDATEONLINE" already exists; SQL statement:
+CREATE TRIGGER updateOnline AFTER UPDATE ON CONTAINS FOR EACH ROW CALL "Applications.TriggerOnline$MyTrigger"  [90041-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.CreateTrigger.update(CreateTrigger.java:95)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.TriggerOnline.main(TriggerOnline.java:35)
+2019-04-12 09:46:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO CONTAINS('5'[*],'912000809965','11') "; expected "identifier"; SQL statement:
+Insert into contains('5','912000809965','11') [42001-199]
+2019-04-12 09:46:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO CONTAINS('5'[*],'912000809965','11') "; expected "identifier"; SQL statement:
+Insert into contains('5','912000809965','11') [42001-199]
+2019-04-12 09:47:42 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at Applications.TriggerOnline.main(TriggerOnline.java:31)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 25 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/abhay/IdeaProjects/Retail_Database/retailDb/retailDb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:172)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 19 more
+2019-04-12 09:47:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3"; SQL statement:
+Update contains set amount = '9' where upc='912000809965' [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:272)
+	at org.h2.table.Table.fireRow(Table.java:1046)
+	at org.h2.table.Table.fireAfterRow(Table.java:1036)
+	at org.h2.command.dml.Update.update(Update.java:208)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.TriggerOnline.main(TriggerOnline.java:50)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+	at Applications.TriggerOnline$MyTrigger.fire(TriggerOnline.java:114)
+	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:257)
+	... 8 more
