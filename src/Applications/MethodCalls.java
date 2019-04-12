@@ -245,6 +245,34 @@ public abstract class MethodCalls {
         }
     }
 
+    public void buyProductStore(String UPC, int storeID) {
+        String amount = "";
+        int updateAmt = 0;
+        try {
+            String query = "Select amount from contains \n" +
+                    "where UPC = '" + UPC + "' and store_id = '" + storeID + "';";
+            Statement stmt = connection.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+            r.next();
+            amount = r.getString(1);
+            updateAmt = Integer.parseInt(amount) - 1;
+            String updatequery = "Update contains\n" +
+                    "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='" + storeID + "';";
+
+            Statement stm2 = connection.createStatement();
+            stm2.execute(updatequery);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean checkProductExist(String UPC, int storeID) {
+
+
+        return false;
+    }
+
     public String genrand() {
         Random rr = new Random();
         int low = 1000000;
