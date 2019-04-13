@@ -14,6 +14,7 @@ public class IncludesTable {
             String query = "Create table includes(\n" +
                     "order_id varchar(255) NOT NULL,\n" +
                     "UPC varchar(255),\n" +
+                    "amountToBuy varchar(255),\n" +
                     "PRIMARY KEY(order_id, UPC));" ;
 
             /**
@@ -70,7 +71,7 @@ public class IncludesTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO includes (order_id, UPC) VALUES");
+        sb.append("INSERT INTO includes (order_id, UPC, amountToBuy) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -81,8 +82,8 @@ public class IncludesTable {
          */
         for(int i = 0; i < customers.size(); i++){
             Includes c = customers.get(i);
-            sb.append(String.format("(\'%s\',\'%s\')",
-                    c.getOrder_id(), c.getUPC()));
+            sb.append(String.format("(\'%s\',\'%s\',\'%s\')",
+                    c.getOrder_id(), c.getUPC(),c.getAmountToBuy()));
             if( i != customers.size()-1){
                 sb.append(",");
             }

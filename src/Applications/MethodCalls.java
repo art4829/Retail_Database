@@ -234,7 +234,7 @@ public abstract class MethodCalls {
         return price;
     }
 
-    public void buyProduct(String UPC) {
+    public void buyProduct(String UPC, int amountToBuy) {
         String amount = "";
         int updateAmt = 0;
         try {
@@ -245,7 +245,7 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
             r.next();
             amount = r.getString(1);
-            updateAmt = Integer.parseInt(amount) - 1;
+            updateAmt = Integer.parseInt(amount) - amountToBuy;
             String updatequery = "Update contains\n" +
                     "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='5';";
 
@@ -400,9 +400,9 @@ public abstract class MethodCalls {
         }
     }
 
-    public void updateIncludes(String UPC, String order_id, Connection connection){
+    public void updateIncludes(String UPC, String order_id, String amountToBuy, Connection connection){
         try {
-            String query = "Insert into includes values('"+order_id+"', '"+UPC+"');";
+            String query = "Insert into includes values('"+order_id+"', '"+UPC+"', '"+amountToBuy+"');";
 
             Statement stmt = connection.createStatement();
 
@@ -416,7 +416,7 @@ public abstract class MethodCalls {
 
     public void viewOrders(String id, Connection connection){
         try {
-            String query = "SELECT o.order_id, p.price, p.name\n" +
+            String query = "SELECT o.order_id, i.amountToBuy, p.price, p.name\n" +
                     "FROM Orders o \n" +
                     "join includes i on o.order_id = i.order_id\n" +
                     "join product p on p.upc=i.upc \n" +
@@ -427,7 +427,9 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
 
             while(r.next()){
-                System.out.println("|Order Number: "+r.getString(1)+ ",     Product name: "+r.getString(3)+",    price:  $"+ r.getString(2)+"|");
+                double totPrice= Double.parseDouble(r.getString(3))*Integer.parseInt(r.getString(2));
+
+                System.out.println("|Order Number: "+r.getString(1)+ ",     Product name: "+r.getString(4)+",    price:  $"+ String.valueOf(totPrice)+"|");
                 System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
                 try {
                     TimeUnit.SECONDS.sleep(1);

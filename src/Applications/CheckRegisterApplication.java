@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class CheckRegisterApplication extends MethodCalls {
     private Connection connection;
 
-    @Override
+
     public void buyProduct(String UPC) {
         String amount = "";
         int updateAmt = 0;
