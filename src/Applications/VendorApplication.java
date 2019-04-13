@@ -83,14 +83,14 @@ public class VendorApplication {
             for (int i = 1; i <= columnCount; i++) {
                 String name = rsmd.getColumnName(i);
                 //column_names.add(name);
-                System.out.print(name + " ");
+                System.out.format("|%-30s ",name);
                 // Do stuff with name
             }
             System.out.println();
 
             while (result.next()) {
                 for (int i = 0; i < columnCount; i++) {
-                    System.out.print(result.getString(i + 1) + " ");
+                    System.out.format("|%-30s ",result.getString(i+1));
                 }
                 System.out.println();
             }
@@ -125,8 +125,9 @@ public class VendorApplication {
             Statement stmt = conn.createStatement();
 
             //check if they are delivered
-            String checkDate = "delete from reorder where Delivery_date < curdate();";
-            stmt.execute(checkDate);
+            //TODO
+            //String checkDate = "delete from reorder where Delivery_date < curdate();";
+            //stmt.execute(checkDate);
 
             //create view
             query = "create view v as select * from Reorder where vendor_id="
@@ -134,8 +135,8 @@ public class VendorApplication {
             stmt.execute(query);
 
             //test: print the view
-            query = "select * from v";
-            app.executeQuery(stmt,query);
+            //query = "select * from v";
+            //app.executeQuery(stmt,query);
 
             //query = "select count(*) as t from v;";
             //ResultSet c = stmt.executeQuery(query);
@@ -147,11 +148,12 @@ public class VendorApplication {
 
             //ResultSet result = stmt.executeQuery("select * from v;");
             //int count = result.getRow();
+
             ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" +
-                    vendorID + "' and delivery_date = null;");
+                    vendorID + "' and delivery_date = '0';");
             result.next();
             int count = result.getInt(1);
-            System.out.println("You have "+count + "reorder requests.\n");
+            System.out.println("You have "+count + " reorder requests.\n");
             while (true) {
                 System.out.println("|------------------------------------------|");
                 System.out.println("|     What would you like to do today?     |");
@@ -176,7 +178,7 @@ public class VendorApplication {
                     continue;
                 }
                 //handling the reorder
-                query = "select * from v where delivery_date = null;";
+                query = "select * from v where delivery_date = '0';";
                 if (count == 0) {
                     System.out.println("No reorder requests that not handled.\n");
                 } else {
@@ -200,11 +202,18 @@ public class VendorApplication {
                     System.out.println("updated table:\n");
 
                     //Check if it is delivered
-                    stmt.execute(checkDate);
+                    //TODO
+                    //stmt.execute(checkDate);
 
                     //updated table
                     query = "select * from v";
                     app.executeQuery(stmt, query);
+
+                    //update count
+                    result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" +
+                            vendorID + "' and delivery_date = '0';");
+                    result.next();
+                    count = result.getInt(1);
                 }
             }
             //query = "drop table t;";
