@@ -898,3 +898,23 @@ Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for l
 	at Applications.TriggerOnline$MyTrigger.fire(TriggerOnline.java:114)
 	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:257)
 	... 8 more
+2019-04-13 12:46:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3"; SQL statement:
+Update contains set amount = '9' where upc='915000809965' [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:272)
+	at org.h2.table.Table.fireRow(Table.java:1046)
+	at org.h2.table.Table.fireAfterRow(Table.java:1036)
+	at org.h2.command.dml.Update.update(Update.java:208)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.TriggerOnline.main(TriggerOnline.java:50)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+	at Applications.TriggerOnline$MyTrigger.fire(TriggerOnline.java:115)
+	at org.h2.schema.TriggerObject.fireRow(TriggerObject.java:257)
+	... 8 more

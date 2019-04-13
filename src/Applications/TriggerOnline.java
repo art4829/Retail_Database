@@ -46,8 +46,8 @@ public class TriggerOnline extends MethodCalls {
 //        stat.execute("INSERT INTO INVOICE VALUES(2, 19.95)");
 //        stat.execute("UPDATE INVOICE SET AMOUNT=20.0 WHERE ID=2");
 //        stat.execute("DELETE FROM INVOICE WHERE ID=1");
-        stat.execute("Insert into contains values('2','915000809965','11')");
-        stat.execute("Update contains set amount = '9' where upc='915000809965'");
+//        stat.execute("Insert into contains values('2','910000809965','11')");
+        stat.execute("Update contains set amount = '9' where upc='910000809965'");
 
         ResultSet rs;
         rs = stat.executeQuery("SELECT * FROM reorder");
@@ -110,12 +110,15 @@ public class TriggerOnline extends MethodCalls {
 //                    "UPDATE INVOICE_SUM SET AMOUNT=AMOUNT+?");
 //            prep.setBigDecimal(1, diff);
 //            prep.execute();
+
             if (oldRow != null) {
+                int reorder=2;
                 String amount= (String) oldRow[2];
                 int amountInt= Integer.parseInt(amount);
                 if (amountInt<10){
                     System.out.println("true");
-                    PreparedStatement prep=conn.prepareStatement("insert into reorder values('3','1','232323232323','50','ups','2019-04-12','1');");
+                    PreparedStatement prep=conn.prepareStatement("insert into reorder values('"+String.valueOf(reorder)+"','1','232323232323','50','ups','2019-04-12','1');");
+                    reorder+=1;
                     prep.execute();
                 }
             }

@@ -129,6 +129,7 @@ public class OnlineApplication extends MethodCalls {
             System.out.println("|     1. Buy Food!                         |");
             System.out.println("|     2. View Orders!                      |");
             System.out.println("|     3. View Credit!                      |");
+            System.out.println("|     9. Delete Account!                   |");
             System.out.println("|     0. Sign Out!                         |");
             System.out.println("|--Please enter the number of your choice--|");
             System.out.println("|------------------------------------------|");
@@ -139,6 +140,12 @@ public class OnlineApplication extends MethodCalls {
                 app.viewOrders(app.getCustomer_id(email),app.getConnection());
             } else if (start == 3) {
                 app.viewCredit(app.getCustomer_id(email),app.getConnection());
+            } else if (start == 9) {
+                System.out.println(">>>>>---- Are you sure you want to delete your account??(Y/N)");
+                String delete = scan.nextLine();
+                if(delete.toLowerCase().equals("y")){
+                    app.deleteAccount(app.getCustomer_id(email),app.getConnection());
+                }
             } else if (start == 1) {
                 System.out.println("|------------------------------------------|");
                 System.out.println("| What Product will you like to Buy today? |");
