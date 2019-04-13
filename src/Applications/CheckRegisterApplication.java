@@ -51,23 +51,23 @@ public class CheckRegisterApplication extends MethodCalls {
         System.out.println("|----------Please enter 0 to SIGN OUT-----------------|");
         System.out.println("|-----------------------------------------------------|");
         int check = scan.nextInt();
-
+        String email = "";
         if (check == 1) {
             // Get email to check
             System.out.println("Please Enter your Email: ");
             Scanner scan2 = new Scanner(System.in);
-            String email = scan2.nextLine();
+            email = scan2.nextLine();
             // Check login and display
             String display = app.login(app.getConnection(), email);
+
             System.out.println(display);
-            app.register(app);
+            if (display.equals(EMAIL_DOESNT_EXIST)) {
+                email=app.register(app);
+            }
         } else if (check == 2) {
             // If sign up, Register user
             System.out.println("Registering you");
-            app.register(app);
-        } else if(check == 3) {
-            //No additional information required
-            System.out.println("Checking out as guest");
+            email = app.register(app);
         }
 
 
