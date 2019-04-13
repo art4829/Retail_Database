@@ -156,7 +156,7 @@ public class TriggerOnline extends MethodCalls {
                 if (amountInt<10){
                     System.out.println("true");
                     PreparedStatement prep=conn.prepareStatement("insert into reorder values" +
-                            "('"+genReorder(conn)+"','"+vendor_id+"','"+oldRow[1] + "','50','0','0','" + oldRow[0] +"');");
+                            "('"+genReorder(conn)+"','"+vendor_id+"','"+oldRow[1] + "','50','null','0','" + oldRow[0] +"');");
                     prep.execute();
                 }
             }
