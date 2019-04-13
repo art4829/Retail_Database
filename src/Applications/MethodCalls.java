@@ -268,7 +268,7 @@ public abstract class MethodCalls {
     }
 
     public boolean checkProductExist(String UPC, int storeID) {
-
+        String query = "";
 
         return false;
     }

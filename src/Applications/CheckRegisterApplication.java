@@ -48,6 +48,7 @@ public class CheckRegisterApplication extends MethodCalls {
         System.out.println("|----------Please enter 1 to LOGIN--------------------|");
         System.out.println("|----------Please enter 2 to SIGNUP-------------------|");
         System.out.println("|----------Please enter 3 to CHECKOUT AS GUEST--------|");
+        System.out.println("|----------Please enter 0 to SIGN OUT-----------------|");
         System.out.println("|-----------------------------------------------------|");
         int check = scan.nextInt();
 
@@ -85,6 +86,7 @@ public class CheckRegisterApplication extends MethodCalls {
 
             System.out.println("|-----------------------|");
             System.out.println("| Press 1 to Checkout   |");
+            System.out.println("| Press 0 to Sign out   |");
             System.out.println("|-----------------------|");
             int answer = scan.nextInt();
             int storeID = 0;
