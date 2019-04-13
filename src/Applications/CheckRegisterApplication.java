@@ -95,16 +95,17 @@ public class CheckRegisterApplication extends MethodCalls {
 
             if( answer == 1 ) {
                 while(true) {
-                    System.out.println("|------------------------------------|");
-                    System.out.println("| Please Select Your Store Location  |");
-                    System.out.println("| Press 1 for Rochester, NY          |");
-                    System.out.println("| Press 2 for Manhattan, NY          |");
-                    System.out.println("| Press 3 for San Francisco, CA      |");
-                    System.out.println("| Press 4 for Bellingham, MA         |");
-                    System.out.println("|------------------------------------|");
-
-
-                    storeID = scan.nextInt();
+//                    System.out.println("|------------------------------------|");
+//                    System.out.println("| Please Select Your Store Location  |");
+//                    System.out.println("| Press 1 for Rochester, NY          |");
+//                    System.out.println("| Press 2 for Manhattan, NY          |");
+//                    System.out.println("| Press 3 for San Francisco, CA      |");
+//                    System.out.println("| Press 4 for Bellingham, MA         |");
+//                    System.out.println("|------------------------------------|");
+//
+//
+//                    storeID = scan.nextInt();
+                    storeID = Integer.parseInt(args[0]);
 
                     //Checkif valid store ID
                     if( storeID > 0 && storeID < 5 ) {
