@@ -21,6 +21,44 @@ import org.h2.api.Trigger;
 public class TriggerOnline extends MethodCalls {
 
     /**
+     * generate unique order_id
+     * @param conn
+     * @return
+     */
+    public static String genReorder(Connection conn){
+        String retString="";
+        try {
+            String query = "SELECT reorder_id FROM  reorder";
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet r = stmt.executeQuery(query);
+            boolean found= false;
+            String num="";
+            MethodCalls methodCalls = new TriggerOnline();
+
+            while(true) {
+                num = methodCalls.genrand();
+                while (r.next()) {
+                    String checkvalue = r.getString(1);
+                    if (checkvalue.equals(num)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    break;
+                }
+            }
+            retString=num;
+        }catch(SQLException e){
+            System.out.println("1");
+            System.out.println(e.getMessage());
+        }
+        return retString;
+    }
+
+    /**
      * This method is called when executing this sample application from the
      * command line.
      *
@@ -46,8 +84,8 @@ public class TriggerOnline extends MethodCalls {
 //        stat.execute("INSERT INTO INVOICE VALUES(2, 19.95)");
 //        stat.execute("UPDATE INVOICE SET AMOUNT=20.0 WHERE ID=2");
 //        stat.execute("DELETE FROM INVOICE WHERE ID=1");
-//        stat.execute("Insert into contains values('2','910000809965','11')");
-        stat.execute("Update contains set amount = '9' where upc='910000809965'");
+//        stat.execute("Insert into contains values('2','915000809965','11')");
+        stat.execute("Update contains set amount = '9' where UPC='413874160000' and store_id = '1'");
 
         ResultSet rs;
         rs = stat.executeQuery("SELECT * FROM reorder");
@@ -110,15 +148,21 @@ public class TriggerOnline extends MethodCalls {
 //                    "UPDATE INVOICE_SUM SET AMOUNT=AMOUNT+?");
 //            prep.setBigDecimal(1, diff);
 //            prep.execute();
-
             if (oldRow != null) {
-                int reorder=2;
                 String amount= (String) oldRow[2];
                 int amountInt= Integer.parseInt(amount);
+                Statement stat = conn.createStatement();
+                System.out.println(oldRow[1]);
+                ResultSet rs = stat.executeQuery("select vendor_id from product " +
+                        "where UPC = '" + oldRow[1] + "';");
+                rs.next();
+                String vendor_id = rs.getString(1);
+                //String vendor_id = stat.executeQuery("select vendor_id from product " +
+                //"where UPC = '" + oldRow[1] + "';").getString(1);
                 if (amountInt<10){
                     System.out.println("true");
-                    PreparedStatement prep=conn.prepareStatement("insert into reorder values('"+String.valueOf(reorder)+"','1','232323232323','50','ups','2019-04-12','1');");
-                    reorder+=1;
+                    PreparedStatement prep=conn.prepareStatement("insert into reorder values" +
+                            "('"+genReorder(conn)+"','"+vendor_id+"','"+oldRow[1] + "','50','0','0','" + oldRow[0] +"');");
                     prep.execute();
                 }
             }
