@@ -69,16 +69,11 @@ public class TriggerOnline extends MethodCalls {
         Connection conn = DriverManager.getConnection("jdbc:h2:./retailDb/retailDb", "cskid", "retaildomain");
         Statement stat = conn.createStatement();
 
-//        stat.execute("Drop trigger updateOnline");
-//        stat.execute("CREATE TRIGGER updateOnline " +
-//                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
-//                "CALL \"Applications.TriggerOnline$MyTrigger\" ");
-//        stat.execute("CREATE TRIGGER INV_UPD " +
-//                "AFTER UPDATE ON INVOICE FOR EACH ROW " +
-//                "CALL \"org.h2.samples.TriggerSample$MyTrigger\" ");
-//        stat.execute("CREATE TRIGGER INV_DEL " +
-//                "AFTER DELETE ON INVOICE FOR EACH ROW " +
-//                "CALL \"org.h2.samples.TriggerSample$MyTrigger\" ");
+        stat.execute("Drop trigger updateOnline");
+        stat.execute("CREATE TRIGGER updateOnline " +
+                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
+               "CALL \"Applications.TriggerOnline$MyTrigger\" ");
+
 
 //        stat.execute("INSERT INTO INVOICE VALUES(1, 10.0)");
 //        stat.execute("INSERT INTO INVOICE VALUES(2, 19.95)");
@@ -152,7 +147,6 @@ public class TriggerOnline extends MethodCalls {
                 String amount= (String) oldRow[2];
                 int amountInt= Integer.parseInt(amount);
                 Statement stat = conn.createStatement();
-                System.out.println(oldRow[1]);
                 ResultSet rs = stat.executeQuery("select vendor_id from product " +
                         "where UPC = '" + oldRow[1] + "';");
                 rs.next();
