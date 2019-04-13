@@ -311,18 +311,21 @@ public class OnlineApplication extends MethodCalls {
                 }
                 System.out.println("\n>>>>>>>----- You have chosen: " + menu.get(answer));
                 String UPC = app.getUPC(menu.get(answer), app.getConnection());
-                System.out.println(">>>>>>>----- The price for the chosen item is: " + app.getPrice(UPC));
+                System.out.print(">>>>>>>----- Please enter the amount you want to buy: ");
+                int amountToBuy= startup.nextInt();
+                double priceToBuy= amountToBuy * Double.parseDouble(app.getPrice(UPC));
+                System.out.println(">>>>>>>----- The total price is: " + priceToBuy);
                 System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
                 Scanner buyoption = new Scanner(System.in);
                 String option = buyoption.nextLine().toLowerCase();
                 String customer_id = app.getCustomer_id(email);
 
                 if (option.equals("y")) {
-                    app.buyProduct(UPC);
+                    app.buyProduct(UPC, amountToBuy);
                     String order_id=app.genOrder(app.getConnection());
                     app.putOrder(order_id, customer_id, app.getConnection());
-                    app.updateIncludes(UPC,order_id,app.getConnection());
-                    app.updateCredit(app.getPrice(UPC),customer_id);
+                    app.updateIncludes(UPC,order_id,String.valueOf(amountToBuy),app.getConnection());
+                    app.updateCredit(String.valueOf(priceToBuy),customer_id);
                     System.out.println(">>>>>>>----- Congratulations, you have successfully bought " + menu.get(answer));
                     System.out.println(">>>>>>>----- Your order number is: "+ order_id);
                     System.out.println(">>>>>>>----- Your item will be shipped to you soon!");
