@@ -67,6 +67,8 @@ public abstract class MethodCalls {
                 System.out.print("Please Enter your Password: ");
                 password_input = pw.nextLine();
             }
+            result.close();
+            stmt.close();
             return "Welcome! " +first_name+" "+last_name;
 
 
@@ -128,12 +130,12 @@ public abstract class MethodCalls {
             state=scanner.nextLine();
             System.out.print("| Please enter your ZipCode: ");
             zip=scanner.nextLine();
-            System.out.print("Please enter you phone number: ");
+            System.out.print("Please enter you phone number in this format XXX-XXX-XXXX: ");
             phone=scanner.nextLine();
             System.out.println("Do you a secondary number?(Y/N)");
             phonecheck=scanner.nextLine().toLowerCase();
             if(phonecheck.equals("y")){
-                System.out.print("Please enter your seconday phone number: ");
+                System.out.print("Please enter your secondary phone number in this format XXX-XXX-XXXX: ");
                 secondaryNum=scanner.nextLine();
             }
             System.out.println("|--------------------------------------------------|");
@@ -164,6 +166,9 @@ public abstract class MethodCalls {
                 }
                 Statement phoneStm= connection.createStatement();
                 phoneStm.execute(phone_query);
+                r.close();
+                stmt.close();
+
             }catch (SQLException e){
                 System.out.println(e.getMessage());
             }
@@ -184,6 +189,8 @@ public abstract class MethodCalls {
             while(r.next()){
                 arry.add(r.getString(1));
             }
+            r.close();
+            stmt.close();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -200,6 +207,8 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
             r.next();
             retString=r.getString(1);
+            r.close();
+            stmt.close();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -217,6 +226,8 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
             r.next();
             price =r.getString(1);
+            r.close();
+            stmt.close();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -240,6 +251,9 @@ public abstract class MethodCalls {
 
             Statement stm2 = connection.createStatement();
             stm2.execute(updatequery);
+            r.close();
+            stm2.close();
+            stmt.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -262,6 +276,9 @@ public abstract class MethodCalls {
 
             Statement stm2 = connection.createStatement();
             stm2.execute(updatequery);
+            r.close();
+            stm2.close();
+            stmt.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -311,6 +328,8 @@ public abstract class MethodCalls {
                 }
             }
             retString=num;
+            r.close();
+            stmt.close();
         }catch(SQLException e){
             System.out.println("1");
             System.out.println(e.getMessage());
@@ -329,6 +348,8 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
             r.next();
             id =r.getString(1);
+            r.close();
+            stmt.close();
         }catch(SQLException e){
             System.out.println("2");
             System.out.println(e.getMessage());
@@ -352,6 +373,7 @@ public abstract class MethodCalls {
                     "values('" + order_id + "', '" + num+"', '"+street+"', '"+city+"', '"+state+"', '"+zipcode+"', '"+email+"', '"+cust_id+"');";
             Statement stmt = connection.createStatement();
             stmt.execute(query);
+            stmt.close();
         }catch (SQLException e){
             System.out.println("3");
             System.out.println(e.getMessage());
@@ -385,7 +407,7 @@ public abstract class MethodCalls {
             Statement stmt = connection.createStatement();
 
             stmt.execute(query);
-
+            stmt.close();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -418,6 +440,8 @@ public abstract class MethodCalls {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            r.close();
+            stmt.close();
             System.out.println("\n\n");
         }catch(SQLException e){
             System.out.println("order error");
@@ -444,6 +468,9 @@ public abstract class MethodCalls {
 
             Statement stm2 = connection.createStatement();
             stm2.execute(updatequery);
+            r.close();
+            stmt.close();
+            stm2.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -461,6 +488,8 @@ public abstract class MethodCalls {
             r.next();
             System.out.println(">>>>>>>----- Credit = $"+r.getString(1));
             System.out.println("\n\n");
+            r.close();
+            stmt.close();
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
@@ -468,6 +497,20 @@ public abstract class MethodCalls {
             }
         }catch(SQLException e){
             System.out.println("order error");
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void deleteAccount(String id, Connection connection){
+        try {
+            String query = "Delete from customer where customer_id='" + id + "';";
+            Statement st=connection.createStatement();
+            st.execute(query);
+            System.out.println(">>>>>----You have successfully Deleted Account!!!!!-----<<<<<<");
+            closeConnection();
+            System.exit(0);
+        }catch(SQLException e){
             System.out.println(e.getMessage());
         }
 
