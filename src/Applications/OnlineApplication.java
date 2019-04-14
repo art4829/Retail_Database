@@ -330,7 +330,6 @@ public class OnlineApplication extends MethodCalls {
                     System.out.println(">>>>>>>----- Your order number is: "+ order_id);
                     System.out.println(">>>>>>>----- Your item will be shipped to you soon!");
                 }
-
             }
         }
 

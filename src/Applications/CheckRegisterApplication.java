@@ -105,6 +105,10 @@ public class CheckRegisterApplication extends MethodCalls {
 //
 //
 //                    storeID = scan.nextInt();
+                    if(args.length==0){
+                        System.out.println("Usage: Store_id not found");
+                        System.exit(1);
+                    }
                     storeID = Integer.parseInt(args[0]);
 
                     //Checkif valid store ID
