@@ -55,16 +55,27 @@ public class CheckRegisterApplication extends MethodCalls {
         int check = scan.nextInt();
         String email = "";
         if (check == 1) {
-            // Get email to check
-            System.out.println("Please Enter your Email: ");
-            Scanner scan2 = new Scanner(System.in);
-            email = scan2.nextLine();
-            // Check login and display
-            String display = app.login(app.getConnection(), email);
+            while( true ) {
+                // Get email to check
+                System.out.println("Please Enter your Email: ");
+                Scanner scan2 = new Scanner(System.in);
+                email = scan2.nextLine();
+                // Check login and display
+                String display = app.login(app.getConnection(), email);
 
-            System.out.println(display);
-            if (display.equals(EMAIL_DOESNT_EXIST)) {
-                email = app.register(app);
+                System.out.println(display);
+                if (display.equals(EMAIL_DOESNT_EXIST)) {
+                    System.out.println("Would you like to sign up? (y/n)");
+                    String answer = scan2.next();
+
+                    if (answer.toLowerCase().equals("y") || answer.toLowerCase().equals("yes")) {
+                        email = app.register(app);
+                    } else {
+                        System.out.println("Please enter a valid email address");
+                    }
+                } else {
+                    break;
+                }
             }
         } else if (check == 2) {
             // If sign up, Register user
@@ -132,7 +143,7 @@ public class CheckRegisterApplication extends MethodCalls {
                             break;
                         }
                     } else {
-                        System.out.println("Purchase unsuccessful, item does not exist in the store\n\n");
+                        System.out.println(">>>>>>>----- Purchase unsuccessful, item does not exist in the store\n\n");
                         break;
                     }
                 }
