@@ -264,32 +264,47 @@ public abstract class MethodCalls {
     public void buyProductStore(String UPC, int storeID) {
         String amount = "";
         int updateAmt = 0;
+
         try {
-            String query = "Select amount from contains \n" +
-                    "where UPC = '" + UPC + "' and store_id = '" + storeID + "';";
-            Statement stmt = connection.createStatement();
+             String query = "Select amount from contains \n" +
+                     "where UPC = '" + UPC + "' and store_id = '" + storeID + "';";
+             Statement stmt = connection.createStatement();
 
-            ResultSet r = stmt.executeQuery(query);
-            r.next();
-            amount = r.getString(1);
-            updateAmt = Integer.parseInt(amount) - 1;
-            String updatequery = "Update contains\n" +
-                    "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='" + storeID + "';";
+             ResultSet r = stmt.executeQuery(query);
+             r.next();
+             amount = r.getString(1);
+             updateAmt = Integer.parseInt(amount) - 1;
+             String updatequery = "Update contains\n" +
+                        "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='" + storeID + "';";
 
-            Statement stm2 = connection.createStatement();
-            stm2.execute(updatequery);
-            r.close();
-            stm2.close();
-            stmt.close();
-        } catch (SQLException e) {
-            System.out.println("Purchase unsuccessful, item does not exist in the store.");
-        }
+                Statement stm2 = connection.createStatement();
+                stm2.execute(updatequery);
+                r.close();
+                stm2.close();
+                stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Purchase unsuccessful, item does not exist in the store.");
+            }
     }
 
     public boolean checkProductExist(String UPC, int storeID) {
-        String query = "";
+        String count = "0";
+        String query = "select count(*) from contains where UPC = '" + UPC + "' and store_id = '" + storeID + "';";
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet r = stmt.executeQuery(query);
+            r.next();
+            count =r.getString(1);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        return false;
+        if( Integer.parseInt(count) > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String genrand() {

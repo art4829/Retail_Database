@@ -34,7 +34,7 @@ public class CheckRegisterApplication extends MethodCalls {
         }
     }
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         MethodCalls app = new CheckRegisterApplication();
 
         // Hard drive location of database
@@ -64,7 +64,7 @@ public class CheckRegisterApplication extends MethodCalls {
 
             System.out.println(display);
             if (display.equals(EMAIL_DOESNT_EXIST)) {
-                email=app.register(app);
+                email = app.register(app);
             }
         } else if (check == 2) {
             // If sign up, Register user
@@ -84,7 +84,7 @@ public class CheckRegisterApplication extends MethodCalls {
         System.out.println("| To SignOut please press 0 at anytime |");
         System.out.println("|--------------------------------------|\n\n");
 
-        while(true) {
+        while (true) {
 
             System.out.println("|-----------------------|");
             System.out.println("| Press 1 to Checkout   |");
@@ -93,26 +93,16 @@ public class CheckRegisterApplication extends MethodCalls {
             int answer = scan.nextInt();
             int storeID = 0;
 
-            if( answer == 1 ) {
-                while(true) {
-//                    System.out.println("|------------------------------------|");
-//                    System.out.println("| Please Select Your Store Location  |");
-//                    System.out.println("| Press 1 for Rochester, NY          |");
-//                    System.out.println("| Press 2 for Manhattan, NY          |");
-//                    System.out.println("| Press 3 for San Francisco, CA      |");
-//                    System.out.println("| Press 4 for Bellingham, MA         |");
-//                    System.out.println("|------------------------------------|");
-//
-//
-//                    storeID = scan.nextInt();
-                    if(args.length==0){
+            if (answer == 1) {
+                while (true) {
+                    if (args.length == 0) {
                         System.out.println("Usage: Store_id not found");
                         System.exit(1);
                     }
                     storeID = Integer.parseInt(args[0]);
 
                     //Checkif valid store ID
-                    if( storeID > 0 && storeID < 5 ) {
+                    if (storeID > 0 && storeID < 5) {
                         break;
                     }
                     System.out.println("Invalid store ID.");
@@ -122,21 +112,31 @@ public class CheckRegisterApplication extends MethodCalls {
                 String UPC = "";
                 UPC = scan.next();
 
-                //reduce the number of item in the database
-                System.out.println("\n\n");
-                System.out.println(">>>>>>>----- The price for the chosen item is: " + app.getPrice(UPC));
-                System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
+                while( true ) {
+                    if (app.checkProductExist(UPC, storeID)) {
+                        //reduce the number of item in the database
+                        System.out.println("\n\n");
+                        System.out.println(">>>>>>>----- The price for the chosen item is: " + app.getPrice(UPC));
+                        System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
 
-                String option = "";
-                option = scan.next();
+                        String option = "";
+                        option = scan.next();
 
-                //check if the customer still wants to buy the item
-                if( option.toLowerCase().equals("y") || option.toLowerCase().equals("yes") ) {
-                    app.buyProductStore(UPC, storeID);
-                    System.out.println(">>>>>>>----- Congratulations, you have successfully bought the item\n\n");
+                        //check if the customer still wants to buy the item
+                        if (option.toLowerCase().equals("y") || option.toLowerCase().equals("yes")) {
+                            app.buyProductStore(UPC, storeID);
+                            System.out.println(">>>>>>>----- Congratulations, you have successfully bought the item\n\n");
+                            break;
+                        } else {
+                            System.out.println(">>>>>>>----- Purchase canceled\n\n");
+                            break;
+                        }
+                    } else {
+                        System.out.println("Purchase unsuccessful, item does not exist in the store\n\n");
+                        break;
+                    }
                 }
-
-            } else if( answer == 0 ) {
+            } else if (answer == 0) {
                 break;
             }
         }
