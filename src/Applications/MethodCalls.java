@@ -249,7 +249,8 @@ public abstract class MethodCalls {
             amount = r.getString(1);
             updateAmt = Integer.parseInt(amount) - amountToBuy;
             if(updateAmt<0){
-                System.out.println("");
+                System.out.println("OOOPS, You have entered an amount more than we have in stock. WE are very sorry for the inconvenience Thank you");
+                System.exit(0);
             }
             String updatequery = "Update contains\n" +
                     "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='5';";
