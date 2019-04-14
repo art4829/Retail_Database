@@ -41,7 +41,8 @@ public class OnlineApplication extends MethodCalls {
             //String sql = "create table temp select * from reorder where Delivery_date < curdate();";
             //stmt.execute(sql);
             while (true){
-                ResultSet reorders = stmt.executeQuery("select count(*) from reorder where delivery_date<curdate();");
+                ResultSet reorders = stmt.executeQuery("select count(reorder_id) from reorder where " +
+                        "delivery_date<curdate();");
                 reorders.next();
                 int count = reorders.getInt(1);
                 if (count == 0)
