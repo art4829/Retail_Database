@@ -204,7 +204,7 @@ public class VendorApplication {
                     String shipment = scan.nextLine();
 
                     //take input for delivery date
-                    System.out.println("Please Enter Delivery date: ");
+                    System.out.println("Please Enter Delivery date (YYYY-MM-DD): ");
                     String Delivery_date = scan.nextLine();
 
                     //update the table
