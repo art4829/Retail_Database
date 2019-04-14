@@ -51,6 +51,32 @@ public class CheckRegisterApplication extends MethodCalls {
             System.exit(0);
         }
 
+        // check reorder
+        try {
+            Statement stmt = app.getConnection().createStatement();
+            while (true){
+                ResultSet reorders = stmt.executeQuery("select count(reorder_id) from reorder where " +
+                        "delivery_date<curdate();");
+                reorders.next();
+                int count = reorders.getInt(1);
+                if (count == 0)
+                    break;
+                ResultSet temp = stmt.executeQuery("select * from reorder where delivery_date<curdate();");
+                temp.next();
+                int add = temp.getInt(4);
+                String store_id = temp.getString(7);
+                String UPC = temp.getString(3);
+                String reorder_id = temp.getString(1);
+                String checkDate = "update contains set amount = amount + " + add + " where store_id = " + store_id
+                        + " and UPC = " + UPC;
+                stmt.execute(checkDate);
+                //stmt.executeQuery("delete top (1) from temp;");
+                stmt.execute("delete from reorder where reorder_id = " + reorder_id+";");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("|-----------------------------------------------------|");
         System.out.println("|-------------WELCOME TO RETAIL-----------------------|");
         System.out.println("|----------Please enter 1 to LOGIN--------------------|");
