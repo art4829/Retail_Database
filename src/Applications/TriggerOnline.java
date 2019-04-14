@@ -131,18 +131,6 @@ public class TriggerOnline extends MethodCalls {
         public void fire(Connection conn,
                          Object[] oldRow, Object[] newRow)
                 throws SQLException {
-//            BigDecimal diff = null;
-//            if (newRow != null) {
-//                diff = (BigDecimal) newRow[1];
-//            }
-//            if (oldRow != null) {
-//                BigDecimal m = (BigDecimal) oldRow[1];
-//                diff = diff == null ? m.negate() : diff.subtract(m);
-//            }
-//            PreparedStatement prep = conn.prepareStatement(
-//                    "UPDATE INVOICE_SUM SET AMOUNT=AMOUNT+?");
-//            prep.setBigDecimal(1, diff);
-//            prep.execute();
             if (oldRow != null) {
                 String amount= (String) oldRow[2];
                 int amountInt= Integer.parseInt(amount);
