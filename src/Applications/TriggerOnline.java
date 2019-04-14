@@ -70,9 +70,9 @@ public class TriggerOnline extends MethodCalls {
         Statement stat = conn.createStatement();
 
 //        stat.execute("Drop trigger updateOnline");
-        stat.execute("CREATE TRIGGER updateOnline " +
-                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
-               "CALL \"Applications.TriggerOnline$MyTrigger\" ");
+//        stat.execute("CREATE TRIGGER updateOnline " +
+//                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
+//               "CALL \"Applications.TriggerOnline$MyTrigger\" ");
 
 
 //        stat.execute("INSERT INTO INVOICE VALUES(1, 10.0)");

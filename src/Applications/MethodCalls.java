@@ -257,6 +257,7 @@ public abstract class MethodCalls {
 
             Statement stm2 = connection.createStatement();
             stm2.execute(updatequery);
+            stm2.execute(updatequery);
             r.close();
             stm2.close();
             stmt.close();
@@ -282,6 +283,7 @@ public abstract class MethodCalls {
                         "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='" + storeID + "';";
 
                 Statement stm2 = connection.createStatement();
+                stm2.execute(updatequery);
                 stm2.execute(updatequery);
                 r.close();
                 stm2.close();
