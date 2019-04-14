@@ -87,6 +87,8 @@ public class CheckRegisterApplication extends MethodCalls {
             // If sign up, Register user
             System.out.println("Registering you");
             email = app.register(app);
+        } else if (check == 0 ) {
+            System.exit(0);
         }
 
 
