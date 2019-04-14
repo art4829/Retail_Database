@@ -73,7 +73,7 @@ public class TriggerOnline extends MethodCalls {
 //        stat.execute("CREATE TRIGGER updateOnline " +
 //                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
 //               "CALL \"Applications.TriggerOnline$MyTrigger\" ");
-
+//
 
 //        stat.execute("INSERT INTO INVOICE VALUES(1, 10.0)");
 //        stat.execute("INSERT INTO INVOICE VALUES(2, 19.95)");
