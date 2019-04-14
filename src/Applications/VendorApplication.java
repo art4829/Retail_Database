@@ -6,7 +6,7 @@ import java.lang.String;
 
 public class VendorApplication {
     private Connection connection;
-    private final String Vendor_DOESNT_EXIST="VendorId Doesn't exist\nPlease Sign-up!";
+    private final static String Vendor_DOESNT_EXIST="VendorId Doesn't exist\nPlease Sign-up!";
     private final String INCORRECT_PW="Incorrect password, Please enter again";
 
     public void createConnection(String location,
@@ -122,6 +122,10 @@ public class VendorApplication {
         Scanner scan = new Scanner(System.in);
         String vendorID = scan.nextLine();
         String display = app.loginVendor(app.getConnection(), vendorID);
+        if (display.equals(Vendor_DOESNT_EXIST)) {
+            System.out.println("Please contact the retail store to sign up.");
+            return;
+        }
         System.out.println(display);
 
 

@@ -131,8 +131,8 @@ public class TriggerOnline extends MethodCalls {
         public void fire(Connection conn,
                          Object[] oldRow, Object[] newRow)
                 throws SQLException {
-            if (oldRow != null) {
-                String amount= (String) oldRow[2];
+            if (newRow != null) {
+                String amount= (String) newRow[2];
                 int amountInt= Integer.parseInt(amount);
                 Statement stat = conn.createStatement();
                 ResultSet rs = stat.executeQuery("select vendor_id from product " +
