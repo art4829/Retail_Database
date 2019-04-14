@@ -1,5 +1,7 @@
 package Applications;
 
+import org.h2.jdbc.JdbcSQLException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -280,7 +282,7 @@ public abstract class MethodCalls {
             stm2.close();
             stmt.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Purchase unsuccessful, item does not exist in the store.");
         }
     }
 

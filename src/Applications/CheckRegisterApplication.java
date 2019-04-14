@@ -1,5 +1,7 @@
 package Applications;
 
+import org.h2.jdbc.JdbcSQLException;
+
 import javax.naming.OperationNotSupportedException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -93,8 +95,21 @@ public class CheckRegisterApplication extends MethodCalls {
 
             if( answer == 1 ) {
                 while(true) {
-                    System.out.println("Please enter the store ID: ");
-                    storeID = scan.nextInt();
+//                    System.out.println("|------------------------------------|");
+//                    System.out.println("| Please Select Your Store Location  |");
+//                    System.out.println("| Press 1 for Rochester, NY          |");
+//                    System.out.println("| Press 2 for Manhattan, NY          |");
+//                    System.out.println("| Press 3 for San Francisco, CA      |");
+//                    System.out.println("| Press 4 for Bellingham, MA         |");
+//                    System.out.println("|------------------------------------|");
+//
+//
+//                    storeID = scan.nextInt();
+                    if(args.length==0){
+                        System.out.println("Usage: Store_id not found");
+                        System.exit(1);
+                    }
+                    storeID = Integer.parseInt(args[0]);
 
                     //Checkif valid store ID
                     if( storeID > 0 && storeID < 5 ) {
@@ -117,7 +132,7 @@ public class CheckRegisterApplication extends MethodCalls {
 
                 //check if the customer still wants to buy the item
                 if( option.toLowerCase().equals("y") || option.toLowerCase().equals("yes") ) {
-                    app.buyProductStore(UPC,storeID);
+                    app.buyProductStore(UPC, storeID);
                     System.out.println(">>>>>>>----- Congratulations, you have successfully bought the item\n\n");
                 }
 
