@@ -45,6 +45,12 @@ public class CheckRegisterApplication extends MethodCalls {
         app.createConnection(location, user, password);
         Scanner scan = new Scanner(System.in);
 
+        //check store id
+        if( args.length < 1 ) {
+            System.out.println("Store ID not found. Please add store ID and restart the application.");
+            System.exit(0);
+        }
+
         System.out.println("|-----------------------------------------------------|");
         System.out.println("|-------------WELCOME TO RETAIL-----------------------|");
         System.out.println("|----------Please enter 1 to LOGIN--------------------|");
