@@ -479,10 +479,7 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
             r.next();
             credit = r.getString(1);
-            System.out.println(credit);
             updateAmt = Double.parseDouble(credit) + Double.parseDouble(price);
-            System.out.println(updateAmt);
-            System.out.println(id);
             String updatequery = "Update customer\n" +
                     "set credit='" + updateAmt + "' where customer_id='" + id + "';";
 

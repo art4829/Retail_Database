@@ -106,7 +106,14 @@ public class OnlineApplication extends MethodCalls {
 
             System.out.println(display);
             if (display.equals(EMAIL_DOESNT_EXIST)) {
-                email=app.register(app);
+                System.out.println("Do you want to register?(Press Y for yes)");
+                String reg = scan2.nextLine();
+                if(reg.toLowerCase().equals("y")) {
+                    email = app.register(app);
+                }else{
+                    System.out.println("Thank you for you time!");
+                    System.exit(0);
+                }
             }
         } else if (check == 2) {
             // If sign up, Register user
