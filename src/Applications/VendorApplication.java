@@ -70,6 +70,14 @@ public class VendorApplication {
         return connection;
     }
 
+    public void closeConnection(){
+        try{
+            connection.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void executeQuery(Statement stmt, String query) throws SQLException {
         //check if it is select
         Boolean ret = stmt.execute(query);
@@ -221,6 +229,8 @@ public class VendorApplication {
             //app.executeQuery(stmt,query);
             query = "drop view v;";
             app.executeQuery(stmt, query);
+            app.closeConnection();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally{
