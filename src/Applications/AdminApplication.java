@@ -115,6 +115,7 @@ public class AdminApplication {
             scan = new Scanner(System.in);
             query = scan.nextLine();
         }
+        app.closeConnection();
 
     }
 
