@@ -150,7 +150,7 @@ public class VendorApplication {
             //int count = result.getRow();
 
             ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" +
-                    vendorID + "' and delivery_date = '0';");
+                    vendorID + "' and delivery_date is null;");
             result.next();
             int count = result.getInt(1);
             System.out.println("You have "+count + " reorder requests.\n");
@@ -178,7 +178,8 @@ public class VendorApplication {
                     continue;
                 }
                 //handling the reorder
-                query = "select * from v where delivery_date = '0';";
+                query = "select * from v where delivery_date is null;";
+                app.executeQuery(stmt, query);
                 if (count == 0) {
                     System.out.println("No reorder requests that not handled.\n");
                 } else {
