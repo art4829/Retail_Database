@@ -1054,95 +1054,99 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/abh
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 20 more
-2019-04-14 09:55:03 jdbc[3]: exception
+2019-04-14 10:39:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Cannot parse "DATE" constant "0"; SQL statement:
+select count(*) from reorder where delivery_date<curdate(); [22007-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:455)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.value.ValueDate.parse(ValueDate.java:75)
+	at org.h2.value.Value.convertToDate(Value.java:1059)
+	at org.h2.value.Value.convertTo(Value.java:774)
+	at org.h2.value.Value.convertTo(Value.java:723)
+	at org.h2.value.Value.compareWithNull(Value.java:1455)
+	at org.h2.engine.Database.compareWithNull(Database.java:439)
+	at org.h2.expression.condition.Comparison.compare(Comparison.java:365)
+	at org.h2.expression.condition.Comparison.getValue(Comparison.java:290)
+	at org.h2.expression.Expression.getBooleanValue(Expression.java:259)
+	at org.h2.command.dml.Select.isConditionMet(Select.java:456)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:530)
+	at org.h2.command.dml.Select.queryGroup(Select.java:495)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:879)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:151)
+	at org.h2.command.dml.Query.query(Query.java:435)
+	at org.h2.command.dml.Query.query(Query.java:397)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:145)
+	at org.h2.command.Command.executeQuery(Command.java:202)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:85)
+	at Applications.OnlineApplication.main(OnlineApplication.java:44)
+Caused by: java.lang.IllegalArgumentException: 0
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:366)
+	at org.h2.value.ValueDate.parse(ValueDate.java:73)
+	... 19 more
+2019-04-14 10:48:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: View "V" already exists; SQL statement:
+create view v as select * from Reorder where vendor_id=1; [90038-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.CreateView.update(CreateView.java:92)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.VendorApplication.main(VendorApplication.java:135)
+2019-04-14 10:50:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: View "V" already exists; SQL statement:
+create view v as select * from Reorder where vendor_id=1; [90038-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.CreateView.update(CreateView.java:92)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.VendorApplication.main(VendorApplication.java:135)
+2019-04-14 10:57:33 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
-2019-04-14 09:56:47 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Cannot parse "DATE" constant "0"; SQL statement:
-select count(*) from reorder where delivery_date<curdate(); [22007-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:455)
+2019-04-14 10:57:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available; SQL statement:
+update contains set amount = '8' where store_id = 2 and upc = '910000809965' [2000-199]
+2019-04-14 10:58:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-14 10:58:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available; SQL statement:
+update contains set amount = '8' where store_id = '2' and upc = '910000809965' [2000-199]
+2019-04-14 10:58:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-199]
+2019-04-14 10:58:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available; SQL statement:
+update contains set amount = '8' where store_id = 2; [2000-199]
+2019-04-14 10:58:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM WHERE[*] STORE_ID = 2; "; expected "identifier"; SQL statement:
+select * from where store_id = 2; [42001-199]
+2019-04-14 10:59:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CONTAINS WHERE STORE_ID '2'[*] "; SQL statement:
+select * from contains where store_id '2' [42000-199]
+2019-04-14 11:00:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "update contains set amount = 8' where store_id = '2' and upc = '915000809965[*]' "; SQL statement:
+update contains set amount = 8' where store_id = '2' and upc = '915000809965'  [42000-199]
+2019-04-14 11:01:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO CONTAINS ('1'[*], '1', 8); "; expected "identifier"; SQL statement:
+insert into contains ('1', '1', 8); [42001-199]
+2019-04-14 11:04:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: View "V" already exists; SQL statement:
+create view v as select * from Reorder where vendor_id=1; [90038-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.value.ValueDate.parse(ValueDate.java:75)
-	at org.h2.value.Value.convertToDate(Value.java:1059)
-	at org.h2.value.Value.convertTo(Value.java:774)
-	at org.h2.value.Value.convertTo(Value.java:723)
-	at org.h2.value.Value.compareWithNull(Value.java:1455)
-	at org.h2.engine.Database.compareWithNull(Database.java:439)
-	at org.h2.expression.condition.Comparison.compare(Comparison.java:365)
-	at org.h2.expression.condition.Comparison.getValue(Comparison.java:290)
-	at org.h2.expression.Expression.getBooleanValue(Expression.java:259)
-	at org.h2.command.dml.Select.isConditionMet(Select.java:456)
-	at org.h2.command.dml.Select.gatherGroup(Select.java:530)
-	at org.h2.command.dml.Select.queryGroup(Select.java:495)
-	at org.h2.command.dml.Select.queryWithoutCache(Select.java:879)
-	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:151)
-	at org.h2.command.dml.Query.query(Query.java:435)
-	at org.h2.command.dml.Query.query(Query.java:397)
-	at org.h2.command.CommandContainer.query(CommandContainer.java:145)
-	at org.h2.command.Command.executeQuery(Command.java:202)
-	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:85)
-	at Applications.OnlineApplication.main(OnlineApplication.java:44)
-Caused by: java.lang.IllegalArgumentException: 0
-	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:366)
-	at org.h2.value.ValueDate.parse(ValueDate.java:73)
-	... 19 more
-2019-04-14 09:56:56 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Cannot parse "DATE" constant "0"; SQL statement:
-select count(*) from reorder where delivery_date<curdate(); [22007-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:455)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.value.ValueDate.parse(ValueDate.java:75)
-	at org.h2.value.Value.convertToDate(Value.java:1059)
-	at org.h2.value.Value.convertTo(Value.java:774)
-	at org.h2.value.Value.convertTo(Value.java:723)
-	at org.h2.value.Value.compareWithNull(Value.java:1455)
-	at org.h2.engine.Database.compareWithNull(Database.java:439)
-	at org.h2.expression.condition.Comparison.compare(Comparison.java:365)
-	at org.h2.expression.condition.Comparison.getValue(Comparison.java:290)
-	at org.h2.expression.Expression.getBooleanValue(Expression.java:259)
-	at org.h2.command.dml.Select.isConditionMet(Select.java:456)
-	at org.h2.command.dml.Select.gatherGroup(Select.java:530)
-	at org.h2.command.dml.Select.queryGroup(Select.java:495)
-	at org.h2.command.dml.Select.queryWithoutCache(Select.java:879)
-	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:151)
-	at org.h2.command.dml.Query.query(Query.java:435)
-	at org.h2.command.dml.Query.query(Query.java:397)
-	at org.h2.command.CommandContainer.query(CommandContainer.java:145)
-	at org.h2.command.Command.executeQuery(Command.java:202)
-	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:85)
-	at Applications.OnlineApplication.main(OnlineApplication.java:44)
-Caused by: java.lang.IllegalArgumentException: 0
-	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:366)
-	at org.h2.value.ValueDate.parse(ValueDate.java:73)
-	... 19 more
-2019-04-14 09:57:42 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Cannot parse "DATE" constant "0"; SQL statement:
-select count(*) from reorder where delivery_date<curdate(); [22007-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:455)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.value.ValueDate.parse(ValueDate.java:75)
-	at org.h2.value.Value.convertToDate(Value.java:1059)
-	at org.h2.value.Value.convertTo(Value.java:774)
-	at org.h2.value.Value.convertTo(Value.java:723)
-	at org.h2.value.Value.compareWithNull(Value.java:1455)
-	at org.h2.engine.Database.compareWithNull(Database.java:439)
-	at org.h2.expression.condition.Comparison.compare(Comparison.java:365)
-	at org.h2.expression.condition.Comparison.getValue(Comparison.java:290)
-	at org.h2.expression.Expression.getBooleanValue(Expression.java:259)
-	at org.h2.command.dml.Select.isConditionMet(Select.java:456)
-	at org.h2.command.dml.Select.gatherGroup(Select.java:530)
-	at org.h2.command.dml.Select.queryGroup(Select.java:495)
-	at org.h2.command.dml.Select.queryWithoutCache(Select.java:879)
-	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:151)
-	at org.h2.command.dml.Query.query(Query.java:435)
-	at org.h2.command.dml.Query.query(Query.java:397)
-	at org.h2.command.CommandContainer.query(CommandContainer.java:145)
-	at org.h2.command.Command.executeQuery(Command.java:202)
-	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:85)
-	at Applications.OnlineApplication.main(OnlineApplication.java:44)
-Caused by: java.lang.IllegalArgumentException: 0
-	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:366)
-	at org.h2.value.ValueDate.parse(ValueDate.java:73)
-	... 19 more
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.CreateView.update(CreateView.java:92)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at Applications.VendorApplication.main(VendorApplication.java:135)
