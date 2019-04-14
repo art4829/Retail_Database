@@ -451,7 +451,7 @@ public abstract class MethodCalls {
             while(r.next()){
                 double totPrice= Double.parseDouble(r.getString(3))*Integer.parseInt(r.getString(2));
 
-                System.out.println("|Order Number: "+r.getString(1)+ ",     Product name: "+r.getString(4)+",    price:  $"+ String.valueOf(totPrice)+"|");
+                System.out.println("|Order Number: "+r.getString(1)+ ",     Product name: "+r.getString(4)+",    price:  $"+ String.format("%.2f",totPrice)+"|");
                 System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
                 try {
                     TimeUnit.SECONDS.sleep(1);
@@ -460,7 +460,7 @@ public abstract class MethodCalls {
                 }
             }
             try {
-                TimeUnit.SECONDS.sleep(2);
+                TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -507,7 +507,8 @@ public abstract class MethodCalls {
             ResultSet r = stmt.executeQuery(query);
 
             r.next();
-            System.out.println(">>>>>>>----- Credit = $"+r.getString(1));
+            double value= Double.parseDouble(r.getString(1));
+            System.out.println(String.format(">>>>>>>----- The total Credit is: %.2f", value));
             System.out.println("\n\n");
             r.close();
             stmt.close();

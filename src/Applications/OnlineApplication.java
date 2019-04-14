@@ -150,7 +150,8 @@ public class OnlineApplication extends MethodCalls {
                 app.viewCredit(app.getCustomer_id(email),app.getConnection());
             } else if (start == 9) {
                 System.out.println(">>>>>---- Are you sure you want to delete your account??(Y/N)");
-                String delete = scan.nextLine();
+                Scanner s2= new Scanner(System.in);
+                String delete = s2.nextLine();
                 if(delete.toLowerCase().equals("y")){
                     app.deleteAccount(app.getCustomer_id(email),app.getConnection());
                 }
@@ -322,7 +323,7 @@ public class OnlineApplication extends MethodCalls {
                 System.out.print(">>>>>>>----- Please enter the amount you want to buy: ");
                 int amountToBuy= startup.nextInt();
                 double priceToBuy= amountToBuy * Double.parseDouble(app.getPrice(UPC));
-                System.out.println(">>>>>>>----- The total price is: " + priceToBuy);
+                System.out.println(String.format(">>>>>>>----- The total price is: %.2f", priceToBuy));
                 System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
                 Scanner buyoption = new Scanner(System.in);
                 String option = buyoption.nextLine().toLowerCase();
