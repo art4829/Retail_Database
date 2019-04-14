@@ -248,6 +248,9 @@ public abstract class MethodCalls {
             r.next();
             amount = r.getString(1);
             updateAmt = Integer.parseInt(amount) - amountToBuy;
+            if(updateAmt<0){
+                System.out.println("");
+            }
             String updatequery = "Update contains\n" +
                     "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='5';";
 
