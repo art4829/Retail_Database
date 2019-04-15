@@ -139,7 +139,6 @@ public class TriggerOnline extends MethodCalls {
                 rs.next();
                 String vendor_id = rs.getString(1);
                 if (amountInt<10){
-                    System.out.println("true");
                     PreparedStatement prep=conn.prepareStatement("insert into reorder values" +
                             "('"+genReorder(conn)+"','"+vendor_id+"','"+oldRow[1] + "','50',null,null,'" + oldRow[0] +"');");
                     prep.execute();
