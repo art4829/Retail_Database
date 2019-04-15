@@ -41,9 +41,9 @@ public abstract class MethodCalls {
 
     /**
      * Checks if email is valid, if valid, returns welcome message
-     * @param connection
-     * @param email
-     * @return
+     * @param connection connection to the database
+     * @param email customer email
+     * @return welcome message
      */
     public String login(Connection connection, String email){
         String query="select first_name, last_name, password from customer where email = "+"\'"+email+"\'\n";

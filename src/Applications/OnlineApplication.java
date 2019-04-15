@@ -11,6 +11,11 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.CheckedOutputStream;
 
+/**
+ * Class for online application.
+ * Customer log-ins and purchases products.
+ * @author Abhaya Tamrakar
+ */
 public class OnlineApplication extends MethodCalls {
     /**
      * Run the application
@@ -25,8 +30,6 @@ public class OnlineApplication extends MethodCalls {
         String password = "retaildomain";
         //Create database connection
         app.createConnection(location, user, password);
-
-        //Check if reorder is delivered TODO IMPORTANT
 
         try {
             Statement stmt = app.getConnection().createStatement();
@@ -52,6 +55,7 @@ public class OnlineApplication extends MethodCalls {
             e.printStackTrace();
         }
 
+        // Display Login info
         Scanner scan = new Scanner(System.in);
         System.out.println("|------------------------------------------|");
         System.out.println("|-------------WELCOME TO RETAIL------------|");
@@ -89,11 +93,13 @@ public class OnlineApplication extends MethodCalls {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // Present store domain
         System.out.println("|--------------------------------------|");
         System.out.println("|     Welcome To Our Online Store!     |");
         System.out.println("| To SignOut please press 0 at anytime |");
         System.out.println("|--------------------------------------|\n\n");
         while (true) {
+            // Get user preference
             Scanner startup = new Scanner(System.in);
             System.out.println("|------------------------------------------|");
             System.out.println("|     What would you like to do today?     |");
@@ -106,20 +112,20 @@ public class OnlineApplication extends MethodCalls {
             System.out.println("|--Please enter the number of your choice--|");
             System.out.println("|------------------------------------------|");
             int start = startup.nextInt();
-            if (start == 0) {
+            if (start == 0) {//sign out
                 app.signout();
-            } else if (start == 2) {
+            } else if (start == 2) {// view orders
                 app.viewOrders(app.getCustomer_id(email),app.getConnection());
-            } else if (start == 3) {
+            } else if (start == 3) {// view credits
                 app.viewCredit(app.getCustomer_id(email),app.getConnection());
-            } else if (start == 9) {
+            } else if (start == 9) {// delete account
                 System.out.println(">>>>>---- Are you sure you want to delete your account??(Y/N)");
                 Scanner s2= new Scanner(System.in);
                 String delete = s2.nextLine();
                 if(delete.toLowerCase().equals("y")){
                     app.deleteAccount(app.getCustomer_id(email),app.getConnection());
                 }
-            } else if (start == 1) {
+            } else if (start == 1) {// buy products
                 System.out.println("|------------------------------------------|");
                 System.out.println("| What Product will you like to Buy today? |");
                 System.out.println("|------------------------------------------|");
@@ -139,6 +145,7 @@ public class OnlineApplication extends MethodCalls {
                 int answer = 0;
                 Map<Integer, String> menu = new HashMap<Integer, String>();
 
+                //get product choice
                 switch (product_choice) {
                     case 1:
                         System.out.println("|--------------------|");
@@ -150,7 +157,7 @@ public class OnlineApplication extends MethodCalls {
                         if (bakery_choice == 0) {
                             app.signout();
                         }
-
+                        // get choice for that type
                         switch (bakery_choice) {
                             case 1:
                                 count = 1;
@@ -282,23 +289,24 @@ public class OnlineApplication extends MethodCalls {
                 if (answer == 0) {
                     app.signout();
                 }
+                //present the information
                 System.out.println("\n>>>>>>>----- You have chosen: " + menu.get(answer));
                 String UPC = app.getUPC(menu.get(answer), app.getConnection());
                 System.out.print(">>>>>>>----- Please enter the amount you want to buy: ");
-                int amountToBuy= startup.nextInt();
-                double priceToBuy= amountToBuy * Double.parseDouble(app.getPrice(UPC));
+                int amountToBuy= startup.nextInt();// get total amount to buy
+                double priceToBuy= amountToBuy * Double.parseDouble(app.getPrice(UPC)); //get the price
                 System.out.println(String.format(">>>>>>>----- The total price is: %.2f", priceToBuy));
                 System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
                 Scanner buyoption = new Scanner(System.in);
                 String option = buyoption.nextLine().toLowerCase();
-                String customer_id = app.getCustomer_id(email);
+                String customer_id = app.getCustomer_id(email);// get id
 
-                if (option.equals("y")) {
-                    app.buyProduct(UPC, amountToBuy);
-                    String order_id=app.genOrder(app.getConnection());
-                    app.putOrder(order_id, customer_id, app.getConnection());
-                    app.updateIncludes(UPC,order_id,String.valueOf(amountToBuy),app.getConnection());
-                    app.updateCredit(String.valueOf(priceToBuy),customer_id);
+                if (option.equals("y")) {//if customer agrees to buy
+                    app.buyProduct(UPC, amountToBuy);//update product table on db
+                    String order_id=app.genOrder(app.getConnection());// generate random id for order
+                    app.putOrder(order_id, customer_id, app.getConnection()); // update order table on db
+                    app.updateIncludes(UPC,order_id,String.valueOf(amountToBuy),app.getConnection());// update includes table
+                    app.updateCredit(String.valueOf(priceToBuy),customer_id);// update credits for customer
                     System.out.println(">>>>>>>----- Congratulations, you have successfully bought " + menu.get(answer));
                     System.out.println(">>>>>>>----- Your order number is: "+ order_id);
                     System.out.println(">>>>>>>----- Your item will be shipped to you soon!");
