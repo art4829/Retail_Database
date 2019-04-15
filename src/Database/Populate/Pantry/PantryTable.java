@@ -14,7 +14,7 @@ public class PantryTable {
     public static void createTable(Connection conn){
         try {
             String query = "Create table pantry(\n" +
-                    "PanUPC varchar(255) primary key,\n" +
+                    "UPC varchar(255) primary key,\n" +
                     "container varchar(255),\n" +
                     "type varchar(255));" ;
 
@@ -72,7 +72,7 @@ public class PantryTable {
          * the order of the data in reference
          * to the columns to ad dit to
          */
-        sb.append("INSERT INTO pantry (PanUPC, container, type) VALUES");
+        sb.append("INSERT INTO pantry (UPC, container, type) VALUES");
 
         /**
          * For each person append a (id, first_name, last_name, MI) tuple
@@ -84,7 +84,7 @@ public class PantryTable {
         for(int i = 0; i < customers.size(); i++){
             Pantry c = customers.get(i);
             sb.append(String.format("(\'%s\',\'%s\',\'%s\')",
-                    c.getPanUPC(), c.getContainer(), c.getType()));
+                    c.getUPC(), c.getContainer(), c.getType()));
             if( i != customers.size()-1){
                 sb.append(",");
             }

@@ -272,7 +272,7 @@ public class OnlineApplication extends MethodCalls {
                         break;
                     case 4:
                         count = 1;
-                        itms = app.viewItem(app.getConnection(), "pastry");
+                        itms = app.viewItem(app.getConnection(), "pantry");
                         System.out.println("Please enter the number of the Item:- ");
                         System.out.println("---------------------------------------");
                         for (String it : itms) {
