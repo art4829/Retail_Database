@@ -21,7 +21,7 @@ import org.h2.api.Trigger;
 public class TriggerOnline extends MethodCalls {
 
     /**
-     * generate unique order_id
+     * generate unique reorder_id
      * @param conn
      * @return
      */
@@ -94,7 +94,7 @@ public class TriggerOnline extends MethodCalls {
     }
 
     /**
-     * This class is a simple trigger implementation.
+     * trigger implementation.
      */
     public static class MyTrigger implements Trigger {
 
