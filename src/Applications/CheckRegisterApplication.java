@@ -1,38 +1,12 @@
 package Applications;
 
-import org.h2.jdbc.JdbcSQLException;
 
-import javax.naming.OperationNotSupportedException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class CheckRegisterApplication extends MethodCalls {
     private Connection connection;
-
-
-    public void buyProduct(String UPC) {
-        String amount = "";
-        int updateAmt = 0;
-        try {
-            String query = "Select amount from contains \n" +
-                    "where UPC = '" + UPC + "' and store_id = '5';";
-            Statement stmt = connection.createStatement();
-
-            ResultSet r = stmt.executeQuery(query);
-            r.next();
-            amount = r.getString(1);
-            updateAmt = Integer.parseInt(amount) - 1;
-            String updatequery = "Update contains\n" +
-                    "set amount='" + updateAmt + "' where upc='" + UPC + "' and store_id='5';";
-
-            Statement stm2 = connection.createStatement();
-            stm2.execute(updatequery);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public static void main(String[] args) {
         MethodCalls app = new CheckRegisterApplication();
