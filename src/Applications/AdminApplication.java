@@ -96,6 +96,7 @@ public class AdminApplication {
         String location = "./retailDb/retailDb";
         String user = "cskid";
         String password = "retaildomain";
+
         //Create database connection
         app.createConnection(location, user, password);
 
