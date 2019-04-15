@@ -5,6 +5,9 @@ import java.sql.*;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Make in store purchases
+ */
 public class CheckRegisterApplication extends MethodCalls {
     private Connection connection;
 
