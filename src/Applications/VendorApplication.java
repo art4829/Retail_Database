@@ -240,7 +240,7 @@ public class VendorApplication {
 
                     //update count
                     result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" +
-                            vendorID + "' and delivery_date = '0';");
+                            vendorID + "' and delivery_date is null;");
                     result.next();
                     count = result.getInt(1);
                 }
