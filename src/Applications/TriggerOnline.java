@@ -68,24 +68,10 @@ public class TriggerOnline extends MethodCalls {
         Class.forName("org.h2.Driver");
         Connection conn = DriverManager.getConnection("jdbc:h2:./retailDb/retailDb", "cskid", "retaildomain");
         Statement stat = conn.createStatement();
-
-//        stat.execute("Drop trigger updateOnline");
-//        stat.execute("CREATE TRIGGER updateOnline " +
-//                "AFTER UPDATE ON CONTAINS FOR EACH ROW " +
-//               "CALL \"Applications.TriggerOnline$MyTrigger\" ");
-//
-
-//        stat.execute("INSERT INTO INVOICE VALUES(1, 10.0)");
-//        stat.execute("INSERT INTO INVOICE VALUES(2, 19.95)");
-//        stat.execute("UPDATE INVOICE SET AMOUNT=20.0 WHERE ID=2");
-//        stat.execute("DELETE FROM INVOICE WHERE ID=1");
-//        stat.execute("Insert into contains values('2','915000809965','11')");
-//        stat.execute("Update contains set amount = '9' where UPC='413874160000' and store_id = '1'");
-
+        
         ResultSet rs;
         rs = stat.executeQuery("SELECT * FROM reorder");
 
-//        System.out.println("The sum is " + rs.getBigDecimal(1));
         while( rs.next()){
             System.out.println(rs.getString(1)+"     "+rs.getString(2)+"       "+rs.getString(3));
         }
@@ -139,8 +125,6 @@ public class TriggerOnline extends MethodCalls {
                         "where UPC = '" + oldRow[1] + "';");
                 rs.next();
                 String vendor_id = rs.getString(1);
-                //String vendor_id = stat.executeQuery("select vendor_id from product " +
-                //"where UPC = '" + oldRow[1] + "';").getString(1);
                 if (amountInt<10){
                     System.out.println("true");
                     PreparedStatement prep=conn.prepareStatement("insert into reorder values" +
