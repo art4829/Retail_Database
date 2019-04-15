@@ -1,7 +1,5 @@
 package Applications;
 
-import org.h2.jdbc.JdbcSQLException;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,6 +11,13 @@ public abstract class MethodCalls {
     static final String EMAIL_DOESNT_EXIST="Email Address Doesn't exist\nPlease Sign-up!";
     static final String INCORRECT_PW="Incorrect password, Please enter again";
 
+    /**
+     * Create a connection to the database
+     *
+     * @param location file location
+     * @param user username
+     * @param password password
+     */
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -178,6 +183,13 @@ public abstract class MethodCalls {
         return email;
     }
 
+    /**
+     * View the item's name
+     *
+     * @param connection database connection
+     * @param item product
+     * @return Arraylist of product names
+     */
     public ArrayList<String> viewItem(Connection connection, String item){
         ArrayList<String> arry= new ArrayList<String>();
         try{
@@ -199,6 +211,13 @@ public abstract class MethodCalls {
         return arry;
     }
 
+    /**
+     * Return the UPC of the product
+     *
+     * @param name product name
+     * @param connection database connection
+     * @return UPC
+     */
     public String getUPC(String name, Connection connection){
         String retString="";
         try {
@@ -217,6 +236,12 @@ public abstract class MethodCalls {
         return retString;
     }
 
+    /**
+     * Return the price of the item
+     *
+     * @param UPC unique product code
+     * @return price
+     */
     public String getPrice(String UPC){
         String price="";
         try {
@@ -236,6 +261,12 @@ public abstract class MethodCalls {
         return price;
     }
 
+    /**
+     * Purchase product in the online store
+     *
+     * @param UPC unique item id
+     * @param amountToBuy amount purchased
+     */
     public void buyProduct(String UPC, int amountToBuy) {
         String amount = "";
         int updateAmt = 0;
@@ -265,6 +296,12 @@ public abstract class MethodCalls {
         }
     }
 
+    /**
+     * Purchase product in stores
+     *
+     * @param UPC unique item id
+     * @param storeID store branch
+     */
     public void buyProductStore(String UPC, int storeID) {
         String amount = "";
         int updateAmt = 0;
@@ -291,6 +328,13 @@ public abstract class MethodCalls {
             }
     }
 
+    /**
+     * Check if a product exists in the store
+     *
+     * @param UPC unique item id
+     * @param storeID store branch
+     * @return true if exists and false if not
+     */
     public boolean checkProductExist(String UPC, int storeID) {
         String count = "0";
         String query = "select count(*) from contains where UPC = '" + UPC + "' and store_id = '" + storeID + "';";
@@ -311,6 +355,11 @@ public abstract class MethodCalls {
         }
     }
 
+    /**
+     * Generate a random number
+     *
+     * @return random number
+     */
     public String genrand() {
         Random rr = new Random();
         int low = 1000000;
@@ -321,6 +370,7 @@ public abstract class MethodCalls {
 
     /**
      * generate unique order_id
+     *
      * @param conn
      * @return
      */
@@ -359,6 +409,12 @@ public abstract class MethodCalls {
     }
 
 
+    /**
+     * Return customer id
+     *
+     * @param email customer email
+     * @return id
+     */
     public String getCustomer_id(String email){
         String id="";
         try {
@@ -379,6 +435,13 @@ public abstract class MethodCalls {
         return id;
     }
 
+    /**
+     * Create an order and store it
+     *
+     * @param order_id unique order id
+     * @param cust_id unique customer id
+     * @param connection database connection
+     */
     public void putOrder(String order_id, String cust_id, Connection connection){
         try {
             String getdata = "Select * from customer where customer_id='"+cust_id+"'";
@@ -402,6 +465,9 @@ public abstract class MethodCalls {
         }
     }
 
+    /**
+     * Log out the user
+     */
     public void signout(){
         System.out.println(">>>>>----You have successfully signedOut!!!!!-----<<<<<<");
         closeConnection();
@@ -409,11 +475,18 @@ public abstract class MethodCalls {
     }
 
 
-
+    /**
+     * Return database connection
+     *
+     * @return
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Close database connection
+     */
     public void closeConnection(){
         try {
             connection.close();
@@ -422,6 +495,14 @@ public abstract class MethodCalls {
         }
     }
 
+    /**
+     * Insert new value to includes
+     *
+     * @param UPC unique product id
+     * @param order_id
+     * @param amountToBuy
+     * @param connection
+     */
     public void updateIncludes(String UPC, String order_id, String amountToBuy, Connection connection){
         try {
             String query = "Insert into includes values('"+order_id+"', '"+UPC+"', '"+amountToBuy+"');";
@@ -436,6 +517,12 @@ public abstract class MethodCalls {
 
     }
 
+    /**
+     * View order details
+     *
+     * @param id unique id
+     * @param connection connection to the database
+     */
     public void viewOrders(String id, Connection connection){
         try {
             String query = "SELECT o.order_id, i.amountToBuy, p.price, p.name\n" +
@@ -473,6 +560,13 @@ public abstract class MethodCalls {
         }
 
     }
+
+    /**
+     * Update customer's credit
+     *
+     * @param price amount of credit
+     * @param id customer id
+     */
     public void updateCredit(String price, String id){
         String credit = "";
         Double updateAmt = 0.0;
@@ -498,6 +592,12 @@ public abstract class MethodCalls {
 
     }
 
+    /**
+     * View customer's credit
+     *
+     * @param id customer id
+     * @param connection connection to the database
+     */
     public void viewCredit(String id, Connection connection){
         try {
             String query = "SELECT credit from customer where customer_id='"+id+"';";
@@ -524,6 +624,12 @@ public abstract class MethodCalls {
 
     }
 
+    /**
+     * Delete customer account
+     *
+     * @param id customer id
+     * @param connection connection to the database
+     */
     public void deleteAccount(String id, Connection connection){
         try {
             String query = "Delete from customer where customer_id='" + id + "';";
