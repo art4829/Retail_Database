@@ -5,10 +5,19 @@ import java.util.Scanner;
 import java.lang.String;
 
 public class VendorApplication {
+    /**the connection with the database*/
     private Connection connection;
+    /**messate when vendor_id does not exist*/
     private final static String Vendor_DOESNT_EXIST="VendorId Doesn't exist\nPlease Sign-up!";
+    /**incorrect password message*/
     private final String INCORRECT_PW="Incorrect password, Please enter again";
 
+    /**
+     * create connection with database
+     * @param location -the path
+     * @param user - username
+     * @param password - password
+     * */
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -30,6 +39,13 @@ public class VendorApplication {
         }
     }
 
+    /**
+     * checks the log in process of vendor
+     * checks the vendor id and password
+     * @param connection -connection
+     * @param vendor_id -vendor id
+     * @return -status of login
+     */
     public String loginVendor(Connection connection, String vendor_id){
         String query="select vendor_name, password from vendor where vendor_id = "+"\'"+vendor_id+"\'\n";
         String vendor_name;
@@ -59,17 +75,23 @@ public class VendorApplication {
             }
             return "Welcome! " +vendor_name;
 
-
         } catch (SQLException e) {
             return Vendor_DOESNT_EXIST;
         }
 
     }
 
+    /**
+     * gets the connection
+     * @return - connection
+     */
     public Connection getConnection(){
         return connection;
     }
 
+    /**
+     * close the connection
+     */
     public void closeConnection(){
         try{
             connection.close();
@@ -78,6 +100,14 @@ public class VendorApplication {
         }
     }
 
+    /**
+     * execute the query with the given statement
+     * If it returns the resultset, (ex) when you use select, it will print out
+     * the table on the console
+     * @param stmt - the statement
+     * @param query - the query
+     * @throws SQLException - exception on sql
+     */
     public void executeQuery(Statement stmt, String query) throws SQLException {
         //check if it is select
         Boolean ret = stmt.execute(query);
@@ -107,6 +137,16 @@ public class VendorApplication {
         }
     }
 
+    /**
+     * the main application of vendor
+     * First, let the user login with corresponding vendor_id and password
+     * Shows if there is any reorder for corresponding vendor_id
+     * Three choices,
+     * 1.handle reorder - handle reorder by taking input of shipment and delivery_date
+     * 2.view reorder - shows the reorders of vendor
+     * 3.quit - quit the application
+     * @param args - command line argument
+     */
     public static void main(String[] args) {
         VendorApplication app = new VendorApplication();
 

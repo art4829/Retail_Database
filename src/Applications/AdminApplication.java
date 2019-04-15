@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminApplication {
+    /**the connection with the database*/
     private Connection connection;
 
     /**
