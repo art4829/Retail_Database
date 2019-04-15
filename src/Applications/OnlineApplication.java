@@ -299,7 +299,7 @@ public class OnlineApplication extends MethodCalls {
                 System.out.println(">>>>>>>----- Do you still want to buy it?(Y/N)");
                 Scanner buyoption = new Scanner(System.in);
                 String option = buyoption.nextLine().toLowerCase();
-                String customer_id = app.getCustomer_id(email);
+                String customer_id = app.getCustomer_id(email);// get id
 
                 if (option.equals("y")) {//if customer agrees to buy
                     app.buyProduct(UPC, amountToBuy);//update product table on db
