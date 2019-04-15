@@ -45,8 +45,8 @@ public class OnlineApplication extends MethodCalls {
                 String store_id = temp.getString(7);
                 String UPC = temp.getString(3);
                 String reorder_id = temp.getString(1);
-                String checkDate = "update contains set amount = amount + 50" + " where store_id = " + store_id
-                        + " and UPC = " + UPC;
+                String checkDate = "update contains set amount = amount + 50" + " where store_id = '" + store_id
+                        + "' and UPC = '" + UPC + "';";
                 stmt.execute(checkDate);
                 stmt.execute("delete from reorder where reorder_id = " + reorder_id+";");
             }
