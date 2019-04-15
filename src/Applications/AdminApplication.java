@@ -8,6 +8,12 @@ import java.util.Scanner;
 public class AdminApplication {
     private Connection connection;
 
+    /**
+     * create connection with database
+     * @param location -the path
+     * @param user - username
+     * @param password - password
+     * */
     public void createConnection(String location,
                                  String user,
                                  String password){
@@ -29,10 +35,17 @@ public class AdminApplication {
         }
     }
 
+    /**
+     * gets the connection
+     * @return - return connection
+     */
     public Connection getConnection(){
         return connection;
     }
 
+    /**
+     * clsoe the connection
+     */
     public void closeConnection(){
         try{
             connection.close();
@@ -41,6 +54,14 @@ public class AdminApplication {
         }
     }
 
+    /**
+     * execute the query with the given statement
+     * If it returns the resultset, (ex) when you use select, it will print out
+     * the table on the console
+     * @param stmt - the statement
+     * @param query - the query
+     * @throws SQLException - exception on sql
+     */
     public void executeQuery(Statement stmt, String query) throws SQLException {
         //check if it is select
         try {
@@ -82,6 +103,13 @@ public class AdminApplication {
         }
     }
 
+    /**
+     * the main application
+     * checks the password and login
+     * gets the sql queries and execute them
+     * Keep do it until user prompts 'quit'
+     * @param args - command line argument
+     */
     public static void main(String[] args) {
         //login
         String pw;
@@ -121,7 +149,6 @@ public class AdminApplication {
             query = scan.nextLine();
         }
         app.closeConnection();
-
     }
 
 }
