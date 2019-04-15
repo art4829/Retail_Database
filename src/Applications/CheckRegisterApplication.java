@@ -6,7 +6,8 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Make in store purchases
+ * Make in store purchases. Customers can sign in if they have an account or register for one.
+ * Otherwise, all purchases are anonymous
  */
 public class CheckRegisterApplication extends MethodCalls {
     private Connection connection;
