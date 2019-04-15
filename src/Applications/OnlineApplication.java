@@ -14,7 +14,6 @@ import java.util.zip.CheckedOutputStream;
 /**
  * Class for online application.
  * Customer log-ins and purchases products.
- * @author Abhaya Tamrakar
  */
 public class OnlineApplication extends MethodCalls {
     /**
