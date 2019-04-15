@@ -136,30 +136,10 @@ public class VendorApplication {
         try {
             Statement stmt = conn.createStatement();
 
-            //check if they are delivered
-            //TODO
-            //String checkDate = "delete from reorder where Delivery_date < curdate();";
-            //stmt.execute(checkDate);
-
             //create view
             query = "create view v as select * from Reorder where vendor_id="
                     +Integer.parseInt(vendorID)+";";
             stmt.execute(query);
-
-            //test: print the view
-            //query = "select * from v";
-            //app.executeQuery(stmt,query);
-
-            //query = "select count(*) as t from v;";
-            //ResultSet c = stmt.executeQuery(query);
-            //int count = c.getInt("t");
-            //int count=0;
-            //while(c.next()){
-              //  count = c.getInt("count");
-            //}
-
-            //ResultSet result = stmt.executeQuery("select * from v;");
-            //int count = result.getRow();
 
             ResultSet result = stmt.executeQuery("select count(*) as orderCount from reorder where vendor_id = '" +
                     vendorID + "' and delivery_date is null;");
@@ -214,10 +194,6 @@ public class VendorApplication {
 
                     System.out.println("updated table:\n");
 
-                    //Check if it is delivered
-                    //TODO
-                    //stmt.execute(checkDate);
-
                     //updated table
                     query = "select * from v";
                     app.executeQuery(stmt, query);
@@ -229,16 +205,12 @@ public class VendorApplication {
                     count = result.getInt(1);
                 }
             }
-            //query = "drop table t;";
-            //app.executeQuery(stmt,query);
             query = "drop view v;";
             app.executeQuery(stmt, query);
             app.closeConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally{
-
         }
 
     }
