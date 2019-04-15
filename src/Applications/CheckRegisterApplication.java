@@ -80,6 +80,7 @@ public class CheckRegisterApplication extends MethodCalls {
 
                     if (answer.toLowerCase().equals("y") || answer.toLowerCase().equals("yes")) {
                         email = app.register(app);
+                        break;
                     } else {
                         System.out.println("Please enter a valid email address");
                     }
